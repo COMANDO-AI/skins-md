@@ -9,6 +9,12 @@ export const metadata: Metadata = {
     title: "SKINS.MD — Every model. Your skin.",
     description: "Visual skins for AI. Powered by OpenRouter.",
     type: "website",
+    url: "https://skins-md.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SKINS.MD — Every model. Your skin.",
+    description: "Visual skins for AI. Powered by OpenRouter.",
   },
 };
 

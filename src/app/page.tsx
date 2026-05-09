@@ -2,6 +2,15 @@ import Link from "next/link";
 
 const SKIN_PREVIEWS = [
   {
+    name: "Minimal",
+    desc: "Black ground. Clean type. Nothing else.",
+    bg: "#0a0a0a",
+    fg: "#ffffff",
+    accent: "#ffffff",
+    surface: "#111111",
+    border: "#1a1a1a",
+  },
+  {
     name: "NBA",
     desc: "Court energy. Arena noise.",
     bg: "#0d0a1a",
@@ -81,7 +90,7 @@ export default function HomePage() {
           SKINS.MD
         </span>
         <a
-          href="https://github.com/mariano-comando/skins-md"
+          href="https://github.com/COMANDO-AI/skins-md"
           target="_blank"
           rel="noopener noreferrer"
           style={{ color: "#888", fontSize: "0.875rem", textDecoration: "none" }}
@@ -155,7 +164,7 @@ export default function HomePage() {
             Start chatting →
           </Link>
           <a
-            href="https://github.com/mariano-comando/skins-md"
+            href="https://github.com/COMANDO-AI/skins-md"
             target="_blank"
             rel="noopener noreferrer"
             style={{
