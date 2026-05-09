@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal skin defaults — overridden by skin injector at runtime */
+:root {
+  --bg: #ffffff;
+  --fg: #111111;
+  --accent: #0066ff;
+  --muted: #999999;
+  --surface: #f5f5f5;
+  --border: #e0e0e0;
+  --error: #cc0022;
+  --success: #006633;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-display: "Inter", system-ui, sans-serif;
+  --size-base: 15px;
+  --weight-base: 400;
+  --line-height: 1.65;
+
+  --radius: 6px;
+  --spacing-unit: 8px;
+  --max-width: 700px;
+  --sidebar-width: 240px;
+  --blur: 0px;
+
+  --msg-user-bg: #0066ff;
+  --msg-user-fg: #ffffff;
+  --msg-assistant-bg: #f5f5f5;
+  --msg-assistant-fg: #111111;
+  --input-bg: #f5f5f5;
+  --input-fg: #111111;
+  --input-border: #e0e0e0;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  font-size: var(--size-base);
+  font-weight: var(--weight-base);
+  line-height: var(--line-height);
+  background: var(--bg);
+  color: var(--fg);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Atmosphere effects */
+body.atmosphere-gradient {
+  background: linear-gradient(135deg, var(--bg) 0%, var(--surface) 50%, var(--bg) 100%);
+  background-attachment: fixed;
+}
+
+body.atmosphere-noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+body.atmosphere-particles::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: radial-gradient(1px 1px at 10% 20%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 80%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 45%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 85%, var(--muted) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 35%, var(--muted) 0%, transparent 100%);
+  opacity: 0.3;
+}
+
+body.atmosphere-scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}
+
+/* Animation speeds */
+body.anim-none * {
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+body.anim-slow * {
+  animation-duration: 2s;
+  transition-duration: 0.4s;
+}
+
+body.anim-fast * {
+  animation-duration: 0.3s;
+  transition-duration: 0.1s;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* Markdown prose inside assistant messages */
+.prose-skin h1,
+.prose-skin h2,
+.prose-skin h3 {
+  font-family: var(--font-display);
+  color: var(--msg-assistant-fg);
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+.prose-skin a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.prose-skin table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75em 0;
+  font-size: 0.9em;
+}
+
+.prose-skin th,
+.prose-skin td {
+  border: 1px solid var(--border);
+  padding: 0.4em 0.75em;
+  text-align: left;
+}
+
+.prose-skin th {
+  background: var(--surface);
+}
