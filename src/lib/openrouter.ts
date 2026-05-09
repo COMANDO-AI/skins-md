@@ -37,12 +37,19 @@ export async function* streamChat(
       model,
       messages: messages.map(({ role, content }) => ({ role, content })),
       stream: true,
+      max_tokens: 2048,
     }),
   });
 
   if (!response.ok) {
-    const err = await response.text();
-    throw new Error(`OpenRouter error ${response.status}: ${err}`);
+    const raw = await response.text();
+    let msg: string;
+    try {
+      msg = (JSON.parse(raw) as { error?: { message?: string } }).error?.message ?? raw;
+    } catch {
+      msg = raw;
+    }
+    throw new Error(msg);
   }
 
   const reader = response.body?.getReader();
