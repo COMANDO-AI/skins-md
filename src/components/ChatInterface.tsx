@@ -172,7 +172,7 @@ export default function ChatInterface() {
   const voice = activeSkinConfig?.voice;
 
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: "var(--bg)", color: "var(--fg)" }}>
+    <div className="flex h-screen overflow-hidden" style={{ display: "flex", height: "100vh", overflow: "hidden", background: "var(--bg)", color: "var(--fg)" }}>
       {showApiModal && <ApiKeyModal onKeySet={handleApiKeySet} />}
 
       {showSkinPicker && (
@@ -203,9 +203,9 @@ export default function ChatInterface() {
       />
 
       {/* Main chat area */}
-      <main className="flex flex-col flex-1 min-w-0">
+      <main className="flex flex-col flex-1 min-w-0" style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto px-4 py-6">
+        <div className="flex-1 overflow-y-auto px-4 py-6" style={{ flex: 1, overflowY: "auto", padding: "1.5rem 1rem" }}>
           <div className="mx-auto" style={{ maxWidth: "var(--max-width)" }}>
             {messages.length === 0 ? (
               <div

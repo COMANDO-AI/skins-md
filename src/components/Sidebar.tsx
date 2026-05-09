@@ -30,11 +30,16 @@ export default function Sidebar({
     <aside
       className="flex flex-col h-full border-r"
       style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
         width: "var(--sidebar-width)",
+        minWidth: "200px",
+        maxWidth: "260px",
         background: "var(--surface)",
-        borderColor: "var(--border)",
+        borderRight: "1px solid var(--border)",
         fontFamily: "var(--font-sans)",
-        minWidth: "180px",
+        flexShrink: 0,
       }}
     >
       {/* Logo */}

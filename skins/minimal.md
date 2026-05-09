@@ -2,20 +2,20 @@
 name:          Minimal
 author:        COMANDO
 version:       1.0.0
-tags:          minimal, clean, professional, light, default
+tags:          minimal, clean, professional, dark, default
 description:   Nothing in the way. Just thinking.
 preview_url:   none
 license:       MIT
 
 ### Section 2 · palette
-bg:            #ffffff
-fg:            #111111
-accent:        #0066ff
-muted:         #999999
-surface:       #f5f5f5
-border:        #e0e0e0
-error:         #cc0022
-success:       #006633
+bg:            #0a0a0a
+fg:            #e8e8e8
+accent:        #ffffff
+muted:         #555555
+surface:       #111111
+border:        #1f1f1f
+error:         #cc2222
+success:       #22aa44
 
 ### Section 3 · typography
 font_sans:     Inter
