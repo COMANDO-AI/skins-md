@@ -120,6 +120,29 @@ export interface SkinPersona {
   nav_recent_2?: string;
   nav_recent_3?: string;
   nav_recent_4?: string;
+  play_1_type?: string;
+  play_1_label?: string;
+  play_1_score?: string;
+  play_2_type?: string;
+  play_2_label?: string;
+  play_2_score?: string;
+  play_3_type?: string;
+  play_3_label?: string;
+  play_3_score?: string;
+  play_4_type?: string;
+  play_4_label?: string;
+  play_4_score?: string;
+  check_1_label?: string;
+  check_1_done?: string;
+  check_2_label?: string;
+  check_2_done?: string;
+  check_3_label?: string;
+  check_3_done?: string;
+  check_4_label?: string;
+  check_4_done?: string;
+  status_branch?: string;
+  status_note?: string;
+  action_button?: string;
 }
 
 export interface SkinConfig {
