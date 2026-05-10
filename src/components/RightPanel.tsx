@@ -16,7 +16,7 @@ function PanelHeader({ title }: { title: string }) {
         gap: "8px",
         marginBottom: "12px",
         paddingBottom: "8px",
-        borderBottom: "1px solid rgba(0,212,255,0.20)",
+        borderBottom: "1px solid color-mix(in srgb, var(--accent) 20%, transparent)",
       }}
     >
       <span
@@ -25,14 +25,18 @@ function PanelHeader({ title }: { title: string }) {
           fontSize: "11px",
           fontWeight: 700,
           letterSpacing: "0.18em",
-          color: "rgba(0,212,255,0.9)",
+          color: "var(--accent)",
           textTransform: "uppercase",
         }}
       >
         {title}
       </span>
       <span style={{ marginLeft: "auto", display: "flex", gap: "4px" }}>
-        {["rgba(0,212,255,0.5)", "rgba(0,255,170,0.5)", "rgba(255,92,77,0.5)"].map((c, i) => (
+        {[
+          "color-mix(in srgb, var(--accent) 50%, transparent)",
+          "color-mix(in srgb, var(--success) 50%, transparent)",
+          "color-mix(in srgb, var(--error) 50%, transparent)",
+        ].map((c, i) => (
           <span
             key={i}
             style={{ width: "8px", height: "8px", borderRadius: "50%", background: c }}
@@ -53,11 +57,11 @@ function TerminalPanel({ persona }: { persona: SkinPersona }) {
   return (
     <div
       style={{
-        background: "linear-gradient(180deg, #020c18 0%, #031424 100%)",
-        border: "1px solid rgba(0,212,255,0.22)",
+        background: "linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%)",
+        border: "1px solid color-mix(in srgb, var(--accent) 22%, transparent)",
         borderRadius: "10px",
         padding: "14px",
-        boxShadow: "0 0 20px rgba(0,80,160,0.25), inset 0 1px 0 rgba(0,212,255,0.08)",
+        boxShadow: "0 0 20px color-mix(in srgb, var(--accent) 25%, transparent), inset 0 1px 0 color-mix(in srgb, var(--accent) 8%, transparent)",
       }}
     >
       <PanelHeader title={persona.right_panel_0_title ?? "TERMINAL"} />
@@ -65,18 +69,18 @@ function TerminalPanel({ persona }: { persona: SkinPersona }) {
         style={{
           fontFamily: "var(--font-mono)",
           fontSize: "11px",
-          color: "rgba(0,212,255,0.85)",
+          color: "color-mix(in srgb, var(--accent) 85%, transparent)",
           lineHeight: 1.7,
         }}
       >
-        <div style={{ color: "rgba(0,255,170,0.6)", marginBottom: "4px" }}>
-          {">"} DEEPNET v2.2 · signal detected
+        <div style={{ color: "color-mix(in srgb, var(--success) 60%, transparent)", marginBottom: "4px" }}>
+          {persona.terminal_header_1 ?? "> DEEPNET v2.2 · signal detected"}
         </div>
-        <div style={{ color: "rgba(0,200,255,0.5)", marginBottom: "4px" }}>
-          · bioluminescent field: ACTIVE
+        <div style={{ color: "color-mix(in srgb, var(--accent) 50%, transparent)", marginBottom: "4px" }}>
+          {persona.terminal_header_2 ?? "· bioluminescent field: ACTIVE"}
         </div>
         <div>
-          <span style={{ color: "rgba(0,255,170,0.7)" }}>
+          <span style={{ color: "color-mix(in srgb, var(--success) 70%, transparent)" }}>
             {persona.terminal_line ?? "yavin-base ~ %"}
           </span>
           <span
@@ -84,7 +88,7 @@ function TerminalPanel({ persona }: { persona: SkinPersona }) {
               display: "inline-block",
               width: "7px",
               height: "13px",
-              background: cursor ? "rgba(0,212,255,0.85)" : "transparent",
+              background: cursor ? "var(--accent)" : "transparent",
               verticalAlign: "middle",
               marginLeft: "2px",
               transition: "background 0.1s",
@@ -96,7 +100,7 @@ function TerminalPanel({ persona }: { persona: SkinPersona }) {
   );
 }
 
-function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
+function StatsPanel({ persona }: { persona: SkinPersona }) {
   const gaugeVal = parseInt(persona.gauge_value ?? "72", 10);
   const radius = 42;
   const circumference = 2 * Math.PI * radius;
@@ -105,15 +109,15 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
   return (
     <div
       style={{
-        background: "linear-gradient(180deg, #051a30 0%, #041422 100%)",
-        border: "1px solid rgba(0,212,255,0.22)",
+        background: "linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%)",
+        border: "1px solid color-mix(in srgb, var(--accent) 22%, transparent)",
         borderRadius: "10px",
         padding: "14px",
-        boxShadow: "0 0 20px rgba(0,80,160,0.25), inset 0 1px 0 rgba(0,212,255,0.08)",
+        boxShadow: "0 0 20px color-mix(in srgb, var(--accent) 25%, transparent), inset 0 1px 0 color-mix(in srgb, var(--accent) 8%, transparent)",
         flex: 1,
       }}
     >
-      <PanelHeader title={persona.right_panel_1_title ?? "OCEAN STATUS"} />
+      <PanelHeader title={persona.right_panel_1_title ?? "STATS"} />
 
       {/* Circular gauge */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: "14px" }}>
@@ -122,18 +126,18 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
             <circle
               cx="50" cy="50" r={radius}
               fill="none"
-              stroke="rgba(0,212,255,0.10)"
+              stroke="color-mix(in srgb, var(--accent) 10%, transparent)"
               strokeWidth="7"
             />
             <circle
               cx="50" cy="50" r={radius}
               fill="none"
-              stroke="rgba(0,212,255,0.85)"
+              stroke="var(--accent)"
               strokeWidth="7"
               strokeLinecap="round"
               strokeDasharray={circumference}
               strokeDashoffset={dashOffset}
-              style={{ filter: "drop-shadow(0 0 4px rgba(0,212,255,0.6))", transition: "stroke-dashoffset 1s ease" }}
+              style={{ filter: "drop-shadow(0 0 4px color-mix(in srgb, var(--accent) 60%, transparent))", transition: "stroke-dashoffset 1s ease" }}
             />
           </svg>
           <div
@@ -151,8 +155,8 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
                 fontFamily: "var(--font-display)",
                 fontSize: "20px",
                 fontWeight: 700,
-                color: "rgba(0,212,255,0.95)",
-                textShadow: "0 0 12px rgba(0,212,255,0.5)",
+                color: "var(--accent)",
+                textShadow: "0 0 12px color-mix(in srgb, var(--accent) 50%, transparent)",
               }}
             >
               {gaugeVal}%
@@ -161,12 +165,12 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "9px",
-                color: "rgba(0,212,255,0.5)",
+                color: "color-mix(in srgb, var(--accent) 50%, transparent)",
                 letterSpacing: "0.1em",
                 textTransform: "uppercase",
               }}
             >
-              DEPTH
+              {persona.gauge_label ?? "DEPTH"}
             </span>
           </div>
         </div>
@@ -185,14 +189,14 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "5px 0",
-            borderBottom: i < 2 ? "1px solid rgba(0,212,255,0.08)" : "none",
+            borderBottom: i < 2 ? "1px solid color-mix(in srgb, var(--accent) 8%, transparent)" : "none",
           }}
         >
           <span
             style={{
               fontFamily: "var(--font-mono)",
               fontSize: "10px",
-              color: "rgba(0,212,255,0.5)",
+              color: "color-mix(in srgb, var(--accent) 50%, transparent)",
               letterSpacing: "0.12em",
               textTransform: "uppercase",
             }}
@@ -204,7 +208,7 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
               fontFamily: "var(--font-display)",
               fontSize: "12px",
               fontWeight: 700,
-              color: "rgba(180,224,255,0.9)",
+              color: "color-mix(in srgb, var(--fg) 90%, transparent)",
             }}
           >
             {value}
@@ -215,77 +219,82 @@ function OceanStatusPanel({ persona }: { persona: SkinPersona }) {
   );
 }
 
-function SubSystemsPanel({ persona }: { persona: SkinPersona }) {
+function BarsPanel({ persona }: { persona: SkinPersona }) {
   const bars = [
-    { label: persona.bar_1_label, value: parseInt(persona.bar_1_value ?? "78", 10), color: "rgba(0,212,255,0.8)" },
-    { label: persona.bar_2_label, value: parseInt(persona.bar_2_value ?? "62", 10), color: "rgba(0,212,255,0.8)" },
-    { label: persona.bar_3_label, value: parseInt(persona.bar_3_value ?? "91", 10), color: "rgba(0,212,255,0.8)" },
-    { label: persona.bar_4_label, value: parseInt(persona.bar_4_value ?? "100", 10), color: "rgba(0,255,170,0.8)" },
+    { label: persona.bar_1_label, value: parseInt(persona.bar_1_value ?? "78", 10), isLast: false },
+    { label: persona.bar_2_label, value: parseInt(persona.bar_2_value ?? "62", 10), isLast: false },
+    { label: persona.bar_3_label, value: parseInt(persona.bar_3_value ?? "91", 10), isLast: false },
+    { label: persona.bar_4_label, value: parseInt(persona.bar_4_value ?? "100", 10), isLast: true },
   ].filter((b) => b.label);
 
   return (
     <div
       style={{
-        background: "linear-gradient(180deg, #051a30 0%, #041422 100%)",
-        border: "1px solid rgba(0,212,255,0.22)",
+        background: "linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%)",
+        border: "1px solid color-mix(in srgb, var(--accent) 22%, transparent)",
         borderRadius: "10px",
         padding: "14px",
-        boxShadow: "0 0 20px rgba(0,80,160,0.25), inset 0 1px 0 rgba(0,212,255,0.08)",
+        boxShadow: "0 0 20px color-mix(in srgb, var(--accent) 25%, transparent), inset 0 1px 0 color-mix(in srgb, var(--accent) 8%, transparent)",
       }}
     >
-      <PanelHeader title={persona.right_panel_2_title ?? "SUB SYSTEMS"} />
+      <PanelHeader title={persona.right_panel_2_title ?? "SYSTEMS"} />
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        {bars.map((bar, i) => (
-          <div key={i}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "4px",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "rgba(0,212,255,0.6)",
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                }}
-              >
-                {bar.label === persona.bar_4_label ? "⚡ " : ""}{bar.label}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "10px",
-                  color: "rgba(180,224,255,0.8)",
-                }}
-              >
-                {bar.label === persona.bar_4_label ? "4/4" : `${bar.value}%`}
-              </span>
-            </div>
-            <div
-              style={{
-                height: "5px",
-                background: "rgba(0,212,255,0.10)",
-                borderRadius: "3px",
-                overflow: "hidden",
-              }}
-            >
+        {bars.map((bar, i) => {
+          const barColor = bar.isLast
+            ? "color-mix(in srgb, var(--success) 80%, transparent)"
+            : "color-mix(in srgb, var(--accent) 80%, transparent)";
+          return (
+            <div key={i}>
               <div
                 style={{
-                  height: "100%",
-                  width: `${bar.value}%`,
-                  background: bar.color,
-                  borderRadius: "3px",
-                  boxShadow: `0 0 6px ${bar.color}`,
-                  transition: "width 1s ease",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "4px",
                 }}
-              />
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    color: "color-mix(in srgb, var(--accent) 60%, transparent)",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {bar.isLast ? "⚡ " : ""}{bar.label}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "10px",
+                    color: "color-mix(in srgb, var(--fg) 80%, transparent)",
+                  }}
+                >
+                  {bar.isLast ? "4/4" : `${bar.value}%`}
+                </span>
+              </div>
+              <div
+                style={{
+                  height: "5px",
+                  background: "color-mix(in srgb, var(--accent) 10%, transparent)",
+                  borderRadius: "3px",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    width: `${bar.value}%`,
+                    background: barColor,
+                    borderRadius: "3px",
+                    boxShadow: `0 0 6px ${barColor}`,
+                    transition: "width 1s ease",
+                  }}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
@@ -305,12 +314,12 @@ export default function RightPanel({ persona }: Props) {
         gap: "10px",
         padding: "12px 10px 12px 0",
         flexShrink: 0,
-        borderLeft: "1px solid rgba(0,212,255,0.15)",
+        borderLeft: "1px solid color-mix(in srgb, var(--accent) 15%, transparent)",
       }}
     >
       {persona.right_panel_0_title !== undefined && <TerminalPanel persona={persona} />}
-      <OceanStatusPanel persona={persona} />
-      <SubSystemsPanel persona={persona} />
+      <StatsPanel persona={persona} />
+      <BarsPanel persona={persona} />
     </div>
   );
 }

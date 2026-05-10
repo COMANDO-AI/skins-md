@@ -205,6 +205,46 @@ export default function ChatInterface() {
 
       {/* Main chat area */}
       <main className="flex flex-col flex-1 min-w-0" style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, overflow: "hidden" }}>
+        {/* Character identity header — shown when skin has user_level persona field */}
+        {activeSkinConfig?.persona?.user_level && (
+          <div
+            className="character-header"
+            style={{
+              textAlign: "center",
+              padding: "10px 24px 9px",
+              borderBottom: "1px solid var(--border)",
+              background: "linear-gradient(180deg, rgba(20,50,100,0.35) 0%, transparent 100%)",
+              flexShrink: 0,
+            }}
+          >
+            <div
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: 900,
+                color: "var(--fg)",
+                fontFamily: "var(--font-display)",
+                letterSpacing: "0.15em",
+                lineHeight: 1.1,
+                textTransform: "uppercase",
+              }}
+            >
+              {activeSkinConfig.persona.user_name}
+            </div>
+            <div
+              style={{
+                fontSize: "0.6rem",
+                color: "var(--muted)",
+                fontFamily: "var(--font-mono)",
+                letterSpacing: "0.20em",
+                marginTop: "4px",
+                textTransform: "uppercase",
+              }}
+            >
+              {activeSkinConfig.persona.user_level}
+            </div>
+          </div>
+        )}
+
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-4 py-6" style={{ flex: 1, overflowY: "auto", padding: "1.5rem 1rem" }}>
           <div className="mx-auto" style={{ maxWidth: "var(--max-width)" }}>

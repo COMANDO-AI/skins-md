@@ -45,10 +45,10 @@ function PersonaSidebar({
       : null;
 
   const RECENTS_PLACEHOLDER = [
-    "Merge branch & push TestFlight",
-    "API authentication refactor",
-    "Add dark mode to mobile app",
-    "Optimize database queries",
+    persona?.nav_recent_1 ?? "Merge branch & push TestFlight",
+    persona?.nav_recent_2 ?? "API authentication refactor",
+    persona?.nav_recent_3 ?? "Add dark mode to mobile app",
+    persona?.nav_recent_4 ?? "Optimize database queries",
   ];
 
   return (
@@ -60,9 +60,9 @@ function PersonaSidebar({
         width: "240px",
         minWidth: "240px",
         maxWidth: "240px",
-        background: "linear-gradient(180deg, #082848 0%, #061c38 40%, #04152a 100%)",
-        borderRight: "1px solid rgba(0,212,255,0.22)",
-        boxShadow: "6px 0 40px rgba(0,80,200,0.20)",
+        background: "linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%)",
+        borderRight: "1px solid color-mix(in srgb, var(--accent) 22%, transparent)",
+        boxShadow: "6px 0 40px color-mix(in srgb, var(--accent) 20%, transparent)",
         flexShrink: 0,
         overflow: "hidden",
         fontFamily: "var(--font-sans)",
@@ -77,7 +77,7 @@ function PersonaSidebar({
           left: 0,
           right: 0,
           height: "2px",
-          background: "linear-gradient(90deg, transparent, rgba(0,212,255,0.7), rgba(0,212,255,0.4), transparent)",
+          background: "linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 70%, transparent), color-mix(in srgb, var(--accent) 40%, transparent), transparent)",
           pointerEvents: "none",
         }}
       />
@@ -86,7 +86,7 @@ function PersonaSidebar({
       <div
         style={{
           padding: "18px 16px 12px",
-          borderBottom: "1px solid rgba(0,212,255,0.12)",
+          borderBottom: "1px solid color-mix(in srgb, var(--accent) 12%, transparent)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "4px" }}>
@@ -97,8 +97,8 @@ function PersonaSidebar({
               fontSize: "16px",
               fontWeight: 700,
               letterSpacing: "0.14em",
-              color: "rgba(0,212,255,0.95)",
-              textShadow: "0 0 16px rgba(0,212,255,0.5)",
+              color: "var(--accent)",
+              textShadow: "0 0 16px color-mix(in srgb, var(--accent) 50%, transparent)",
             }}
           >
             {persona?.sidebar_name ?? "DEEPNET"}
@@ -110,7 +110,7 @@ function PersonaSidebar({
               fontFamily: "var(--font-mono)",
               fontSize: "9px",
               letterSpacing: "0.16em",
-              color: "rgba(0,180,255,0.5)",
+              color: "color-mix(in srgb, var(--accent) 50%, transparent)",
               textTransform: "uppercase",
               paddingLeft: "32px",
             }}
@@ -126,10 +126,10 @@ function PersonaSidebar({
           display: "flex",
           padding: "10px 10px 0",
           gap: "4px",
-          borderBottom: "1px solid rgba(0,212,255,0.10)",
+          borderBottom: "1px solid color-mix(in srgb, var(--accent) 10%, transparent)",
         }}
       >
-        {["CHAT", "PROJECTS", "CODE"].map((tab) => (
+        {["CHAT", "COWORK", "CODE"].map((tab) => (
           <button
             key={tab}
             style={{
@@ -137,14 +137,14 @@ function PersonaSidebar({
               padding: "6px 4px",
               borderRadius: "6px 6px 0 0",
               border: "none",
-              background: tab === "CHAT" ? "rgba(0,212,255,0.14)" : "transparent",
-              color: tab === "CHAT" ? "rgba(0,212,255,0.95)" : "rgba(0,180,255,0.35)",
+              background: tab === "CHAT" ? "color-mix(in srgb, var(--accent) 14%, transparent)" : "transparent",
+              color: tab === "CHAT" ? "var(--accent)" : "color-mix(in srgb, var(--fg) 35%, transparent)",
               fontFamily: "var(--font-display)",
               fontSize: "9px",
               fontWeight: 700,
               letterSpacing: "0.12em",
               cursor: tab === "CHAT" ? "default" : "not-allowed",
-              borderBottom: tab === "CHAT" ? "2px solid rgba(0,212,255,0.6)" : "2px solid transparent",
+              borderBottom: tab === "CHAT" ? "2px solid color-mix(in srgb, var(--accent) 60%, transparent)" : "2px solid transparent",
             }}
           >
             {tab}
@@ -173,7 +173,7 @@ function PersonaSidebar({
               borderRadius: "7px",
               border: "none",
               background: "transparent",
-              color: "rgba(180,220,255,0.7)",
+              color: "color-mix(in srgb, var(--fg) 70%, transparent)",
               fontFamily: "var(--font-sans)",
               fontSize: "13px",
               cursor: item.action !== "none" ? "pointer" : "default",
@@ -182,13 +182,13 @@ function PersonaSidebar({
             }}
             onMouseEnter={(e) => {
               if (item.action !== "none") {
-                (e.currentTarget as HTMLButtonElement).style.background = "rgba(0,212,255,0.08)";
-                (e.currentTarget as HTMLButtonElement).style.color = "rgba(0,212,255,0.9)";
+                (e.currentTarget as HTMLButtonElement).style.background = "color-mix(in srgb, var(--accent) 8%, transparent)";
+                (e.currentTarget as HTMLButtonElement).style.color = "color-mix(in srgb, var(--accent) 90%, transparent)";
               }
             }}
             onMouseLeave={(e) => {
               (e.currentTarget as HTMLButtonElement).style.background = "transparent";
-              (e.currentTarget as HTMLButtonElement).style.color = "rgba(180,220,255,0.7)";
+              (e.currentTarget as HTMLButtonElement).style.color = "color-mix(in srgb, var(--fg) 70%, transparent)";
             }}
           >
             <span style={{ fontSize: "13px", width: "16px", textAlign: "center", opacity: 0.8 }}>
@@ -206,7 +206,7 @@ function PersonaSidebar({
             fontFamily: "var(--font-mono)",
             fontSize: "9px",
             letterSpacing: "0.14em",
-            color: "rgba(0,212,255,0.35)",
+            color: "color-mix(in srgb, var(--accent) 35%, transparent)",
             textTransform: "uppercase",
             marginBottom: "6px",
           }}
@@ -218,7 +218,7 @@ function PersonaSidebar({
             display: "flex",
             alignItems: "center",
             gap: "6px",
-            color: "rgba(100,160,220,0.35)",
+            color: "color-mix(in srgb, var(--fg) 35%, transparent)",
             fontSize: "12px",
             fontStyle: "italic",
           }}
@@ -235,7 +235,7 @@ function PersonaSidebar({
             fontFamily: "var(--font-mono)",
             fontSize: "9px",
             letterSpacing: "0.14em",
-            color: "rgba(0,212,255,0.35)",
+            color: "color-mix(in srgb, var(--accent) 35%, transparent)",
             textTransform: "uppercase",
             marginBottom: "6px",
           }}
@@ -248,9 +248,9 @@ function PersonaSidebar({
               style={{
                 padding: "6px 8px",
                 borderRadius: "6px",
-                background: "rgba(0,212,255,0.12)",
-                borderLeft: "2px solid rgba(0,212,255,0.6)",
-                color: "rgba(180,224,255,0.9)",
+                background: "color-mix(in srgb, var(--accent) 12%, transparent)",
+                borderLeft: "2px solid color-mix(in srgb, var(--accent) 60%, transparent)",
+                color: "color-mix(in srgb, var(--fg) 90%, transparent)",
                 fontSize: "12px",
                 cursor: "default",
               }}
@@ -264,7 +264,7 @@ function PersonaSidebar({
               style={{
                 padding: "5px 8px",
                 borderRadius: "6px",
-                color: "rgba(100,160,220,0.45)",
+                color: "color-mix(in srgb, var(--fg) 45%, transparent)",
                 fontSize: "12px",
                 cursor: "default",
               }}
@@ -279,7 +279,7 @@ function PersonaSidebar({
       <div
         style={{
           padding: "10px 10px 8px",
-          borderTop: "1px solid rgba(0,212,255,0.10)",
+          borderTop: "1px solid color-mix(in srgb, var(--accent) 10%, transparent)",
           display: "flex",
           flexDirection: "column",
           gap: "8px",
@@ -295,7 +295,7 @@ function PersonaSidebar({
             alignItems: "center",
             gap: "10px",
             padding: "8px 8px 4px",
-            borderTop: "1px solid rgba(0,212,255,0.10)",
+            borderTop: "1px solid color-mix(in srgb, var(--accent) 10%, transparent)",
             marginTop: "2px",
           }}
         >
@@ -304,9 +304,9 @@ function PersonaSidebar({
               width: "36px",
               height: "36px",
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #1a5080, #0a3060)",
-              border: "2px solid rgba(0,212,255,0.35)",
-              boxShadow: "0 0 10px rgba(0,212,255,0.2)",
+              background: "linear-gradient(135deg, var(--surface), var(--bg))",
+              border: "2px solid color-mix(in srgb, var(--accent) 35%, transparent)",
+              boxShadow: "0 0 10px color-mix(in srgb, var(--accent) 20%, transparent)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -323,7 +323,7 @@ function PersonaSidebar({
                 fontSize: "11px",
                 fontWeight: 700,
                 letterSpacing: "0.10em",
-                color: "rgba(180,224,255,0.9)",
+                color: "var(--fg)",
                 textTransform: "uppercase",
               }}
             >
@@ -333,7 +333,7 @@ function PersonaSidebar({
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "9px",
-                color: "rgba(0,212,255,0.45)",
+                color: "color-mix(in srgb, var(--accent) 45%, transparent)",
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
                 marginBottom: "4px",
@@ -344,7 +344,7 @@ function PersonaSidebar({
             <div
               style={{
                 height: "4px",
-                background: "rgba(0,212,255,0.12)",
+                background: "color-mix(in srgb, var(--accent) 12%, transparent)",
                 borderRadius: "2px",
                 overflow: "hidden",
               }}
@@ -353,9 +353,9 @@ function PersonaSidebar({
                 style={{
                   height: "100%",
                   width: `${xpPct}%`,
-                  background: "rgba(0,212,255,0.7)",
+                  background: "color-mix(in srgb, var(--accent) 70%, transparent)",
                   borderRadius: "2px",
-                  boxShadow: "0 0 6px rgba(0,212,255,0.5)",
+                  boxShadow: "0 0 6px color-mix(in srgb, var(--accent) 50%, transparent)",
                   transition: "width 1s ease",
                 }}
               />
@@ -364,7 +364,7 @@ function PersonaSidebar({
               style={{
                 fontFamily: "var(--font-mono)",
                 fontSize: "8px",
-                color: "rgba(0,212,255,0.35)",
+                color: "color-mix(in srgb, var(--accent) 35%, transparent)",
                 marginTop: "2px",
               }}
             >

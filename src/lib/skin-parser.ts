@@ -98,6 +98,7 @@ export interface SkinPersona {
   terminal_line?: string;
   right_panel_1_title?: string;
   gauge_value?: string;
+  gauge_label?: string;
   stat_1_label?: string;
   stat_1_value?: string;
   stat_2_label?: string;
@@ -113,6 +114,12 @@ export interface SkinPersona {
   bar_3_value?: string;
   bar_4_label?: string;
   bar_4_value?: string;
+  terminal_header_1?: string;
+  terminal_header_2?: string;
+  nav_recent_1?: string;
+  nav_recent_2?: string;
+  nav_recent_3?: string;
+  nav_recent_4?: string;
 }
 
 export interface SkinConfig {
