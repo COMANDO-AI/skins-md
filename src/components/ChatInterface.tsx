@@ -211,21 +211,23 @@ export default function ChatInterface() {
             className="character-header"
             style={{
               textAlign: "center",
-              padding: "10px 24px 9px",
+              padding: "20px 120px 16px",
               borderBottom: "1px solid var(--border)",
-              background: "linear-gradient(180deg, rgba(20,50,100,0.35) 0%, transparent 100%)",
+              background: "linear-gradient(180deg, rgba(10,30,80,0.50) 0%, rgba(6,10,20,0.0) 100%)",
               flexShrink: 0,
+              position: "relative",
             }}
           >
             <div
               style={{
-                fontSize: "1.5rem",
+                fontSize: "3rem",
                 fontWeight: 900,
                 color: "var(--fg)",
                 fontFamily: "var(--font-display)",
-                letterSpacing: "0.15em",
-                lineHeight: 1.1,
+                letterSpacing: "0.22em",
+                lineHeight: 1,
                 textTransform: "uppercase",
+                textShadow: "0 0 40px rgba(68,147,248,0.30)",
               }}
             >
               {activeSkinConfig.persona.user_name}
@@ -235,9 +237,13 @@ export default function ChatInterface() {
                 fontSize: "0.6rem",
                 color: "var(--muted)",
                 fontFamily: "var(--font-mono)",
-                letterSpacing: "0.20em",
-                marginTop: "4px",
+                letterSpacing: "0.28em",
+                marginTop: "6px",
                 textTransform: "uppercase",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
               }}
             >
               {activeSkinConfig.persona.user_level}

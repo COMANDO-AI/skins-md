@@ -79,6 +79,10 @@ right_panel_2_title:   SHIP SYSTEMS
 terminal_line:         luke@yavin-base ~ %
 terminal_header_1:     > REBEL ALLIANCE · channel secure
 terminal_header_2:     · FORCE FIELD: ACTIVE
+nav_recent_1:          Fix random value ordering issue
+nav_recent_2:          Merge branch & push TestFlight
+nav_recent_3:          PDF reconciliation & transaction match
+nav_recent_4:          Submit latest build to Apple
 gauge_value:           85
 gauge_label:           FORCE
 stat_1_label:          MIDICHLORIANS
@@ -102,49 +106,63 @@ bar_4_value:           95
 
 /* ── Panel theming tokens ────────────────────────────── */
 :root {
-  --panel-border:       rgba(68, 147, 248, 0.25);
-  --panel-bg-dark:      linear-gradient(180deg, #060c18 0%, #040a14 100%);
-  --panel-bg:           linear-gradient(180deg, #0c1624 0%, #080f1e 100%);
-  --panel-glow:         rgba(20, 60, 200, 0.25);
-  --panel-accent:       rgba(68, 147, 248, 0.85);
-  --panel-accent-mid:   rgba(68, 147, 248, 0.50);
+  --panel-border:       rgba(68, 147, 248, 0.28);
+  --panel-bg-dark:      linear-gradient(180deg, #040810 0%, #030609 100%);
+  --panel-bg:           linear-gradient(180deg, #08101e 0%, #060c18 100%);
+  --panel-glow:         rgba(20, 60, 200, 0.30);
+  --panel-accent:       rgba(68, 147, 248, 0.90);
+  --panel-accent-mid:   rgba(68, 147, 248, 0.55);
   --panel-accent-dim:   rgba(68, 147, 248, 0.40);
   --panel-accent-trace: rgba(68, 147, 248, 0.10);
   --panel-accent-glow:  rgba(68, 147, 248, 0.08);
-  --panel-text:         rgba(200, 220, 240, 0.90);
-  --panel-success:      rgba(0, 204, 102, 0.70);
-  --panel-header:       rgba(68, 147, 248, 0.90);
+  --panel-text:         rgba(200, 220, 240, 0.95);
+  --panel-success:      rgba(0, 204, 102, 0.80);
+  --panel-header:       rgba(68, 147, 248, 0.95);
 }
 
 /* ── Deep space background ───────────────────────────── */
 body {
-  background: radial-gradient(ellipse at 50% 0%, #0d1f3c 0%, #060a14 65%) fixed;
+  background: radial-gradient(ellipse at 50% 20%, #081630 0%, #030609 55%) fixed;
 }
 
-/* ── Star field ──────────────────────────────────────── */
+/* ── Dense star field ────────────────────────────────── */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(1px 1px at  8% 12%, rgba(200,220,255,0.70) 0%, transparent 100%),
-    radial-gradient(1px 1px at 17% 44%, rgba(180,210,255,0.45) 0%, transparent 100%),
-    radial-gradient(1px 1px at 26%  8%, rgba(220,235,255,0.60) 0%, transparent 100%),
-    radial-gradient(1px 1px at 34% 68%, rgba(190,215,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 43% 29%, rgba(210,230,255,0.55) 0%, transparent 100%),
-    radial-gradient(1px 1px at 52% 82%, rgba(200,220,255,0.40) 0%, transparent 100%),
-    radial-gradient(1px 1px at 61% 17%, rgba(220,235,255,0.50) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 55%, rgba(180,210,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 79% 38%, rgba(200,225,255,0.60) 0%, transparent 100%),
-    radial-gradient(1px 1px at 88% 73%, rgba(210,230,255,0.45) 0%, transparent 100%),
-    radial-gradient(1px 1px at 95% 22%, rgba(200,220,255,0.50) 0%, transparent 100%),
-    radial-gradient(1px 1px at 13% 91%, rgba(190,215,255,0.30) 0%, transparent 100%),
-    radial-gradient(1px 1px at  4% 57%, rgba(200,215,255,0.40) 0%, transparent 100%),
-    radial-gradient(1px 1px at 56% 34%, rgba(215,230,255,0.30) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 37% 51%, rgba(200,220,255,0.35) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 65% 88%, rgba(210,230,255,0.30) 0%, transparent 100%),
-    radial-gradient(2px 2px   at 82%  6%, rgba(220,235,255,0.40) 0%, transparent 100%),
-    radial-gradient(2px 2px   at 48% 62%, rgba(200,220,255,0.25) 0%, transparent 100%);
+    radial-gradient(1px 1px at  3%  7%, rgba(220,235,255,0.90) 0%, transparent 100%),
+    radial-gradient(1px 1px at  8% 34%, rgba(200,220,255,0.65) 0%, transparent 100%),
+    radial-gradient(1px 1px at 13% 61%, rgba(215,230,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 18% 12%, rgba(230,240,255,0.80) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 48%, rgba(200,215,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 26% 83%, rgba(210,225,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 31%  3%, rgba(220,235,255,0.70) 0%, transparent 100%),
+    radial-gradient(1px 1px at 35% 72%, rgba(200,220,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 39% 26%, rgba(215,230,255,0.60) 0%, transparent 100%),
+    radial-gradient(1px 1px at 43% 91%, rgba(200,215,255,0.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 47% 15%, rgba(225,238,255,0.75) 0%, transparent 100%),
+    radial-gradient(1px 1px at 52% 55%, rgba(205,220,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 56% 38%, rgba(215,230,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 61% 78%, rgba(200,218,255,0.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 65%  9%, rgba(220,235,255,0.70) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 44%, rgba(205,222,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 74% 67%, rgba(215,228,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 21%, rgba(225,238,255,0.65) 0%, transparent 100%),
+    radial-gradient(1px 1px at 83% 57%, rgba(200,218,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 87% 88%, rgba(210,225,255,0.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 31%, rgba(220,235,255,0.60) 0%, transparent 100%),
+    radial-gradient(1px 1px at 96% 74%, rgba(205,220,255,0.45) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 10% 88%, rgba(220,235,255,0.55) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 28% 52%, rgba(200,220,255,0.50) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 55% 19%, rgba(225,238,255,0.60) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 72% 93%, rgba(210,228,255,0.45) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 89% 42%, rgba(220,235,255,0.55) 0%, transparent 100%),
+    radial-gradient(2px 2px   at 16% 29%, rgba(235,245,255,0.50) 0%, transparent 100%),
+    radial-gradient(2px 2px   at 44% 66%, rgba(225,240,255,0.40) 0%, transparent 100%),
+    radial-gradient(2px 2px   at 81%  8%, rgba(235,245,255,0.55) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 33% 40%, rgba(240,248,255,0.45) 0%, transparent 100%),
+    radial-gradient(2.5px 2.5px at 67% 77%, rgba(235,245,255,0.40) 0%, transparent 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -158,8 +176,8 @@ body::after {
     0deg,
     transparent 0px,
     transparent 3px,
-    rgba(0, 0, 0, 0.07) 3px,
-    rgba(0, 0, 0, 0.07) 4px
+    rgba(0, 0, 0, 0.06) 3px,
+    rgba(0, 0, 0, 0.06) 4px
   );
   pointer-events: none;
   z-index: 9997;
@@ -167,19 +185,48 @@ body::after {
 
 /* ── Sidebar ─────────────────────────────────────────── */
 aside {
-  background: linear-gradient(180deg, #081428 0%, #060e1e 50%, #040a14 100%) !important;
-  border-right: 1px solid rgba(68, 147, 248, 0.28) !important;
-  box-shadow: 6px 0 40px rgba(20, 60, 200, 0.18) !important;
+  background: linear-gradient(180deg, #06101e 0%, #050c18 50%, #030609 100%) !important;
+  border-right: 1px solid rgba(68, 147, 248, 0.30) !important;
+  box-shadow: 8px 0 50px rgba(20, 60, 200, 0.22) !important;
+}
+
+/* ── Character header — red cockpit bars ─────────────── */
+.character-header {
+  position: relative !important;
+  border-bottom: 1px solid rgba(68, 147, 248, 0.25) !important;
+}
+
+.character-header::before,
+.character-header::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  height: 4px;
+  width: 72px;
+  border-radius: 2px;
+}
+
+.character-header::before {
+  right: calc(50% + 108px);
+  background: linear-gradient(90deg, transparent 0%, #881500 40%, #cc2200 100%);
+  box-shadow: 0 0 12px rgba(180, 30, 0, 0.70), 0 0 4px rgba(220, 50, 0, 0.50);
+}
+
+.character-header::after {
+  left: calc(50% + 108px);
+  background: linear-gradient(90deg, #cc2200 0%, #881500 60%, transparent 100%);
+  box-shadow: 0 0 12px rgba(180, 30, 0, 0.70), 0 0 4px rgba(220, 50, 0, 0.50);
 }
 
 /* ── Message bubbles ─────────────────────────────────── */
 .msg-bubble-user {
   border: 1px solid rgba(68, 147, 248, 0.28) !important;
-  box-shadow: 0 0 12px rgba(20, 60, 200, 0.12) !important;
+  box-shadow: 0 0 14px rgba(20, 60, 200, 0.14) !important;
 }
 
 .msg-bubble-assistant {
-  border-left: 2px solid rgba(68, 147, 248, 0.35) !important;
+  border-left: 2px solid rgba(68, 147, 248, 0.40) !important;
 }
 
 /* ── Input ───────────────────────────────────────────── */
@@ -191,7 +238,7 @@ textarea:focus {
 
 /* ── Send button ─────────────────────────────────────── */
 button[style*="var(--accent)"] {
-  box-shadow: 0 0 16px rgba(68, 147, 248, 0.35);
+  box-shadow: 0 0 18px rgba(68, 147, 248, 0.40);
   letter-spacing: 0.12em;
 }
 
@@ -208,8 +255,8 @@ code {
 ::-webkit-scrollbar-thumb { background: rgba(68, 147, 248, 0.30); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(68, 147, 248, 0.55); }
 
-/* ── Character header ────────────────────────────────── */
-.character-header {
+/* ── Character header (legacy catch-all) ─────────────── */
+.character-header-legacy {
   border-bottom: 1px solid rgba(68, 147, 248, 0.22) !important;
 }
 ```
