@@ -26,6 +26,9 @@ export interface SkinTypography {
   size_base: string;
   weight_base: string;
   line_height: string;
+  letter_spacing: string;
+  text_transform: "none" | "uppercase" | "lowercase" | "capitalize";
+  weight_display: string;
 }
 
 export interface SkinLayout {
@@ -33,6 +36,11 @@ export interface SkinLayout {
   spacing_unit: string;
   max_width: string;
   sidebar_width: string;
+  radius_message: string;
+  radius_input: string;
+  radius_ui: string;
+  message_shape: "default" | "pill" | "sharp" | "asymmetric";
+  border_style: "solid" | "dashed" | "double" | "none";
 }
 
 export interface SkinVoice {
@@ -47,6 +55,12 @@ export interface SkinAtmosphere {
   bg_effect: "none" | "gradient" | "noise" | "particles" | "scanlines";
   animation_speed: "slow" | "normal" | "fast" | "none";
   blur: string;
+  bg_gradient: string;
+  texture_overlay: "none" | "grain" | "paper" | "fabric" | "metal" | "glass" | "halftone";
+  texture_intensity: "subtle" | "medium" | "heavy";
+  surface_style: "flat" | "frosted" | "raised" | "inset";
+  motion_style: "fade" | "slide" | "snap" | "glitch" | "bloom" | "typewriter" | "none";
+  thinking_style: "pulse" | "dots" | "blink" | "ellipsis";
 }
 
 export interface SkinComponents {
@@ -65,6 +79,10 @@ export interface SkinAssets {
   custom_css_url?: string;
 }
 
+export interface SkinCustom {
+  css: string;
+}
+
 export interface SkinConfig {
   slug: string;
   metadata: SkinMetadata;
@@ -75,6 +93,7 @@ export interface SkinConfig {
   atmosphere: SkinAtmosphere;
   components?: SkinComponents;
   assets?: SkinAssets;
+  custom?: SkinCustom;
 }
 
 function parseSection(raw: string): Record<string, string> {
@@ -99,6 +118,18 @@ function extractSection(content: string, sectionName: string): string {
   return match ? match[1] : "";
 }
 
+function extractRawSection(content: string, sectionName: string): string {
+  const pattern = new RegExp(
+    `###\\s*Section\\s*\\d+\\s*·\\s*${sectionName}([\\s\\S]*?)(?=###|$)`,
+    "i"
+  );
+  const match = content.match(pattern);
+  if (!match) return "";
+  const raw = match[1];
+  const fenced = raw.match(/```(?:css)?\s*\n([\s\S]*?)\n?\s*```/);
+  return fenced ? fenced[1].trim() : raw.trim();
+}
+
 export function parseSkin(raw: string, slug: string): SkinConfig | null {
   try {
     const metaRaw = parseSection(extractSection(raw, "metadata"));
@@ -109,6 +140,7 @@ export function parseSkin(raw: string, slug: string): SkinConfig | null {
     const atmosRaw = parseSection(extractSection(raw, "atmosphere"));
     const compRaw = parseSection(extractSection(raw, "components"));
     const assetsRaw = parseSection(extractSection(raw, "assets"));
+    const customCss = extractRawSection(raw, "custom");
 
     const required = [metaRaw, paletteRaw, typoRaw, layoutRaw, voiceRaw, atmosRaw];
     if (required.some((s) => Object.keys(s).length === 0)) return null;
@@ -141,27 +173,42 @@ export function parseSkin(raw: string, slug: string): SkinConfig | null {
         size_base: typoRaw.size_base ?? "15px",
         weight_base: typoRaw.weight_base ?? "400",
         line_height: typoRaw.line_height ?? "1.6",
+        letter_spacing: typoRaw.letter_spacing ?? "0em",
+        text_transform: (typoRaw.text_transform as SkinTypography["text_transform"]) ?? "none",
+        weight_display: typoRaw.weight_display ?? typoRaw.weight_base ?? "700",
       },
       layout: {
         radius: layoutRaw.radius ?? "6px",
         spacing_unit: layoutRaw.spacing_unit ?? "8px",
         max_width: layoutRaw.max_width ?? "720px",
         sidebar_width: layoutRaw.sidebar_width ?? "260px",
+        radius_message: layoutRaw.radius_message ?? "",
+        radius_input: layoutRaw.radius_input ?? "",
+        radius_ui: layoutRaw.radius_ui ?? "",
+        message_shape: (layoutRaw.message_shape as SkinLayout["message_shape"]) ?? "default",
+        border_style: (layoutRaw.border_style as SkinLayout["border_style"]) ?? "solid",
       },
       voice: {
         send_label: voiceRaw.send_label ?? "Send",
         placeholder: voiceRaw.placeholder ?? "Message",
         empty_state: voiceRaw.empty_state ?? "Start a conversation.",
-        thinking_label: voiceRaw.thinking_label ?? "Thinking...",
+        thinking_label: voiceRaw.thinking_label ?? "Thinking",
         clear_label: voiceRaw.clear_label ?? "Clear",
       },
       atmosphere: {
         bg_effect: (atmosRaw.bg_effect as SkinAtmosphere["bg_effect"]) ?? "none",
         animation_speed: (atmosRaw.animation_speed as SkinAtmosphere["animation_speed"]) ?? "normal",
         blur: atmosRaw.blur ?? "none",
+        bg_gradient: atmosRaw.bg_gradient ?? "",
+        texture_overlay: (atmosRaw.texture_overlay as SkinAtmosphere["texture_overlay"]) ?? "none",
+        texture_intensity: (atmosRaw.texture_intensity as SkinAtmosphere["texture_intensity"]) ?? "medium",
+        surface_style: (atmosRaw.surface_style as SkinAtmosphere["surface_style"]) ?? "flat",
+        motion_style: (atmosRaw.motion_style as SkinAtmosphere["motion_style"]) ?? "none",
+        thinking_style: (atmosRaw.thinking_style as SkinAtmosphere["thinking_style"]) ?? "ellipsis",
       },
       components: Object.keys(compRaw).length > 0 ? compRaw as SkinComponents : undefined,
       assets: Object.keys(assetsRaw).length > 0 ? assetsRaw as SkinAssets : undefined,
+      custom: customCss ? { css: customCss } : undefined,
     };
   } catch {
     return null;

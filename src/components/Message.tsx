@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -12,17 +13,32 @@ interface Props {
 
 export default function Message({ message }: Props) {
   const isUser = message.role === "user";
+  const bubbleRef = useRef<HTMLDivElement>(null);
+
+  // Trigger mount animation — add .msg-entering, remove after longest animation
+  useEffect(() => {
+    const el = bubbleRef.current;
+    if (!el) return;
+    el.classList.add("msg-entering");
+    const t = setTimeout(() => el.classList.remove("msg-entering"), 600);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className={`flex w-full ${isUser ? "justify-end" : "justify-start"} mb-4`}>
       <div
-        className="max-w-[80%] px-4 py-3 rounded-[var(--radius)] text-sm leading-relaxed"
+        ref={bubbleRef}
+        className={`msg-bubble surface-card max-w-[80%] px-4 py-3 text-sm leading-relaxed ${
+          isUser ? "msg-bubble-user" : "msg-bubble-assistant prose-skin"
+        }`}
         style={{
+          borderRadius: "var(--radius-message)",
           background: isUser ? "var(--msg-user-bg)" : "var(--msg-assistant-bg)",
           color: isUser ? "var(--msg-user-fg)" : "var(--msg-assistant-fg)",
           fontFamily: "var(--font-sans)",
           fontSize: "var(--size-base)",
           lineHeight: "var(--line-height)",
+          borderStyle: "var(--border-style)" as React.CSSProperties["borderStyle"],
         }}
       >
         {isUser ? (

@@ -218,8 +218,14 @@ export default function ChatInterface() {
               messages.map((msg, i) => <Message key={i} message={msg} />)
             )}
             {streaming && (
-              <div className="text-sm mb-4" style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                {voice?.thinking_label ?? "Thinking..."}
+              <div
+                className="thinking-indicator text-sm mb-4"
+                style={{ color: "var(--muted)", fontFamily: "var(--font-mono)" }}
+              >
+                {voice?.thinking_label ?? "Thinking"}
+                <span className="thinking-dot" style={{ animationDelay: "0s" }}>.</span>
+                <span className="thinking-dot" style={{ animationDelay: "0.2s" }}>.</span>
+                <span className="thinking-dot" style={{ animationDelay: "0.4s" }}>.</span>
               </div>
             )}
             <div ref={bottomRef} />
@@ -227,7 +233,7 @@ export default function ChatInterface() {
         </div>
 
         {/* Input */}
-        <div className="border-t px-4 py-4" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
+        <div className="surface-card border-t px-4 py-4" style={{ borderColor: "var(--border)", background: "var(--surface)" }}>
           <div className="mx-auto flex gap-3 items-end" style={{ maxWidth: "var(--max-width)" }}>
             <textarea
               ref={textareaRef}

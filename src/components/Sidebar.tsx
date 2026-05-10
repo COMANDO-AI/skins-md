@@ -28,7 +28,7 @@ export default function Sidebar({
 }: Props) {
   return (
     <aside
-      className="flex flex-col h-full border-r"
+      className="surface-card flex flex-col h-full border-r"
       style={{
         display: "flex",
         flexDirection: "column",
