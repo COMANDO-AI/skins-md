@@ -1,19 +1,19 @@
 ### Section 1 · metadata
 name:          Under the Sea
 author:        COMANDO
-version:       2.1.0
+version:       2.2.0
 tags:          underwater, bioluminescent, dark, fluid, submarine, deepnet, deep-sea
 description:   DEEPNET ACTIVE · 2,340m · Bioluminescent signal detected. Dive.
 preview_url:   none
 license:       MIT
 
 ### Section 2 · palette
-bg:            #020b18
-fg:            #a8d8f0
+bg:            #030f20
+fg:            #b8dff5
 accent:        #00d4ff
-muted:         #2a4f6e
-surface:       #040f1e
-border:        #0d3558
+muted:         #3a6080
+surface:       #061c35
+border:        #0e4070
 error:         #ff5c4d
 success:       #00ffaa
 
@@ -50,7 +50,7 @@ clear_label:   SURFACE
 bg_effect:         gradient
 animation_speed:   normal
 blur:              none
-bg_gradient:       linear-gradient(180deg, #010810 0%, #041525 35%, #040f1e 65%, #030c1a 100%)
+bg_gradient:       linear-gradient(180deg, #05203a 0%, #041830 35%, #031428 65%, #020e1e 100%)
 texture_overlay:   none
 texture_intensity: subtle
 surface_style:     frosted
@@ -58,13 +58,13 @@ motion_style:      bloom
 thinking_style:    pulse
 
 ### Section 7 · components
-message_user_bg:       #0d3a6e
-message_user_fg:       #c8e8ff
-message_assistant_bg:  #030d1c
-message_assistant_fg:  #88cce8
-input_bg:              #030d1c
-input_fg:              #a8d8f0
-input_border:          #0d3558
+message_user_bg:       #104590
+message_user_fg:       #d0eeff
+message_assistant_bg:  #051628
+message_assistant_fg:  #90cce8
+input_bg:              #04121f
+input_fg:              #b8dff5
+input_border:          #0e4070
 
 ### Section 9 · custom
 @keyframes plankton-pulse {
@@ -140,19 +140,35 @@ body::after {
   pointer-events: none;
   z-index: 0;
   background:
-    linear-gradient(168deg, rgba(0,120,220,0.14) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(0,180,255,0.10) 0%, transparent 48%),
-    linear-gradient(192deg, rgba(0,60,180,0.12) 0%, transparent 56%),
-    linear-gradient(155deg, rgba(0,100,200,0.08) 0%, transparent 40%);
+    linear-gradient(168deg, rgba(0,140,255,0.22) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(0,180,255,0.16) 0%, transparent 48%),
+    linear-gradient(192deg, rgba(0,80,200,0.18) 0%, transparent 56%),
+    linear-gradient(155deg, rgba(0,120,220,0.14) 0%, transparent 42%);
   border-radius: 0 0 80% 80%;
   animation: light-ray-drift 22s ease-in-out infinite alternate;
 }
 
 /* === SIDEBAR — DEEPNET HULL === */
 aside {
-  background: linear-gradient(180deg, #051e35 0%, #040f1e 55%, #030c1a 100%) !important;
-  border-right: 1px solid rgba(0,212,255,0.20) !important;
-  box-shadow: 6px 0 50px rgba(0,80,200,0.18) !important;
+  background: linear-gradient(180deg, #082848 0%, #061c38 40%, #04152a 100%) !important;
+  border-right: 1px solid rgba(0,212,255,0.30) !important;
+  box-shadow: 6px 0 60px rgba(0,100,220,0.30) !important;
+}
+
+/* === SIDEBAR TOP ACCENT STRIPE === */
+aside::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.7), rgba(0,212,255,0.4), transparent);
+  pointer-events: none;
+}
+
+aside {
+  position: relative;
 }
 
 /* === ORBITRON LOGO GLOW === */
@@ -190,9 +206,11 @@ button[style*="var(--accent)"]:hover:not(:disabled) {
 /* === ASSISTANT BUBBLE — TERMINAL READOUT === */
 .msg-bubble-assistant {
   border-radius: 4px 20px 20px 20px !important;
-  border: 1px solid rgba(0,140,200,0.18) !important;
+  border: 1px solid rgba(0,140,200,0.22) !important;
+  border-left: 3px solid rgba(0,212,255,0.40) !important;
   box-shadow:
-    0 4px 28px rgba(0,0,0,0.55),
+    0 4px 28px rgba(0,0,0,0.50),
+    0 0 20px rgba(0,80,180,0.08),
     inset 0 1px 0 rgba(0,160,220,0.08) !important;
 }
 
