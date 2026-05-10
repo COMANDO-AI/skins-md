@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import ApiKeyModal from "./ApiKeyModal";
 import Sidebar from "./Sidebar";
 import Message from "./Message";
+import RightPanel from "./RightPanel";
 import SkinPicker from "./SkinPicker";
 import { parseSkin, type SkinConfig } from "@/lib/skin-parser";
 import { injectSkin } from "@/lib/skin-injector";
@@ -203,7 +204,7 @@ export default function ChatInterface() {
       />
 
       {/* Main chat area */}
-      <main className="flex flex-col flex-1 min-w-0" style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0 }}>
+      <main className="flex flex-col flex-1 min-w-0" style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 0, overflow: "hidden" }}>
         {/* Messages */}
         <div className="flex-1 overflow-y-auto px-4 py-6" style={{ flex: 1, overflowY: "auto", padding: "1.5rem 1rem" }}>
           <div className="mx-auto" style={{ maxWidth: "var(--max-width)" }}>
@@ -215,7 +216,7 @@ export default function ChatInterface() {
                 {voice?.empty_state ?? "Start a conversation."}
               </div>
             ) : (
-              messages.map((msg, i) => <Message key={i} message={msg} />)
+              messages.map((msg, i) => <Message key={i} message={msg} skinPersona={activeSkinConfig?.persona} />)
             )}
             {streaming && (
               <div
@@ -276,6 +277,11 @@ export default function ChatInterface() {
           </div>
         </div>
       </main>
+
+      {/* Right panel — three-column skins only */}
+      {activeSkinConfig?.persona?.layout === "three-column" && activeSkinConfig.persona && (
+        <RightPanel persona={activeSkinConfig.persona} />
+      )}
     </div>
   );
 }

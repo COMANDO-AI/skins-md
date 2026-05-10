@@ -83,6 +83,38 @@ export interface SkinCustom {
   css: string;
 }
 
+export interface SkinPersona {
+  sidebar_name?: string;
+  sidebar_tagline?: string;
+  sidebar_icon?: string;
+  user_name?: string;
+  user_role?: string;
+  user_level?: string;
+  user_xp?: string;
+  user_xp_max?: string;
+  assistant_avatar?: string;
+  layout?: string;
+  right_panel_0_title?: string;
+  terminal_line?: string;
+  right_panel_1_title?: string;
+  gauge_value?: string;
+  stat_1_label?: string;
+  stat_1_value?: string;
+  stat_2_label?: string;
+  stat_2_value?: string;
+  stat_3_label?: string;
+  stat_3_value?: string;
+  right_panel_2_title?: string;
+  bar_1_label?: string;
+  bar_1_value?: string;
+  bar_2_label?: string;
+  bar_2_value?: string;
+  bar_3_label?: string;
+  bar_3_value?: string;
+  bar_4_label?: string;
+  bar_4_value?: string;
+}
+
 export interface SkinConfig {
   slug: string;
   metadata: SkinMetadata;
@@ -94,6 +126,7 @@ export interface SkinConfig {
   components?: SkinComponents;
   assets?: SkinAssets;
   custom?: SkinCustom;
+  persona?: SkinPersona;
 }
 
 function parseSection(raw: string): Record<string, string> {
@@ -141,6 +174,7 @@ export function parseSkin(raw: string, slug: string): SkinConfig | null {
     const compRaw = parseSection(extractSection(raw, "components"));
     const assetsRaw = parseSection(extractSection(raw, "assets"));
     const customCss = extractRawSection(raw, "custom");
+    const personaRaw = parseSection(extractSection(raw, "persona"));
 
     const required = [metaRaw, paletteRaw, typoRaw, layoutRaw, voiceRaw, atmosRaw];
     if (required.some((s) => Object.keys(s).length === 0)) return null;
@@ -209,6 +243,7 @@ export function parseSkin(raw: string, slug: string): SkinConfig | null {
       components: Object.keys(compRaw).length > 0 ? compRaw as SkinComponents : undefined,
       assets: Object.keys(assetsRaw).length > 0 ? assetsRaw as SkinAssets : undefined,
       custom: customCss ? { css: customCss } : undefined,
+      persona: Object.keys(personaRaw).length > 0 ? personaRaw as SkinPersona : undefined,
     };
   } catch {
     return null;

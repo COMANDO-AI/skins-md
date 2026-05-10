@@ -6,13 +6,16 @@ import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import type { ChatMessage } from "@/lib/openrouter";
+import type { SkinPersona } from "@/lib/skin-parser";
 
 interface Props {
   message: ChatMessage;
+  skinPersona?: SkinPersona;
 }
 
-export default function Message({ message }: Props) {
+export default function Message({ message, skinPersona }: Props) {
   const isUser = message.role === "user";
+  const assistantAvatar = !isUser && skinPersona?.assistant_avatar;
   const bubbleRef = useRef<HTMLDivElement>(null);
 
   // Trigger mount animation — add .msg-entering, remove after longest animation
@@ -25,7 +28,28 @@ export default function Message({ message }: Props) {
   }, []);
 
   return (
-    <div className={`flex w-full ${isUser ? "justify-end" : "justify-start"} mb-4`}>
+    <div className={`flex w-full ${isUser ? "justify-end" : "justify-start"} mb-4`} style={{ alignItems: "flex-start" }}>
+      {assistantAvatar && (
+        <div
+          style={{
+            width: "32px",
+            height: "32px",
+            borderRadius: "50%",
+            background: "rgba(0,40,80,0.8)",
+            border: "1px solid rgba(0,212,255,0.30)",
+            boxShadow: "0 0 10px rgba(0,212,255,0.15)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "18px",
+            flexShrink: 0,
+            marginRight: "8px",
+            marginTop: "2px",
+          }}
+        >
+          {assistantAvatar}
+        </div>
+      )}
       <div
         ref={bubbleRef}
         className={`msg-bubble surface-card max-w-[80%] px-4 py-3 text-sm leading-relaxed ${

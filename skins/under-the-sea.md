@@ -251,3 +251,34 @@ code {
 ::-webkit-scrollbar-track { background: rgba(1,8,18,0.8); }
 ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.30); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.60); }
+
+### Section 10 · persona
+sidebar_name:          DEEPNET
+sidebar_tagline:       EXPLORE. CONNECT. DISCOVER.
+sidebar_icon:          🚢
+user_name:             YOU
+user_role:             OCEAN EXPLORER
+user_level:            1
+user_xp:               0
+user_xp_max:           2000
+assistant_avatar:      🪼
+layout:                three-column
+right_panel_0_title:   TERMINAL
+terminal_line:         yavin-base ~ %
+right_panel_1_title:   OCEAN STATUS
+gauge_value:           72
+stat_1_label:          DEPTH
+stat_1_value:          2,340 m
+stat_2_label:          PRESSURE
+stat_2_value:          235 bar
+stat_3_label:          TEMP.
+stat_3_value:          4°C
+right_panel_2_title:   SUB SYSTEMS
+bar_1_label:           ENERGY
+bar_1_value:           78
+bar_2_label:           OXYGEN
+bar_2_value:           62
+bar_3_label:           HULL
+bar_3_value:           91
+bar_4_label:           CREW
+bar_4_value:           100
