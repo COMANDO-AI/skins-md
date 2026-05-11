@@ -1,32 +1,32 @@
 ### Section 1 · metadata
 name:          Under the Sea
 author:        COMANDO
-version:       2.2.0
-tags:          underwater, bioluminescent, dark, fluid, submarine, deepnet, deep-sea
+version:       3.0.0
+tags:          underwater, bioluminescent, dark, fluid, submarine, deepnet, deep-sea, winamp, hud
 description:   DEEPNET ACTIVE · 2,340m · Bioluminescent signal detected. Dive.
 preview_url:   none
 license:       MIT
 
 ### Section 2 · palette
-bg:            #030f20
-fg:            #b8dff5
-accent:        #00d4ff
-muted:         #3a6080
-surface:       #061c35
-border:        #0e4070
-error:         #ff5c4d
-success:       #00ffaa
+bg:            #010810
+fg:            #c8e8ff
+accent:        #00ffff
+muted:         #1e4060
+surface:       #040f1e
+border:        #0a3058
+error:         #ff3030
+success:       #00ff88
 
 ### Section 3 · typography
 font_sans:     Exo 2
 font_mono:     JetBrains Mono
 font_display:  Orbitron
-size_base:     14px
+size_base:     13px
 weight_base:   400
 line_height:   1.75
-letter_spacing: 0.02em
-text_transform: none
-weight_display: 700
+letter_spacing: 0.04em
+text_transform: uppercase
+weight_display: 900
 
 ### Section 4 · layout
 radius:        12px
@@ -50,7 +50,7 @@ clear_label:   SURFACE
 bg_effect:         gradient
 animation_speed:   normal
 blur:              none
-bg_gradient:       linear-gradient(180deg, #0e4a94 0%, #0b3878 30%, #092c62 60%, #071e48 100%)
+bg_gradient:       linear-gradient(180deg, #0a2855 0%, #062040 25%, #030f22 55%, #010810 100%)
 texture_overlay:   none
 texture_intensity: subtle
 surface_style:     frosted
@@ -58,18 +58,38 @@ motion_style:      bloom
 thinking_style:    pulse
 
 ### Section 7 · components
-message_user_bg:       #104590
-message_user_fg:       #d0eeff
-message_assistant_bg:  #051628
-message_assistant_fg:  #90cce8
-input_bg:              #04121f
-input_fg:              #b8dff5
-input_border:          #0e4070
+message_user_bg:       #0a2a5a
+message_user_fg:       #d8f0ff
+message_assistant_bg:  #020a18
+message_assistant_fg:  #a0d8c0
+input_bg:              #020810
+input_fg:              #00ff88
+input_border:          #0a3058
 
 ### Section 9 · custom
+
 /* === WATER BACKGROUND OVERRIDE === */
 body {
-  background: linear-gradient(180deg, #0e4a94 0%, #0b3878 30%, #092c62 60%, #071e48 100%) !important;
+  background: linear-gradient(180deg, #0a2855 0%, #062040 25%, #030f22 55%, #010810 100%) !important;
+}
+
+/* =====================================================
+   KEYFRAMES
+   ===================================================== */
+
+@keyframes scanline-drift {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 8px; }
+}
+
+@keyframes sonar-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes terminal-lock {
+  0%, 100% { border-color: rgba(0, 255, 255, 0.60); }
+  50%       { border-color: rgba(0, 255, 255, 0.95); box-shadow: 0 0 0 1px rgba(0,255,255,0.25), 0 0 30px rgba(0,255,255,0.38), inset 0 0 20px rgba(0,255,136,0.06); }
 }
 
 @keyframes plankton-pulse {
@@ -79,24 +99,38 @@ body {
 }
 
 @keyframes light-ray-drift {
-  0%   { transform: translateX(-6%) scaleY(0.92); opacity: 0.55; }
-  100% { transform: translateX( 6%) scaleY(1.08); opacity: 1.00; }
+  0%   { transform: translateX(-8%) scaleY(0.90); opacity: 0.55; }
+  100% { transform: translateX( 8%) scaleY(1.14); opacity: 1.00; }
 }
 
 @keyframes logo-glow {
-  0%, 100% { text-shadow: 0 0 10px rgba(0,212,255,0.5), 0 0 24px rgba(0,212,255,0.15); }
-  50%       { text-shadow: 0 0 20px rgba(0,212,255,1.0), 0 0 50px rgba(0,212,255,0.40), 0 0 80px rgba(0,212,255,0.12); }
+  0%, 100% {
+    text-shadow: 0 0 12px rgba(0,255,255,0.6), 0 0 30px rgba(0,255,255,0.20), 0 0 60px rgba(0,200,255,0.08);
+    letter-spacing: 0.18em;
+  }
+  50% {
+    text-shadow: 0 0 24px rgba(0,255,255,1.0), 0 0 60px rgba(0,255,255,0.50), 0 0 100px rgba(0,200,255,0.20), 0 0 160px rgba(0,150,255,0.06);
+    letter-spacing: 0.24em;
+  }
 }
 
 @keyframes btn-sonar {
-  0%   { box-shadow: 0 0 14px rgba(0,212,255,0.45), 0 0 36px rgba(0,212,255,0.15), 0 0 0 0 rgba(0,212,255,0.4); }
-  60%  { box-shadow: 0 0 14px rgba(0,212,255,0.45), 0 0 36px rgba(0,212,255,0.15), 0 0 0 10px rgba(0,212,255,0); }
-  100% { box-shadow: 0 0 14px rgba(0,212,255,0.45), 0 0 36px rgba(0,212,255,0.15), 0 0 0 0 rgba(0,212,255,0); }
+  0%   { box-shadow: 0 0 24px rgba(0,255,255,0.70), 0 0 60px rgba(0,255,255,0.28), 0 0 0 0 rgba(0,255,255,0.55), inset 0 1px 0 rgba(255,255,255,0.30); }
+  60%  { box-shadow: 0 0 24px rgba(0,255,255,0.70), 0 0 60px rgba(0,255,255,0.28), 0 0 0 18px rgba(0,255,255,0), inset 0 1px 0 rgba(255,255,255,0.30); }
+  100% { box-shadow: 0 0 24px rgba(0,255,255,0.70), 0 0 60px rgba(0,255,255,0.28), 0 0 0 0 rgba(0,255,255,0), inset 0 1px 0 rgba(255,255,255,0.30); }
 }
 
 @keyframes thinking-depth {
-  0%, 100% { opacity: 0.65; letter-spacing: 0.10em; }
-  50%       { opacity: 1.00; letter-spacing: 0.14em; }
+  0%, 100% {
+    opacity: 0.65;
+    letter-spacing: 0.12em;
+    text-shadow: 0 0 10px rgba(0,255,255,0.50), 0 0 24px rgba(0,255,255,0.18);
+  }
+  50% {
+    opacity: 1.00;
+    letter-spacing: 0.22em;
+    text-shadow: 0 0 22px rgba(0,255,255,1.0), 0 0 50px rgba(0,255,255,0.45), 0 0 90px rgba(0,200,255,0.15);
+  }
 }
 
 @keyframes bubbles-rise {
@@ -105,11 +139,13 @@ body {
 }
 
 @keyframes floor-breathe {
-  0%, 100% { opacity: 0.88; }
-  50%       { opacity: 1.00; }
+  0%, 100% { opacity: 0.88; filter: brightness(0.94); }
+  50%       { opacity: 1.00; filter: brightness(1.18); }
 }
 
-/* === SWIMMING FISH + BUBBLES — SVG AQUARIUM === */
+/* =====================================================
+   SWIMMING FISH + BUBBLES — SVG AQUARIUM (PRESERVED)
+   ===================================================== */
 body::before {
   content: "";
   position: fixed;
@@ -122,7 +158,28 @@ body::before {
   background-repeat: no-repeat;
 }
 
-/* === AQUARIUM FLOOR — CORAL REEF === */
+/* =====================================================
+   CRT SCANLINES — SUBMARINE MONITOR OVERLAY
+   ===================================================== */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.10) 2px,
+    rgba(0, 0, 0, 0.10) 4px
+  );
+  animation: scanline-drift 8s linear infinite;
+}
+
+/* =====================================================
+   AQUARIUM FLOOR — CORAL REEF (ENHANCED GLOW)
+   ===================================================== */
 body::after {
   content: "";
   position: fixed;
@@ -134,20 +191,20 @@ body::after {
   z-index: 0;
   background:
     linear-gradient(0deg, rgba(1,4,12,0.98) 0%, rgba(2,9,26,0.94) 22%, rgba(3,15,38,0.72) 50%, transparent 100%),
-    /* BRIGHT CORAL GLOWS — cyan, green, pink */
-    radial-gradient(ellipse 110px 88px at 10% 100%, rgba(0,212,255,0.70) 0%, transparent 100%),
-    radial-gradient(ellipse  78px 62px at 26% 100%, rgba(0,255,180,0.62) 0%, transparent 100%),
-    radial-gradient(ellipse  92px 74px at 44% 100%, rgba(232,72,200,0.48) 0%, transparent 100%),
-    radial-gradient(ellipse  68px 54px at 60% 100%, rgba(0,255,200,0.58) 0%, transparent 100%),
-    radial-gradient(ellipse  98px 78px at 76% 100%, rgba(0,210,255,0.65) 0%, transparent 100%),
-    radial-gradient(ellipse  62px 50px at 91% 100%, rgba(232,72,200,0.42) 0%, transparent 100%),
-    /* TALL CORAL SPIKES — colored */
-    radial-gradient(ellipse 20px 180px at 10% 100%, rgba(0,110,200,0.92) 0%, transparent 100%),
-    radial-gradient(ellipse 14px 140px at 26% 100%, rgba(0,160,140,0.88) 0%, transparent 100%),
-    radial-gradient(ellipse 18px 165px at 44% 100%, rgba(180,50,160,0.80) 0%, transparent 100%),
-    radial-gradient(ellipse 12px 115px at 60% 100%, rgba(0,148,130,0.85) 0%, transparent 100%),
-    radial-gradient(ellipse 17px 155px at 76% 100%, rgba(0,105,195,0.90) 0%, transparent 100%),
-    radial-gradient(ellipse 11px 100px at 91% 100%, rgba(160,40,150,0.78) 0%, transparent 100%),
+    /* BRIGHT CORAL GLOWS — pushed to maximum neon */
+    radial-gradient(ellipse 110px 88px at 10% 100%, rgba(0,255,255,0.85) 0%, transparent 100%),
+    radial-gradient(ellipse  78px 62px at 26% 100%, rgba(0,255,180,0.78) 0%, transparent 100%),
+    radial-gradient(ellipse  92px 74px at 44% 100%, rgba(232,72,200,0.62) 0%, transparent 100%),
+    radial-gradient(ellipse  68px 54px at 60% 100%, rgba(0,255,200,0.72) 0%, transparent 100%),
+    radial-gradient(ellipse  98px 78px at 76% 100%, rgba(0,220,255,0.80) 0%, transparent 100%),
+    radial-gradient(ellipse  62px 50px at 91% 100%, rgba(232,72,200,0.60) 0%, transparent 100%),
+    /* TALL CORAL SPIKES */
+    radial-gradient(ellipse 20px 180px at 10% 100%, rgba(0,110,200,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 14px 140px at 26% 100%, rgba(0,160,140,0.92) 0%, transparent 100%),
+    radial-gradient(ellipse 18px 165px at 44% 100%, rgba(180,50,160,0.85) 0%, transparent 100%),
+    radial-gradient(ellipse 12px 115px at 60% 100%, rgba(0,148,130,0.90) 0%, transparent 100%),
+    radial-gradient(ellipse 17px 155px at 76% 100%, rgba(0,105,195,0.94) 0%, transparent 100%),
+    radial-gradient(ellipse 11px 100px at 91% 100%, rgba(160,40,150,0.82) 0%, transparent 100%),
     /* WIDE ROCK / REEF MOUNDS */
     radial-gradient(ellipse 125px  96px at  4% 100%, rgba(0,12,36,0.98) 0%, transparent 100%),
     radial-gradient(ellipse  90px  72px at 14% 100%, rgba(0, 9,30,0.96) 0%, transparent 100%),
@@ -158,19 +215,42 @@ body::after {
     radial-gradient(ellipse 100px  80px at 74% 100%, rgba(0,11,34,0.96) 0%, transparent 100%),
     radial-gradient(ellipse 110px  88px at 84% 100%, rgba(0, 9,30,0.95) 0%, transparent 100%),
     radial-gradient(ellipse 130px 102px at 94% 100%, rgba(0, 8,28,0.97) 0%, transparent 100%);
-  animation: floor-breathe 14s ease-in-out infinite;
+  animation: floor-breathe 9s ease-in-out infinite;
 }
 
-/* === SIDEBAR — DEEPNET HULL === */
+/* =====================================================
+   SURFACE LIGHT RAYS FROM ABOVE
+   ===================================================== */
+html::before {
+  content: "";
+  position: fixed;
+  top: -40%;
+  left: -30%;
+  right: -30%;
+  height: 80%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(168deg, rgba(0,180,255,0.45) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(0,220,255,0.35) 0%, transparent 48%),
+    linear-gradient(192deg, rgba(0,100,220,0.40) 0%, transparent 56%),
+    linear-gradient(155deg, rgba(0,150,250,0.32) 0%, transparent 42%);
+  border-radius: 0 0 80% 80%;
+  animation: light-ray-drift 16s ease-in-out infinite alternate;
+}
+
+/* =====================================================
+   SIDEBAR — DEEPNET HULL
+   ===================================================== */
 aside {
-  background: linear-gradient(180deg, #0a3060 0%, #072248 40%, #04152a 100%) !important;
-  border-right: 2px solid rgba(0,212,255,0.55) !important;
-  box-shadow: 6px 0 80px rgba(0,100,255,0.50) !important;
+  background: linear-gradient(180deg, #071e3d 0%, #050f25 45%, #030a18 100%) !important;
+  border-right: 2px solid rgba(0, 255, 255, 0.65) !important;
+  box-shadow: 8px 0 80px rgba(0, 100, 255, 0.50), 16px 0 140px rgba(0, 50, 180, 0.20) !important;
   position: relative;
   overflow: hidden;
 }
 
-/* === SIDEBAR TOP ACCENT STRIPE === */
+/* Top accent neon stripe */
 aside::before {
   content: "";
   position: absolute;
@@ -178,12 +258,13 @@ aside::before {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.9), rgba(0,212,255,0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0,255,255,1.0), rgba(0,255,255,0.75), transparent);
+  box-shadow: 0 0 20px rgba(0,255,255,0.95), 0 0 50px rgba(0,255,255,0.40), 0 0 90px rgba(0,200,255,0.15);
   pointer-events: none;
   z-index: 10;
 }
 
-/* === SIDEBAR CORAL PLANTS === */
+/* Coral plants SVG (PRESERVED) */
 aside::after {
   content: "";
   position: absolute;
@@ -199,159 +280,263 @@ aside::after {
   background-repeat: no-repeat;
 }
 
-/* === VIDEO GAME PANEL BORDERS === */
-main > div {
-  border: 1px solid rgba(0,212,255,0.35) !important;
-  box-shadow:
-    0 0 0 1px rgba(0,212,255,0.08),
-    0 0 35px rgba(0,150,255,0.22),
-    inset 0 1px 0 rgba(0,212,255,0.12) !important;
+/* =====================================================
+   SONAR SWEEP — ROTATING CONIC BEAM
+   ===================================================== */
+main {
+  position: relative;
+  overflow: hidden;
 }
 
-/* === NEON CORNER ACCENT ON USER BUBBLE === */
+main::before {
+  content: "";
+  position: absolute;
+  width: 200vw;
+  height: 200vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(0deg);
+  pointer-events: none;
+  z-index: 0;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 350deg,
+    rgba(0, 255, 255, 0.04) 354deg,
+    rgba(0, 255, 255, 0.14) 358deg,
+    rgba(0, 255, 255, 0.04) 360deg
+  );
+  border-radius: 50%;
+  animation: sonar-rotate 14s linear infinite;
+}
+
+/* =====================================================
+   WINAMP PANEL CHROME — CORNER CLIPS + NEON GLOW
+   ===================================================== */
+main > div,
+.surface-card {
+  position: relative;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 14px) 0,
+    100% 14px,
+    100% 100%,
+    14px 100%,
+    0 calc(100% - 14px)
+  ) !important;
+  border: 1px solid rgba(0, 255, 255, 0.55) !important;
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 255, 0.10),
+    0 0 30px rgba(0, 255, 255, 0.28),
+    0 0 80px rgba(0, 100, 255, 0.16),
+    inset 0 1px 0 rgba(0, 255, 255, 0.24),
+    inset 0 0 50px rgba(0, 10, 40, 0.85),
+    0 12px 60px rgba(0, 0, 0, 0.75) !important;
+  background: linear-gradient(160deg, rgba(4, 18, 45, 0.96) 0%, rgba(2, 9, 25, 0.98) 100%) !important;
+}
+
+/* =====================================================
+   USER BUBBLE — HUD OCTAGON WITH CORNER BRACKETS
+   ===================================================== */
 .msg-bubble-user {
   position: relative;
+  clip-path: polygon(
+    12px 0%, 100% 0%,
+    100% calc(100% - 12px), calc(100% - 12px) 100%,
+    0% 100%, 0% 12px
+  ) !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(0, 255, 255, 0.65) !important;
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.32),
+    0 0 50px rgba(0, 100, 255, 0.14),
+    inset 0 1px 0 rgba(0, 255, 255, 0.28),
+    inset 0 0 24px rgba(0, 40, 100, 0.30) !important;
 }
+
+/* Top-right corner bracket */
 .msg-bubble-user::before {
   content: "";
   position: absolute;
   top: -1px;
   right: -1px;
-  width: 14px;
-  height: 14px;
-  border-top: 2px solid rgba(0,212,255,0.90);
-  border-right: 2px solid rgba(0,212,255,0.90);
-  border-radius: 0 4px 0 0;
+  width: 16px;
+  height: 16px;
+  border-top: 2px solid rgba(0, 255, 255, 1.0);
+  border-right: 2px solid rgba(0, 255, 255, 1.0);
+  border-radius: 0 3px 0 0;
   pointer-events: none;
+  box-shadow: 5px -5px 14px rgba(0, 255, 255, 0.55);
+  z-index: 1;
 }
 
-/* === ORBITRON LOGO GLOW === */
-aside .text-lg {
-  letter-spacing: 0.14em !important;
-  animation: logo-glow 3s ease-in-out infinite;
+/* Bottom-left corner bracket */
+.msg-bubble-user::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 2px solid rgba(0, 255, 255, 0.72);
+  border-left: 2px solid rgba(0, 255, 255, 0.72);
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* === DIVE / SURFACE BUTTON — SONAR PULSE === */
-button[style*="var(--accent)"] {
-  letter-spacing: 0.16em;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-  animation: btn-sonar 3.5s ease-out infinite;
-  transition: box-shadow 0.25s ease;
-}
-
-button[style*="var(--accent)"]:hover:not(:disabled) {
-  box-shadow:
-    0 0 28px rgba(0,212,255,0.70),
-    0 0 60px rgba(0,212,255,0.30),
-    0 0 90px rgba(0,212,255,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.20) !important;
-}
-
-/* === USER BUBBLE — BIOLUMINESCENT BLIP === */
-.msg-bubble-user {
-  border-radius: 20px 20px 4px 20px !important;
-  border: 1px solid rgba(0,212,255,0.35) !important;
-  box-shadow:
-    0 0 14px rgba(0,212,255,0.28),
-    0 0 30px rgba(0,212,255,0.10),
-    inset 0 1px 0 rgba(0,212,255,0.18) !important;
-}
-
-/* === ASSISTANT BUBBLE — TERMINAL READOUT === */
+/* =====================================================
+   ASSISTANT BUBBLE — TERMINAL READOUT
+   ===================================================== */
 .msg-bubble-assistant {
-  border-radius: 4px 20px 20px 20px !important;
-  border: 1px solid rgba(0,140,200,0.22) !important;
-  border-left: 3px solid rgba(0,212,255,0.40) !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(0, 100, 160, 0.28) !important;
+  border-left: 3px solid rgba(0, 255, 136, 0.80) !important;
   box-shadow:
-    0 4px 28px rgba(0,0,0,0.50),
-    0 0 20px rgba(0,80,180,0.08),
-    inset 0 1px 0 rgba(0,160,220,0.08) !important;
+    0 4px 32px rgba(0, 0, 0, 0.65),
+    -4px 0 24px rgba(0, 255, 136, 0.08),
+    inset 0 1px 0 rgba(0, 140, 100, 0.12),
+    inset 4px 0 0 rgba(0, 255, 136, 0.04) !important;
+  background: linear-gradient(135deg, rgba(2, 10, 24, 0.98) 0%, rgba(1, 7, 18, 0.99) 100%) !important;
 }
 
-/* === THINKING — SONAR SCANNING === */
+/* =====================================================
+   THINKING — SONAR SCANNING
+   ===================================================== */
 .thinking-indicator {
-  color: rgba(0,212,255,1.0) !important;
-  text-shadow: 0 0 10px rgba(0,212,255,0.6), 0 0 20px rgba(0,212,255,0.2);
-  animation: thinking-depth 1.8s ease-in-out infinite !important;
+  color: rgba(0, 255, 255, 1.0) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  animation: thinking-depth 1.4s ease-in-out infinite !important;
 }
 
 .thinking-dot {
-  color: rgba(0,212,255,0.9);
-  text-shadow: 0 0 8px rgba(0,212,255,0.6);
+  color: rgba(0, 255, 255, 0.95) !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.80) !important;
 }
 
-/* === INPUT AREA — COMMAND TERMINAL === */
+/* =====================================================
+   INPUT AREA — COMMAND TERMINAL
+   ===================================================== */
+textarea {
+  color: rgba(0, 255, 136, 0.92) !important;
+  caret-color: rgba(0, 255, 255, 1.0);
+  text-shadow: 0 0 6px rgba(0, 255, 136, 0.40);
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.05em !important;
+  border: 1px solid rgba(0, 255, 255, 0.25) !important;
+  clip-path: polygon(
+    6px 0%, 100% 0%,
+    100% calc(100% - 6px), calc(100% - 6px) 100%,
+    0% 100%, 0% 6px
+  ) !important;
+  border-radius: 0 !important;
+  background: rgba(1, 6, 16, 0.92) !important;
+}
+
+textarea::placeholder {
+  color: rgba(0, 160, 100, 0.45) !important;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
 textarea:focus {
-  border-color: rgba(0,212,255,0.45) !important;
+  border-color: rgba(0, 255, 255, 0.65) !important;
   box-shadow:
-    0 0 0 2px rgba(0,212,255,0.09),
-    0 0 22px rgba(0,212,255,0.16) !important;
+    0 0 0 1px rgba(0, 255, 255, 0.18),
+    0 0 22px rgba(0, 255, 255, 0.24),
+    inset 0 0 20px rgba(0, 255, 136, 0.04) !important;
   outline: none;
+  animation: terminal-lock 2.2s ease-in-out infinite;
 }
 
-/* === INLINE CODE — BIOLUMINESCENT GREEN === */
+/* =====================================================
+   ORBITRON LOGO GLOW
+   ===================================================== */
+aside .text-lg {
+  letter-spacing: 0.18em !important;
+  animation: logo-glow 2.5s ease-in-out infinite;
+}
+
+/* =====================================================
+   DIVE BUTTON — PARALLELOGRAM + SONAR PULSE
+   ===================================================== */
+button[style*="var(--accent)"] {
+  background: rgba(0, 255, 255, 1.0) !important;
+  color: #010810 !important;
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.22em !important;
+  text-shadow: none !important;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.70), 0 0 60px rgba(0, 255, 255, 0.28), inset 0 1px 0 rgba(255,255,255,0.30) !important;
+  animation: btn-sonar 2.8s ease-out infinite !important;
+  transition: all 0.15s ease !important;
+}
+
+button[style*="var(--accent)"]:hover:not(:disabled) {
+  background: #ffffff !important;
+  box-shadow:
+    0 0 36px rgba(0, 255, 255, 0.92),
+    0 0 80px rgba(0, 255, 255, 0.48),
+    0 0 140px rgba(0, 200, 255, 0.20),
+    inset 0 1px 0 rgba(255,255,255,0.40) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* =====================================================
+   INLINE CODE — PHOSPHOR CYAN
+   ===================================================== */
 code {
-  color: rgba(0,255,180,0.95) !important;
-  text-shadow: 0 0 8px rgba(0,255,180,0.32);
+  color: rgba(0, 255, 255, 0.95) !important;
+  background: rgba(0, 20, 40, 0.85) !important;
+  border: 1px solid rgba(0, 255, 255, 0.18) !important;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.45), 0 0 20px rgba(0, 255, 255, 0.14);
 }
 
-/* === ACCENT DOT IN SKIN PICKER === */
+/* =====================================================
+   ACCENT DOT IN SKIN PICKER
+   ===================================================== */
 .rounded-full[style*="var(--accent)"] {
-  box-shadow: 0 0 8px rgba(0,212,255,0.65), 0 0 18px rgba(0,212,255,0.25);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.80), 0 0 24px rgba(0, 255, 255, 0.35);
 }
 
-/* === SCROLLBAR — SONAR TRACE === */
+/* =====================================================
+   SCROLLBAR — SONAR TRACE
+   ===================================================== */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: rgba(1,8,18,0.8); }
-::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.30); border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.60); }
-
-/* === SURFACE LIGHT RAYS FROM ABOVE === */
-html::before {
-  content: "";
-  position: fixed;
-  top: -40%;
-  left: -30%;
-  right: -30%;
-  height: 75%;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    linear-gradient(168deg, rgba(0,160,255,0.38) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(0,200,255,0.28) 0%, transparent 48%),
-    linear-gradient(192deg, rgba(0,100,220,0.32) 0%, transparent 56%),
-    linear-gradient(155deg, rgba(0,140,240,0.26) 0%, transparent 42%);
-  border-radius: 0 0 80% 80%;
-  animation: light-ray-drift 22s ease-in-out infinite alternate;
+::-webkit-scrollbar-track {
+  background: rgba(1, 4, 12, 0.90);
+  border-left: 1px solid rgba(0, 255, 255, 0.06);
 }
-
-/* === WATER COLUMN SHIMMER === */
-html::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    repeating-linear-gradient(91deg, transparent 0px, transparent 22px, rgba(0,180,255,0.03) 23px, transparent 24px),
-    repeating-linear-gradient(89deg, transparent 0px, transparent 34px, rgba(0,200,255,0.025) 35px, transparent 36px);
-  animation: light-ray-drift 35s ease-in-out infinite alternate-reverse;
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0,255,255,0.50), rgba(0,100,200,0.35));
+  border-radius: 0;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.40);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(0,255,255,0.80), rgba(0,150,255,0.55));
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.65);
 }
 
 ### Section 10 · persona
 sidebar_name:          DEEPNET
-sidebar_tagline:       EXPLORE. CONNECT. DISCOVER.
-sidebar_icon:          🚢
+sidebar_tagline:       2,340M · SIGNAL ACQUIRED
+sidebar_icon:          🪼
 user_name:             YOU
-user_role:             OCEAN EXPLORER
-user_level:            1
-user_xp:               0
+user_role:             DIVE OPERATOR
+user_level:            LVL 12
+user_xp:               840
 user_xp_max:           2000
 assistant_avatar:      🪼
 layout:                three-column
-right_panel_0_title:   TERMINAL
-terminal_line:         yavin-base ~ %
-right_panel_1_title:   OCEAN STATUS
+right_panel_0_title:   [ TERMINAL ]
+terminal_line:         deepnet@sub-b7 ~ $
+terminal_header_1:     > DEEPNET v2.3 · link acquired
+terminal_header_2:     · biolum: DETECTED
+right_panel_1_title:   [ OCEAN STATUS ]
 gauge_value:           72
 stat_1_label:          DEPTH
 stat_1_value:          2,340 m
@@ -359,7 +544,7 @@ stat_2_label:          PRESSURE
 stat_2_value:          235 bar
 stat_3_label:          TEMP.
 stat_3_value:          4°C
-right_panel_2_title:   SUB SYSTEMS
+right_panel_2_title:   [ SUB SYSTEMS ]
 bar_1_label:           ENERGY
 bar_1_value:           78
 bar_2_label:           OXYGEN
