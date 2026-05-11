@@ -8,12 +8,12 @@ preview_url:   none
 license:       MIT
 
 ### Section 2 · palette
-bg:            #010810
+bg:            #020c1e
 fg:            #c8e8ff
-accent:        #00ffff
-muted:         #1e4060
-surface:       #040f1e
-border:        #0a3058
+accent:        #00e5ff
+muted:         #1a4870
+surface:       #031428
+border:        #0d3a6e
 error:         #ff3030
 success:       #00ff88
 
@@ -50,7 +50,7 @@ clear_label:   SURFACE
 bg_effect:         gradient
 animation_speed:   normal
 blur:              none
-bg_gradient:       linear-gradient(180deg, #0a2855 0%, #062040 25%, #030f22 55%, #010810 100%)
+bg_gradient:       linear-gradient(180deg, #0e3060 0%, #082248 20%, #041530 45%, #030e22 65%, #020818 80%, #010510 100%)
 texture_overlay:   none
 texture_intensity: subtle
 surface_style:     frosted
@@ -58,19 +58,27 @@ motion_style:      bloom
 thinking_style:    pulse
 
 ### Section 7 · components
-message_user_bg:       #0a2a5a
+message_user_bg:       #0b2f62
 message_user_fg:       #d8f0ff
-message_assistant_bg:  #020a18
+message_assistant_bg:  #021120
 message_assistant_fg:  #a0d8c0
-input_bg:              #020810
+input_bg:              #020e1e
 input_fg:              #00ff88
-input_border:          #0a3058
+input_border:          #0d3a6e
 
 ### Section 9 · custom
 
 /* === WATER BACKGROUND OVERRIDE === */
+html {
+  background: linear-gradient(180deg, #0e3060 0%, #082248 20%, #041530 45%, #030e22 65%, #020818 80%, #010510 100%) !important;
+}
 body {
-  background: linear-gradient(180deg, #0a2855 0%, #062040 25%, #030f22 55%, #010810 100%) !important;
+  background: transparent !important;
+}
+
+/* App shell — transparent so html ocean gradient + fish layer show through */
+body > div {
+  background: transparent !important;
 }
 
 /* =====================================================
@@ -143,6 +151,16 @@ body {
   50%       { opacity: 1.00; filter: brightness(1.18); }
 }
 
+@keyframes biolum-pulse {
+  0%, 100% { border-left-color: rgba(0, 255, 136, 0.75); box-shadow: -4px 0 20px rgba(0, 255, 136, 0.07), inset 0 1px 0 rgba(0, 140, 100, 0.10); }
+  50%       { border-left-color: rgba(0, 255, 136, 1.00); box-shadow: -4px 0 36px rgba(0, 255, 136, 0.22), inset 0 1px 0 rgba(0, 180, 120, 0.18); }
+}
+
+@keyframes depth-reading {
+  0%, 100% { opacity: 0.70; }
+  50%       { opacity: 1.00; }
+}
+
 /* =====================================================
    SWIMMING FISH + BUBBLES — SVG AQUARIUM (PRESERVED)
    ===================================================== */
@@ -152,7 +170,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900'%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 160' to='-250 160' dur='22s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.8,1.8)'%3E%3Cellipse rx='30' ry='17' fill='%231e40af'/%3E%3Cellipse cx='2' cy='4' rx='22' ry='12' fill='%232563eb'/%3E%3Cpolygon points='-30,0 -44,-18 -46,0 -44,18' fill='%23fbbf24'/%3E%3Cpath d='M-8,-17 L2,-28 L14,-22 L20,-17' fill='%231e3a8a'/%3E%3Cellipse cx='-2' cy='0' rx='10' ry='17' fill='none' stroke='%23fbbf24' stroke-width='2' opacity='0.7'/%3E%3Ccircle cx='23' cy='-4' r='4.5' fill='white'/%3E%3Ccircle cx='24' cy='-4' r='2.5' fill='%230c1a4e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 280' to='-200 280' dur='20s' begin='3s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.3,1.3)'%3E%3Cellipse rx='22' ry='13' fill='%23ea580c'/%3E%3Cellipse cx='0' cy='2' rx='16' ry='9' fill='%23f97316'/%3E%3Cellipse cx='-5' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cellipse cx='9' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cpolygon points='-22,0 -34,-12 -36,0 -34,12' fill='%23ea580c'/%3E%3Cpath d='M-5,-13 L2,-22 L12,-16 L14,-13' fill='%23c2410c'/%3E%3Ccircle cx='16' cy='-2' r='3.5' fill='white'/%3E%3Ccircle cx='17' cy='-2' r='2' fill='%230a0a0a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 440' to='-250 440' dur='26s' begin='1s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.5,1.5)'%3E%3Cellipse rx='26' ry='21' fill='%23eab308'/%3E%3Cellipse cx='0' cy='2' rx='20' ry='15' fill='%23facc15'/%3E%3Cpolygon points='-26,0 -38,-14 -40,0 -38,14' fill='%23ca8a04'/%3E%3Cpath d='M-12,-21 Q0,-34 16,-22 L16,-21' fill='%23a16207'/%3E%3Cpath d='M-12,21 Q0,34 16,22 L16,21' fill='%23a16207'/%3E%3Cellipse cx='22' cy='-1' rx='6' ry='5' fill='%2393c5fd' opacity='0.5'/%3E%3Ccircle cx='18' cy='-5' r='4' fill='white'/%3E%3Ccircle cx='19' cy='-5' r='2.2' fill='%231a1a1a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-250 350' to='1700 350' dur='28s' begin='6s' repeatCount='indefinite'/%3E%3Cg transform='scale(1.4,1.4)'%3E%3Cellipse rx='30' ry='17' fill='%231e40af'/%3E%3Cellipse cx='2' cy='4' rx='22' ry='12' fill='%232563eb'/%3E%3Cpolygon points='-30,0 -44,-18 -46,0 -44,18' fill='%23fbbf24'/%3E%3Cpath d='M-8,-17 L2,-28 L14,-22 L20,-17' fill='%231e3a8a'/%3E%3Cellipse cx='-2' cy='0' rx='10' ry='17' fill='none' stroke='%23fbbf24' stroke-width='2' opacity='0.7'/%3E%3Ccircle cx='23' cy='-4' r='4.5' fill='white'/%3E%3Ccircle cx='24' cy='-4' r='2.5' fill='%230c1a4e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-200 500' to='1700 500' dur='24s' begin='9s' repeatCount='indefinite'/%3E%3Cg transform='scale(1.1,1.1)'%3E%3Cellipse rx='22' ry='13' fill='%23ea580c'/%3E%3Cellipse cx='0' cy='2' rx='16' ry='9' fill='%23f97316'/%3E%3Cellipse cx='-5' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cellipse cx='9' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cpolygon points='-22,0 -34,-12 -36,0 -34,12' fill='%23ea580c'/%3E%3Cpath d='M-5,-13 L2,-22 L12,-16 L14,-13' fill='%23c2410c'/%3E%3Ccircle cx='16' cy='-2' r='3.5' fill='white'/%3E%3Ccircle cx='17' cy='-2' r='2' fill='%230a0a0a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-250 650' to='1700 650' dur='19s' begin='14s' repeatCount='indefinite'/%3E%3Cg transform='scale(1,1)'%3E%3Cellipse rx='26' ry='21' fill='%23eab308'/%3E%3Cellipse cx='0' cy='2' rx='20' ry='15' fill='%23facc15'/%3E%3Cpolygon points='-26,0 -38,-14 -40,0 -38,14' fill='%23ca8a04'/%3E%3Cpath d='M-12,-21 Q0,-34 16,-22 L16,-21' fill='%23a16207'/%3E%3Cpath d='M-12,21 Q0,34 16,22 L16,21' fill='%23a16207'/%3E%3Cellipse cx='22' cy='-1' rx='6' ry='5' fill='%2393c5fd' opacity='0.5'/%3E%3Ccircle cx='18' cy='-5' r='4' fill='white'/%3E%3Ccircle cx='19' cy='-5' r='2.2' fill='%231a1a1a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-250 200' to='1700 200' dur='18s' begin='12s' repeatCount='indefinite'/%3E%3Cg transform='scale(1,1)'%3E%3Cellipse rx='30' ry='17' fill='%231e40af'/%3E%3Cellipse cx='2' cy='4' rx='22' ry='12' fill='%232563eb'/%3E%3Cpolygon points='-30,0 -44,-18 -46,0 -44,18' fill='%23fbbf24'/%3E%3Cpath d='M-8,-17 L2,-28 L14,-22 L20,-17' fill='%231e3a8a'/%3E%3Cellipse cx='-2' cy='0' rx='10' ry='17' fill='none' stroke='%23fbbf24' stroke-width='2' opacity='0.7'/%3E%3Ccircle cx='23' cy='-4' r='4.5' fill='white'/%3E%3Ccircle cx='24' cy='-4' r='2.5' fill='%230c1a4e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-300 310' to='1700 310' dur='14s' begin='7s' repeatCount='indefinite'/%3E%3Cg transform='translate(-20,0)'%3E%3Cellipse rx='14' ry='7' fill='%2393c5fd' opacity='0.85'/%3E%3Cpolygon points='-14,0 -20,-7 -21,0 -20,7' fill='%2360a5fa' opacity='0.85'/%3E%3Ccircle cx='11' cy='-2' r='2' fill='white'/%3E%3C/g%3E%3Cg transform='translate(20,-14)'%3E%3Cellipse rx='12' ry='6' fill='%2393c5fd' opacity='0.80'/%3E%3Cpolygon points='-12,0 -18,-6 -19,0 -18,6' fill='%2360a5fa' opacity='0.80'/%3E%3Ccircle cx='9' cy='-2' r='1.8' fill='white'/%3E%3C/g%3E%3Cg transform='translate(0,16)'%3E%3Cellipse rx='13' ry='6.5' fill='%2393c5fd' opacity='0.75'/%3E%3Cpolygon points='-13,0 -19,-6 -20,0 -19,6' fill='%2360a5fa' opacity='0.75'/%3E%3Ccircle cx='10' cy='-2' r='1.9' fill='white'/%3E%3C/g%3E%3C/g%3E%3Ccircle cx='144' cy='950' r='6' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.65' stroke-width='1.5'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.8;0.8;0' keyTimes='0;0.08;0.85;1' dur='9s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='288' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.60' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='11s' begin='2s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.08;0.85;1' dur='11s' begin='2s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='432' cy='950' r='8' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.55' stroke-width='1.8'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='13s' begin='5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.7;0.7;0' keyTimes='0;0.07;0.85;1' dur='13s' begin='5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='576' cy='950' r='5' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.62' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='1s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='10s' begin='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='720' cy='950' r='7' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.68' stroke-width='1.6'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='8s' begin='4s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.82;0.82;0' keyTimes='0;0.09;0.85;1' dur='8s' begin='4s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='864' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.58' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='12s' begin='7s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.72;0.72;0' keyTimes='0;0.08;0.85;1' dur='12s' begin='7s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1008' cy='950' r='9' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.60' stroke-width='2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='14s' begin='3s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.07;0.85;1' dur='14s' begin='3s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1152' cy='950' r='5' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.63' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='6s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='10s' begin='6s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1296' cy='950' r='6' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.65' stroke-width='1.5'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' begin='2.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.8;0.8;0' keyTimes='0;0.09;0.85;1' dur='9s' begin='2.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1400' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.60' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='11s' begin='5.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.08;0.85;1' dur='11s' begin='5.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900'%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 160' to='-250 160' dur='22s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.8,1.8)'%3E%3Cellipse rx='30' ry='17' fill='%231e40af'/%3E%3Cellipse cx='2' cy='4' rx='22' ry='12' fill='%232563eb'/%3E%3Cpolygon points='-30,0 -44,-18 -46,0 -44,18' fill='%23fbbf24'/%3E%3Cpath d='M-8,-17 L2,-28 L14,-22 L20,-17' fill='%231e3a8a'/%3E%3Cellipse cx='-2' cy='0' rx='10' ry='17' fill='none' stroke='%23fbbf24' stroke-width='2' opacity='0.7'/%3E%3Ccircle cx='23' cy='-4' r='4.5' fill='white'/%3E%3Ccircle cx='24' cy='-4' r='2.5' fill='%230c1a4e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 300' to='-200 300' dur='18s' begin='4s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.5,1.5)'%3E%3Cellipse rx='26' ry='14' fill='%23ea580c'/%3E%3Cellipse cx='0' cy='2' rx='18' ry='10' fill='%23f97316'/%3E%3Cellipse cx='-5' cy='0' rx='3.5' ry='14' fill='white' opacity='0.95'/%3E%3Cellipse cx='8' cy='0' rx='3' ry='13' fill='white' opacity='0.90'/%3E%3Cpolygon points='-26,0 -38,-14 -40,0 -38,14' fill='%23c2410c'/%3E%3Cpath d='M-5,-14 L2,-24 L12,-18 L14,-14' fill='%23c2410c'/%3E%3Ccircle cx='18' cy='-3' r='4' fill='white'/%3E%3Ccircle cx='19' cy='-3' r='2.2' fill='%230a0a0a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 440' to='-250 440' dur='26s' begin='1s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.5,1.5)'%3E%3Cellipse rx='26' ry='21' fill='%23eab308'/%3E%3Cellipse cx='0' cy='2' rx='20' ry='15' fill='%23facc15'/%3E%3Cpolygon points='-26,0 -38,-14 -40,0 -38,14' fill='%23ca8a04'/%3E%3Cpath d='M-12,-21 Q0,-34 16,-22 L16,-21' fill='%23a16207'/%3E%3Cpath d='M-12,21 Q0,34 16,22 L16,21' fill='%23a16207'/%3E%3Cellipse cx='22' cy='-1' rx='6' ry='5' fill='%2393c5fd' opacity='0.5'/%3E%3Ccircle cx='18' cy='-5' r='4' fill='white'/%3E%3Ccircle cx='19' cy='-5' r='2.2' fill='%231a1a1a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-250 350' to='1700 350' dur='28s' begin='6s' repeatCount='indefinite'/%3E%3Cg transform='scale(1.4,1.4)'%3E%3Cellipse rx='30' ry='17' fill='%231e40af'/%3E%3Cellipse cx='2' cy='4' rx='22' ry='12' fill='%232563eb'/%3E%3Cpolygon points='-30,0 -44,-18 -46,0 -44,18' fill='%23fbbf24'/%3E%3Cpath d='M-8,-17 L2,-28 L14,-22 L20,-17' fill='%231e3a8a'/%3E%3Cellipse cx='-2' cy='0' rx='10' ry='17' fill='none' stroke='%23fbbf24' stroke-width='2' opacity='0.7'/%3E%3Ccircle cx='23' cy='-4' r='4.5' fill='white'/%3E%3Ccircle cx='24' cy='-4' r='2.5' fill='%230c1a4e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-200 500' to='1700 500' dur='24s' begin='9s' repeatCount='indefinite'/%3E%3Cg transform='scale(1.1,1.1)'%3E%3Cellipse rx='22' ry='13' fill='%23ea580c'/%3E%3Cellipse cx='0' cy='2' rx='16' ry='9' fill='%23f97316'/%3E%3Cellipse cx='-5' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cellipse cx='9' cy='0' rx='3' ry='13' fill='white' opacity='0.9'/%3E%3Cpolygon points='-22,0 -34,-12 -36,0 -34,12' fill='%23ea580c'/%3E%3Cpath d='M-5,-13 L2,-22 L12,-16 L14,-13' fill='%23c2410c'/%3E%3Ccircle cx='16' cy='-2' r='3.5' fill='white'/%3E%3Ccircle cx='17' cy='-2' r='2' fill='%230a0a0a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-250 650' to='1700 650' dur='19s' begin='14s' repeatCount='indefinite'/%3E%3Cg transform='scale(1,1)'%3E%3Cellipse rx='26' ry='21' fill='%23eab308'/%3E%3Cellipse cx='0' cy='2' rx='20' ry='15' fill='%23facc15'/%3E%3Cpolygon points='-26,0 -38,-14 -40,0 -38,14' fill='%23ca8a04'/%3E%3Cpath d='M-12,-21 Q0,-34 16,-22 L16,-21' fill='%23a16207'/%3E%3Cpath d='M-12,21 Q0,34 16,22 L16,21' fill='%23a16207'/%3E%3Ccircle cx='18' cy='-5' r='4' fill='white'/%3E%3Ccircle cx='19' cy='-5' r='2.2' fill='%231a1a1a'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='-300 220' to='1700 220' dur='14s' begin='7s' repeatCount='indefinite'/%3E%3Cg transform='scale(1.3,1.3)'%3E%3Cellipse rx='14' ry='7' fill='%2393c5fd' opacity='0.85'/%3E%3Cpolygon points='-14,0 -20,-7 -21,0 -20,7' fill='%2360a5fa' opacity='0.85'/%3E%3Ccircle cx='11' cy='-2' r='2' fill='white'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='1700 580' to='-200 580' dur='16s' begin='11s' repeatCount='indefinite'/%3E%3Cg transform='scale(-1.2,1.2)'%3E%3Cellipse rx='20' ry='12' fill='%23a855f7'/%3E%3Cellipse cx='0' cy='2' rx='14' ry='8' fill='%23c084fc'/%3E%3Cpolygon points='-20,0 -30,-12 -32,0 -30,12' fill='%237e22ce'/%3E%3Cpath d='M-8,-12 L0,-20 L10,-14' fill='%236b21a8'/%3E%3Ccircle cx='14' cy='-2' r='3' fill='white'/%3E%3Ccircle cx='15' cy='-2' r='1.8' fill='%231a0a2e'/%3E%3C/g%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='350 -80' to='350 980' dur='26s' begin='3s' repeatCount='indefinite'/%3E%3Cellipse rx='25' ry='18' fill='rgba(168,85,247,0.60)'/%3E%3Cellipse rx='25' ry='11' cy='-5' fill='rgba(216,180,254,0.35)'/%3E%3Cellipse rx='14' ry='6' cy='-9' fill='rgba(255,255,255,0.18)'/%3E%3Cline x1='-18' y1='16' x2='-20' y2='48' stroke='rgba(192,132,252,0.50)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='-8' y1='18' x2='-6' y2='52' stroke='rgba(168,85,247,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cline x1='2' y1='18' x2='4' y2='56' stroke='rgba(192,132,252,0.50)' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='12' y1='18' x2='10' y2='52' stroke='rgba(168,85,247,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cline x1='20' y1='16' x2='22' y2='46' stroke='rgba(192,132,252,0.50)' stroke-width='1.5' stroke-linecap='round'/%3E%3Canimate attributeName='opacity' values='0;0.9;0.9;0' keyTimes='0;0.05;0.92;1' dur='26s' begin='3s' repeatCount='indefinite'/%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='980 -120' to='980 980' dur='30s' begin='14s' repeatCount='indefinite'/%3E%3Cellipse rx='20' ry='14' fill='rgba(56,189,248,0.60)'/%3E%3Cellipse rx='20' ry='9' cy='-4' fill='rgba(186,230,253,0.35)'/%3E%3Cellipse rx='11' ry='5' cy='-7' fill='rgba(255,255,255,0.16)'/%3E%3Cline x1='-14' y1='13' x2='-16' y2='40' stroke='rgba(56,189,248,0.50)' stroke-width='1.4' stroke-linecap='round'/%3E%3Cline x1='-5' y1='14' x2='-3' y2='44' stroke='rgba(125,211,252,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Cline x1='4' y1='14' x2='6' y2='44' stroke='rgba(56,189,248,0.50)' stroke-width='1.4' stroke-linecap='round'/%3E%3Cline x1='13' y1='13' x2='15' y2='40' stroke='rgba(125,211,252,0.45)' stroke-width='1.2' stroke-linecap='round'/%3E%3Canimate attributeName='opacity' values='0;0.85;0.85;0' keyTimes='0;0.05;0.92;1' dur='30s' begin='14s' repeatCount='indefinite'/%3E%3C/g%3E%3Cg%3E%3CanimateTransform attributeName='transform' type='translate' from='700 -60' to='700 980' dur='22s' begin='8s' repeatCount='indefinite'/%3E%3Cellipse rx='16' ry='11' fill='rgba(244,114,182,0.55)'/%3E%3Cellipse rx='16' ry='7' cy='-3' fill='rgba(251,207,232,0.32)'/%3E%3Cellipse rx='9' ry='4' cy='-6' fill='rgba(255,255,255,0.14)'/%3E%3Cline x1='-11' y1='10' x2='-12' y2='32' stroke='rgba(244,114,182,0.50)' stroke-width='1.3' stroke-linecap='round'/%3E%3Cline x1='-3' y1='11' x2='-2' y2='36' stroke='rgba(249,168,212,0.45)' stroke-width='1.1' stroke-linecap='round'/%3E%3Cline x1='5' y1='11' x2='6' y2='36' stroke='rgba(244,114,182,0.50)' stroke-width='1.3' stroke-linecap='round'/%3E%3Cline x1='12' y1='10' x2='13' y2='32' stroke='rgba(249,168,212,0.45)' stroke-width='1.1' stroke-linecap='round'/%3E%3Canimate attributeName='opacity' values='0;0.80;0.80;0' keyTimes='0;0.05;0.92;1' dur='22s' begin='8s' repeatCount='indefinite'/%3E%3C/g%3E%3Ccircle cx='60' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.60' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' begin='11s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.08;0.85;1' dur='9s' begin='11s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='144' cy='950' r='6' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.65' stroke-width='1.5'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.8;0.8;0' keyTimes='0;0.08;0.85;1' dur='9s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='200' cy='950' r='3' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.60' stroke-width='1'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='8s' begin='0.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.72;0.72;0' keyTimes='0;0.08;0.85;1' dur='8s' begin='0.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='288' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.60' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='11s' begin='2s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.08;0.85;1' dur='11s' begin='2s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='380' cy='950' r='5' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.65' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='11s' begin='3.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.80;0.80;0' keyTimes='0;0.08;0.85;1' dur='11s' begin='3.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='432' cy='950' r='8' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.55' stroke-width='1.8'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='13s' begin='5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.7;0.7;0' keyTimes='0;0.07;0.85;1' dur='13s' begin='5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='520' cy='950' r='7' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.55' stroke-width='1.5'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='12s' begin='8s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.07;0.85;1' dur='12s' begin='8s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='576' cy='950' r='5' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.62' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='1s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='10s' begin='1s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='640' cy='950' r='3' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.62' stroke-width='1'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' begin='1.8s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='9s' begin='1.8s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='720' cy='950' r='7' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.68' stroke-width='1.6'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='8s' begin='4s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.82;0.82;0' keyTimes='0;0.09;0.85;1' dur='8s' begin='4s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='800' cy='950' r='6' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.68' stroke-width='1.4'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='6.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.82;0.82;0' keyTimes='0;0.09;0.85;1' dur='10s' begin='6.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='864' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.58' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='12s' begin='7s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.72;0.72;0' keyTimes='0;0.08;0.85;1' dur='12s' begin='7s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='960' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.58' stroke-width='1.1'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='13s' begin='4.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.72;0.72;0' keyTimes='0;0.08;0.85;1' dur='13s' begin='4.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1008' cy='950' r='9' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.60' stroke-width='2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='14s' begin='3s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.07;0.85;1' dur='14s' begin='3s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1100' cy='950' r='8' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.60' stroke-width='1.8'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='15s' begin='9s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.07;0.85;1' dur='15s' begin='9s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1152' cy='950' r='5' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.63' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='6s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='10s' begin='6s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1240' cy='950' r='3' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.63' stroke-width='1'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='8s' begin='3s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.78;0.78;0' keyTimes='0;0.08;0.85;1' dur='8s' begin='3s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1296' cy='950' r='6' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.65' stroke-width='1.5'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='9s' begin='2.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.8;0.8;0' keyTimes='0;0.09;0.85;1' dur='9s' begin='2.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1350' cy='950' r='5' fill='none' stroke='rgb(180,240,255)' stroke-opacity='0.65' stroke-width='1.3'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='10s' begin='7.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.80;0.80;0' keyTimes='0;0.08;0.85;1' dur='10s' begin='7.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1400' cy='950' r='4' fill='none' stroke='rgb(200,245,255)' stroke-opacity='0.60' stroke-width='1.2'%3E%3Canimate attributeName='cy' from='950' to='-30' dur='11s' begin='5.5s' repeatCount='indefinite'/%3E%3Canimate attributeName='opacity' values='0;0.75;0.75;0' keyTimes='0;0.08;0.85;1' dur='11s' begin='5.5s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -186,35 +204,32 @@ body::after {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 320px;
+  height: 340px;
   pointer-events: none;
   z-index: 0;
   background:
-    linear-gradient(0deg, rgba(1,4,12,0.98) 0%, rgba(2,9,26,0.94) 22%, rgba(3,15,38,0.72) 50%, transparent 100%),
-    /* BRIGHT CORAL GLOWS — pushed to maximum neon */
-    radial-gradient(ellipse 110px 88px at 10% 100%, rgba(0,255,255,0.85) 0%, transparent 100%),
-    radial-gradient(ellipse  78px 62px at 26% 100%, rgba(0,255,180,0.78) 0%, transparent 100%),
-    radial-gradient(ellipse  92px 74px at 44% 100%, rgba(232,72,200,0.62) 0%, transparent 100%),
-    radial-gradient(ellipse  68px 54px at 60% 100%, rgba(0,255,200,0.72) 0%, transparent 100%),
-    radial-gradient(ellipse  98px 78px at 76% 100%, rgba(0,220,255,0.80) 0%, transparent 100%),
-    radial-gradient(ellipse  62px 50px at 91% 100%, rgba(232,72,200,0.60) 0%, transparent 100%),
-    /* TALL CORAL SPIKES */
-    radial-gradient(ellipse 20px 180px at 10% 100%, rgba(0,110,200,0.95) 0%, transparent 100%),
-    radial-gradient(ellipse 14px 140px at 26% 100%, rgba(0,160,140,0.92) 0%, transparent 100%),
-    radial-gradient(ellipse 18px 165px at 44% 100%, rgba(180,50,160,0.85) 0%, transparent 100%),
-    radial-gradient(ellipse 12px 115px at 60% 100%, rgba(0,148,130,0.90) 0%, transparent 100%),
-    radial-gradient(ellipse 17px 155px at 76% 100%, rgba(0,105,195,0.94) 0%, transparent 100%),
-    radial-gradient(ellipse 11px 100px at 91% 100%, rgba(160,40,150,0.82) 0%, transparent 100%),
-    /* WIDE ROCK / REEF MOUNDS */
-    radial-gradient(ellipse 125px  96px at  4% 100%, rgba(0,12,36,0.98) 0%, transparent 100%),
-    radial-gradient(ellipse  90px  72px at 14% 100%, rgba(0, 9,30,0.96) 0%, transparent 100%),
-    radial-gradient(ellipse 105px  84px at 26% 100%, rgba(0,11,34,0.97) 0%, transparent 100%),
-    radial-gradient(ellipse 140px 108px at 38% 100%, rgba(0, 8,28,0.95) 0%, transparent 100%),
-    radial-gradient(ellipse  95px  76px at 51% 100%, rgba(0,10,32,0.96) 0%, transparent 100%),
-    radial-gradient(ellipse 118px  94px at 63% 100%, rgba(0, 8,26,0.97) 0%, transparent 100%),
-    radial-gradient(ellipse 100px  80px at 74% 100%, rgba(0,11,34,0.96) 0%, transparent 100%),
-    radial-gradient(ellipse 110px  88px at 84% 100%, rgba(0, 9,30,0.95) 0%, transparent 100%),
-    radial-gradient(ellipse 130px 102px at 94% 100%, rgba(0, 8,28,0.97) 0%, transparent 100%);
+    linear-gradient(0deg, rgba(1,4,14,0.98) 0%, rgba(2,9,26,0.94) 22%, rgba(3,15,38,0.72) 50%, transparent 100%),
+    radial-gradient(ellipse 120px 95px at 10% 100%, rgba(0,229,255,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse  85px 68px at 26% 100%, rgba(0,255,160,0.90) 0%, transparent 100%),
+    radial-gradient(ellipse 100px 80px at 44% 100%, rgba(255,60,200,0.75) 0%, transparent 100%),
+    radial-gradient(ellipse  75px 60px at 60% 100%, rgba(0,229,255,0.85) 0%, transparent 100%),
+    radial-gradient(ellipse 105px 85px at 76% 100%, rgba(168,85,247,0.80) 0%, transparent 100%),
+    radial-gradient(ellipse  70px 56px at 91% 100%, rgba(255,80,180,0.72) 0%, transparent 100%),
+    radial-gradient(ellipse 22px 190px at 10% 100%, rgba(0,100,200,0.98) 0%, transparent 100%),
+    radial-gradient(ellipse 15px 150px at 26% 100%, rgba(0,180,140,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 19px 175px at 44% 100%, rgba(220,40,160,0.90) 0%, transparent 100%),
+    radial-gradient(ellipse 13px 125px at 60% 100%, rgba(0,140,130,0.92) 0%, transparent 100%),
+    radial-gradient(ellipse 18px 165px at 76% 100%, rgba(130,50,220,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 12px 110px at 91% 100%, rgba(200,40,160,0.88) 0%, transparent 100%),
+    radial-gradient(ellipse 130px 100px at  4% 100%, rgba(0,12,36,0.98) 0%, transparent 100%),
+    radial-gradient(ellipse  95px  76px at 14% 100%, rgba(0, 9,30,0.96) 0%, transparent 100%),
+    radial-gradient(ellipse 110px  88px at 26% 100%, rgba(0,11,34,0.97) 0%, transparent 100%),
+    radial-gradient(ellipse 145px 112px at 38% 100%, rgba(0, 8,28,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 100px  80px at 51% 100%, rgba(0,10,32,0.96) 0%, transparent 100%),
+    radial-gradient(ellipse 122px  98px at 63% 100%, rgba(0, 8,26,0.97) 0%, transparent 100%),
+    radial-gradient(ellipse 105px  84px at 74% 100%, rgba(0,11,34,0.96) 0%, transparent 100%),
+    radial-gradient(ellipse 115px  92px at 84% 100%, rgba(0, 9,30,0.95) 0%, transparent 100%),
+    radial-gradient(ellipse 135px 106px at 94% 100%, rgba(0, 8,28,0.97) 0%, transparent 100%);
   animation: floor-breathe 9s ease-in-out infinite;
 }
 
@@ -264,18 +279,17 @@ aside::before {
   z-index: 10;
 }
 
-/* Coral plants SVG (PRESERVED) */
 aside::after {
   content: "";
   position: absolute;
   bottom: 55px;
   left: 0;
   right: 0;
-  height: 180px;
+  height: 220px;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.80;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 270 180'%3E%3Cpath d='M18,180 Q12,140 22,100 Q12,60 18,20' fill='none' stroke='%2300b894' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M22,130 Q2,110 8,88' fill='none' stroke='%2300b894' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M20,95 Q36,75 28,55' fill='none' stroke='%2300b894' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M252,180 Q258,140 248,100 Q258,60 252,20' fill='none' stroke='%23ff6b6b' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M248,110 Q268,90 262,68' fill='none' stroke='%23ff6b6b' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M42,180 L46,148 L54,125 L49,102' fill='none' stroke='%23fd7272' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M54,125 L64,108' fill='none' stroke='%23fd7272' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M49,102 L38,90' fill='none' stroke='%23fd7272' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M228,180 L224,148 L216,125 L221,102' fill='none' stroke='%230097a7' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M216,125 L206,108' fill='none' stroke='%230097a7' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M221,102 L232,90' fill='none' stroke='%230097a7' stroke-width='4' stroke-linecap='round'/%3E%3Cg transform='translate(135,162)'%3E%3Cpolygon points='0,-10 2,-3 10,-3 4,2 7,10 0,5 -7,10 -4,2 -10,-3 -2,-3' fill='%23ff9f43'/%3E%3C/g%3E%3Cellipse cx='95' cy='172' rx='32' ry='14' fill='none' stroke='%23a55eea' stroke-width='2' opacity='0.8'/%3E%3Cellipse cx='182' cy='175' rx='24' ry='11' fill='none' stroke='%23e84393' stroke-width='2' opacity='0.7'/%3E%3C/svg%3E");
+  opacity: 0.90;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 270 220'%3E%3Cpath d='M18,220 Q12,175 22,130 Q12,85 18,40' fill='none' stroke='%2300b894' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M22,160 Q2,140 8,110' fill='none' stroke='%2300b894' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M20,115 Q38,90 28,65' fill='none' stroke='%2300e5ff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M252,220 Q258,175 248,130 Q258,85 252,40' fill='none' stroke='%23ff6b6b' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M248,140 Q270,115 262,88' fill='none' stroke='%23ff6b6b' stroke-width='3.5' stroke-linecap='round'/%3E%3Cpath d='M248,88 Q228,65 238,45' fill='none' stroke='%23ff9f43' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M42,220 L46,180 L55,150 L50,120' fill='none' stroke='%23fd7272' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M55,150 L68,128' fill='none' stroke='%23fd7272' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M50,120 L36,105' fill='none' stroke='%23fd7272' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M228,220 L224,180 L215,150 L220,120' fill='none' stroke='%230097a7' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M215,150 L202,128' fill='none' stroke='%230097a7' stroke-width='4.5' stroke-linecap='round'/%3E%3Cpath d='M220,120 L234,105' fill='none' stroke='%2300e5ff' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M85,220 L88,195 L92,175 L88,155' fill='none' stroke='%23a855f7' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M92,175 L100,160' fill='none' stroke='%23a855f7' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M88,155 L78,145' fill='none' stroke='%23c084fc' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M185,220 L182,195 L178,175 L182,155' fill='none' stroke='%23f472b6' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M178,175 L170,160' fill='none' stroke='%23f472b6' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M182,155 L192,145' fill='none' stroke='%23fb923c' stroke-width='3' stroke-linecap='round'/%3E%3Cg transform='translate(135,195)'%3E%3Cpolygon points='0,-12 2.5,-4 12,-4 5,2 8,12 0,6.5 -8,12 -5,2 -12,-4 -2.5,-4' fill='%23ff9f43'/%3E%3C/g%3E%3Cg transform='translate(60,208)'%3E%3Cpolygon points='0,-8 1.5,-2.5 8,-2.5 3.5,1.5 5.5,8 0,4.5 -5.5,8 -3.5,1.5 -8,-2.5 -1.5,-2.5' fill='%23e84393'/%3E%3C/g%3E%3Cellipse cx='95' cy='212' rx='36' ry='16' fill='none' stroke='%23a55eea' stroke-width='2.5' opacity='0.85'/%3E%3Cellipse cx='182' cy='215' rx='28' ry='13' fill='none' stroke='%23e84393' stroke-width='2' opacity='0.80'/%3E%3C/svg%3E");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -285,7 +299,15 @@ aside::after {
    ===================================================== */
 main {
   position: relative;
+  z-index: 0;                              /* establishes stacking context */
   overflow: hidden;
+  background: rgba(2, 9, 26, 0.82) !important;  /* deep ocean interior */
+}
+
+/* Ensure chat content renders above sonar sweep */
+main > div {
+  position: relative;
+  z-index: 1;
 }
 
 main::before {
@@ -312,8 +334,10 @@ main::before {
 
 /* =====================================================
    WINAMP PANEL CHROME — CORNER CLIPS + NEON GLOW
+   Apply only to .surface-card (input wrapper), NOT to
+   messages scroll container — clip-path + overflow-y:auto
+   on a flex:1 child collapses the layout in Chrome.
    ===================================================== */
-main > div,
 .surface-card {
   position: relative;
   clip-path: polygon(
@@ -397,6 +421,7 @@ main > div,
     inset 0 1px 0 rgba(0, 140, 100, 0.12),
     inset 4px 0 0 rgba(0, 255, 136, 0.04) !important;
   background: linear-gradient(135deg, rgba(2, 10, 24, 0.98) 0%, rgba(1, 7, 18, 0.99) 100%) !important;
+  animation: biolum-pulse 3.2s ease-in-out infinite !important;
 }
 
 /* =====================================================

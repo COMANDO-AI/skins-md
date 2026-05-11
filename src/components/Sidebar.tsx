@@ -459,21 +459,30 @@ function PersonaSidebar({
             >
               {persona?.user_role ?? "EXPLORER"}
             </div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "4px", marginBottom: "3px" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "7px", color: "rgba(0,229,255,0.45)", letterSpacing: "0.08em" }}>
+                {persona?.user_level ?? "LVL 1"}
+              </span>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "7px", color: "rgba(0,229,255,0.35)" }}>
+                {xp}/{xpMax} XP
+              </span>
+            </div>
             <div
               style={{
-                height: "3px",
-                background: "color-mix(in srgb, var(--accent) 10%, transparent)",
-                borderRadius: "2px",
+                height: "6px",
+                background: "rgba(0,229,255,0.08)",
+                borderRadius: "4px",
                 overflow: "hidden",
-                marginTop: "5px",
+                boxShadow: "inset 0 1px 3px rgba(0,0,0,0.40)",
               }}
             >
               <div
                 style={{
                   height: "100%",
                   width: `${xpPct}%`,
-                  background: "color-mix(in srgb, var(--accent) 65%, transparent)",
-                  borderRadius: "2px",
+                  background: "linear-gradient(90deg, #00e5ff, #3b82f6)",
+                  borderRadius: "4px",
+                  boxShadow: "0 0 8px rgba(0,229,255,0.55)",
                   transition: "width 1s ease",
                 }}
               />
