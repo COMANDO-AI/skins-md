@@ -73,4 +73,15 @@ describe('SKIN.md parser', () => {
       expect(result.errors.join(' ')).toContain('metadata.author');
     }
   });
+
+  it('keeps Section visual preset-only and rejects arbitrary code', () => {
+    const unsafe = `${minimal}\n### Section visual\nengine: webgl\npreset: stars\nshader: void main() { gl_FragColor = vec4(1.0); }\nintensity: 4\ntransitions: <script>alert(1)</script>\n`;
+    const result = validateSkin(unsafe, 'unsafe');
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.join(' ')).toContain('Unsupported visual.shader');
+      expect(result.errors.join(' ')).toContain('Invalid visual.intensity');
+      expect(result.errors.join(' ')).toContain('Unsafe value for visual.transitions');
+    }
+  });
 });

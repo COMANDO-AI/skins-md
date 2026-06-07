@@ -85,3 +85,8 @@ preset: stars
 intensity: 0.4
 speed: 0.3
 density: 80
+hud: minimal
+particles: stars
+text_reveal: fade
+transitions: fade
+parallax: subtle

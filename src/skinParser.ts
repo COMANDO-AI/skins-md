@@ -1,4 +1,4 @@
-import type { Skin, SkinSections, ValidationResult } from './types';
+import type { Skin, SkinSections, ValidationResult, VisualConfig } from './types';
 
 const SECTION_ALIASES: Record<string, keyof SkinSections> = {
   metadata: 'metadata',
@@ -29,8 +29,20 @@ const REQUIRED_FIELDS: Record<string, string[]> = {
 
 const COLOR_FIELDS = new Set(['bg','fg','accent','muted','surface','border','error','success','message_user_bg','message_user_fg','message_assistant_bg','message_assistant_fg','input_bg','input_fg','input_border']);
 
+const VISUAL_ALLOWED_FIELDS = new Set(['engine', 'preset', 'intensity', 'speed', 'density', 'hud', 'particles', 'text_reveal', 'transitions', 'parallax']);
+const VISUAL_ENUMS: Record<string, Set<string>> = {
+  engine: new Set(['subtle', 'webgl', 'css', 'none']),
+  preset: new Set(['stars', 'code-rain', 'aurora', 'embers', 'fireflies', 'executive-grid', 'sparkle-pop', 'rune-orbit']),
+  hud: new Set(['none', 'minimal', 'soft', 'tactical', 'playful', 'compass']),
+  particles: new Set(['none', 'stars', 'code', 'embers', 'fireflies', 'nodes', 'sparkles', 'motes']),
+  text_reveal: new Set(['none', 'instant', 'fade', 'fade-up', 'typewriter', 'pop', 'parchment']),
+  transitions: new Set(['none', 'fade', 'dissolve', 'snap', 'bounce', 'page-turn', 'slide']),
+  parallax: new Set(['none', 'subtle', 'gentle', 'medium', 'deep']),
+};
+
 function normalizeSectionTitle(line: string): keyof SkinSections | null {
   const clean = line.replace(/^#+\s*/, '').toLowerCase();
+  if (/^section\s+visual\b/.test(clean)) return 'visual';
   const sectionMatch = clean.match(/section\s+\d+\s*[·:-]?\s*([a-z_ -]+)/);
   const name = (sectionMatch?.[1] ?? clean).trim().split(/\s+/)[0].replace(/[^a-z_]/g, '');
   return SECTION_ALIASES[name] ?? null;
@@ -79,7 +91,7 @@ export function parseSkin(raw: string, id = 'custom'): Skin {
     assets: sections.assets,
     custom: sections.custom,
     persona: sections.persona,
-    visual: sections.visual,
+    visual: sections.visual as VisualConfig | undefined,
   };
 }
 
@@ -91,6 +103,36 @@ export function isCssColor(value: string): boolean {
   if (/^(rgb|rgba|hsl|hsla|oklch|color)\(/i.test(v)) return true;
   if (/^[a-zA-Z]+$/.test(v)) return true;
   return false;
+}
+
+function validateNumberRange(value: string, min: number, max: number) {
+  const n = Number(value);
+  return Number.isFinite(n) && n >= min && n <= max;
+}
+
+function validateVisualSection(visual: VisualConfig | undefined) {
+  const errors: string[] = [];
+  if (!visual) return errors;
+
+  for (const [key, value] of Object.entries(visual)) {
+    if (!VISUAL_ALLOWED_FIELDS.has(key)) {
+      errors.push(`Unsupported visual.${key}; Section visual is preset-only and does not allow arbitrary code fields`);
+      continue;
+    }
+    const trimmed = value.trim();
+    if (/[{}<>;]/.test(trimmed) || /(?:script|shader|function|eval|import|url\()/i.test(trimmed)) {
+      errors.push(`Unsafe value for visual.${key}: Section visual accepts tokens/numbers only`);
+      continue;
+    }
+    const allowed = VISUAL_ENUMS[key];
+    if (allowed && !allowed.has(trimmed)) errors.push(`Invalid visual.${key}: ${trimmed}`);
+  }
+
+  if (visual.intensity && !validateNumberRange(visual.intensity, 0, 1.2)) errors.push(`Invalid visual.intensity: ${visual.intensity}`);
+  if (visual.speed && !validateNumberRange(visual.speed, 0, 2)) errors.push(`Invalid visual.speed: ${visual.speed}`);
+  if (visual.density && !validateNumberRange(visual.density, 20, 260)) errors.push(`Invalid visual.density: ${visual.density}`);
+
+  return errors;
 }
 
 export function validateSkin(raw: string, id = 'custom'): ValidationResult {
@@ -113,6 +155,8 @@ export function validateSkin(raw: string, id = 'custom'): ValidationResult {
       if (COLOR_FIELDS.has(key) && !isCssColor(value)) errors.push(`Invalid CSS color for ${key}: ${value}`);
     }
   }
+
+  errors.push(...validateVisualSection(skin.visual));
 
   return errors.length ? { ok: false, errors } : { ok: true, skin };
 }

@@ -119,15 +119,27 @@ status:       [string]
 
 ## Section visual optional MVP extension
 
-A safe preset-driven sensory layer. This is deliberately configuration, not executable shader code.
+A safe preset-driven sensory layer. This is deliberately configuration, not executable shader/CSS/JS code. Renderers must treat every value as a token or bounded number and must ignore or reject anything outside the allowlist.
 
 ```md
-engine:     [subtle | webgl | none]
-preset:     [stars | code-rain | aurora | embers]
-intensity:  [0–1.2]
-speed:      [number]
-density:    [20–260]
+engine:       [subtle | webgl | css | none]
+preset:       [stars | code-rain | aurora | embers | fireflies | executive-grid | sparkle-pop | rune-orbit]
+intensity:    [0–1.2]
+speed:        [0–2]
+density:      [20–260]
+hud:          [none | minimal | soft | tactical | playful | compass]
+particles:    [none | stars | code | embers | fireflies | nodes | sparkles | motes]
+text_reveal:  [none | instant | fade | fade-up | typewriter | pop | parchment]
+transitions:  [none | fade | dissolve | snap | bounce | page-turn | slide]
+parallax:     [none | subtle | gentle | medium | deep]
 ```
+
+Safety constraints:
+
+- `Section visual` cannot define raw CSS, JavaScript, shader source, URLs, HTML, imports, functions, or event handlers.
+- Unknown visual keys are invalid, not silently executed.
+- Values containing `{}`, `<>`, semicolons, `script`, `shader`, `function`, `eval`, `import`, or `url()` are rejected by validation.
+- New visual capabilities must be added as named presets/tokens in the spec before renderers use them.
 
 ## Validation rules
 
