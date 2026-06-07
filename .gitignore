@@ -4,3 +4,5 @@ dist/
 .DS_Store
 artifacts/*.webm
 artifacts/*.zip
+
+.netlify/
