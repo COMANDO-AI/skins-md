@@ -23,21 +23,23 @@ await page.route('https://openrouter.ai/api/v1/chat/completions', async (route) 
 await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
 await page.screenshot({ path: 'artifacts/01-initial.png', fullPage: true });
 
-const firstVisitPrompt = await page.getByText('First visit: add your key to chat.').isVisible();
-await page.getByPlaceholder('sk-or-v1-...').fill('sk-or-v1-test');
+const firstVisitPrompt = await page.getByText('Fastest path:').isVisible();
+const demoReady = await page.getByText('Demo mode · no API key required').isVisible();
+await page.getByRole('button', { name: /OpenRouter/i }).click();
+await page.getByPlaceholder('sk-or-v1-...').fill('***');
 await page.getByRole('button', { name: 'Save' }).click();
 await page.reload({ waitUntil: 'networkidle' });
 const keyPersisted = await page.getByText('Saved in localStorage. Never sent to a SKINS.MD server.').isVisible();
 
-const beforeSendLabel = await page.locator('.composer button').innerText();
-await page.getByRole('button', { name: /Terminal Oracle/i }).click();
+const beforeSendLabel = await page.locator('.composer > button').innerText();
+await page.locator('.skin-grid').getByRole('button', { name: /Terminal Oracle/i }).click();
 await page.waitForTimeout(200);
-const afterSendLabel = await page.locator('.composer button').innerText();
+const afterSendLabel = await page.locator('.composer > button').innerText();
 const terminalBg = await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim());
 await page.screenshot({ path: 'artifacts/02-terminal.png', fullPage: true });
 
 await page.locator('textarea').fill('render markdown code');
-await page.locator('.composer button').click();
+await page.locator('.composer > button').click();
 await page.waitForSelector('pre code.hljs', { timeout: 5000 });
 const markdownRendered = await page.locator('h1', { hasText: 'Streaming OK' }).count().catch(() => 0);
 const codeHighlighted = await page.locator('pre code.hljs').count();
@@ -66,6 +68,7 @@ await page.screenshot({ path: 'artifacts/03-imported.png', fullPage: true });
 
 const results = {
   firstVisitPrompt,
+  demoReady,
   keyPersisted,
   beforeSendLabel,
   afterSendLabel,
