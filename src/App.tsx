@@ -31,6 +31,35 @@ function uid() { return Math.random().toString(36).slice(2) + Date.now().toStrin
 function loadJson<T>(key: string, fallback: T): T { try { return JSON.parse(localStorage.getItem(key) || '') as T; } catch { return fallback; } }
 function saveJson(key: string, value: unknown) { localStorage.setItem(key, JSON.stringify(value)); }
 
+function OnboardingHero({ skin, skins, onChoose }: { skin: Skin; skins: Skin[]; onChoose: (id: string) => void }) {
+  const featured = skins.slice(0, 8);
+  return <section className="onboarding-hero" aria-label="Skin preview onboarding">
+    <div className="hero-copy">
+      <span className="eyebrow">Portable AI interface skins</span>
+      <h2>Same assistant. Completely different room.</h2>
+      <p>SKINS.MD turns a plain chat window into a shareable mood, tutor, operator console, or fantasy companion — before you ever connect a live model.</p>
+    </div>
+    <div className="before-after" aria-label="Before and after skin comparison">
+      <div className="before-card">
+        <span>Before</span>
+        <strong>Generic chatbot</strong>
+        <p>White box, fixed tone, no atmosphere.</p>
+      </div>
+      <div className="after-card">
+        <span>After</span>
+        <strong>{skin.metadata.name}</strong>
+        <p>{skin.metadata.description}</p>
+      </div>
+    </div>
+    <div className="consumer-gallery" aria-label="Mini skin gallery">
+      {featured.map((item) => <button key={item.id} onClick={() => onChoose(item.id)} className={item.id === skin.id ? 'selected' : ''}>
+        <i style={{ background: item.palette.accent }} />
+        <span>{item.metadata.name}</span>
+      </button>)}
+    </div>
+  </section>;
+}
+
 async function streamOpenRouter(apiKey: string, model: string, messages: ChatMessage[], onDelta: (delta: string) => void) {
   const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
@@ -90,7 +119,10 @@ export default function App() {
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => { applySkin(renderedSkin); }, [renderedSkin]);
-  useEffect(() => { saveJson(STORE.messages, messages); bottomRef.current?.scrollIntoView({ behavior: 'smooth' }); }, [messages]);
+  useEffect(() => {
+    saveJson(STORE.messages, messages);
+    if (messages.length > 0) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
   useEffect(() => { localStorage.setItem(STORE.skin, activeSkin.id); }, [activeSkin.id]);
   useEffect(() => { localStorage.setItem(STORE.model, model); }, [model]);
 
@@ -158,6 +190,7 @@ export default function App() {
       <header className="topbar"><div><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>
       {error && <div className="error">{error}</div>}
       <div className="messages" aria-live="polite">
+        {messages.length === 0 && <OnboardingHero skin={activeSkin} skins={skins} onChoose={setActiveId} />}
         {messages.length === 0 && <div className="empty"><span>{activeSkin.voice.empty_state}</span></div>}
         {messages.map((m) => <article key={m.id} className={`message ${m.role}`}><div className="role">{m.role}</div><div className="content" dangerouslySetInnerHTML={{ __html: marked.parse(m.content || (m.role === 'assistant' ? activeSkin.voice.thinking_label : '')) as string }} /></article>)}
         <div ref={bottomRef} />
