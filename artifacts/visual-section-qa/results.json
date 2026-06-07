@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:5173/",
+  "data": [
+    {
+      "skin": "cozy-study-companion",
+      "visualHud": "soft",
+      "visualParticles": "fireflies",
+      "textReveal": "typewriter",
+      "transitions": "dissolve",
+      "parallax": "gentle",
+      "hudVisible": true,
+      "accent": "#ffb86b"
+    },
+    {
+      "skin": "executive-operator",
+      "visualHud": "tactical",
+      "visualParticles": "nodes",
+      "textReveal": "fade-up",
+      "transitions": "snap",
+      "parallax": "medium",
+      "hudVisible": true,
+      "accent": "#7dd3fc"
+    },
+    {
+      "skin": "anime-tutor",
+      "visualHud": "playful",
+      "visualParticles": "sparkles",
+      "textReveal": "pop",
+      "transitions": "bounce",
+      "parallax": "medium",
+      "hudVisible": true,
+      "accent": "#ff5fd2"
+    },
+    {
+      "skin": "fantasy-quest-mentor",
+      "visualHud": "compass",
+      "visualParticles": "motes",
+      "textReveal": "parchment",
+      "transitions": "page-turn",
+      "parallax": "gentle",
+      "hudVisible": true,
+      "accent": "#d6b35f"
+    }
+  ],
+  "consoleErrors": []
+}

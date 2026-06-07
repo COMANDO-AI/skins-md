@@ -60,6 +60,17 @@ describe('SKIN.md parser', () => {
     expect(skin.atmosphere.texture_overlay).toBe('paper');
   });
 
+  it('accepts preset-only visual sensory fields', () => {
+    const withVisual = `${minimal}\n### Section visual\nengine: webgl\npreset: sparkle-pop\nintensity: 0.9\nspeed: 0.6\ndensity: 140\nhud: playful\nparticles: sparkles\ntext_reveal: pop\ntransitions: bounce\nparallax: medium\n`;
+    const result = validateSkin(withVisual, 'visual-safe');
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.skin.visual?.hud).toBe('playful');
+      expect(result.skin.visual?.particles).toBe('sparkles');
+      expect(result.skin.visual?.text_reveal).toBe('pop');
+    }
+  });
+
   it('validates a complete skin', () => {
     const result = validateSkin(minimal, 'minimal');
     expect(result.ok).toBe(true);

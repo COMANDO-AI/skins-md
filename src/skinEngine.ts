@@ -18,12 +18,19 @@ export function applySkin(skin: Skin) {
     }
   }
   root.style.setProperty('--visual-intensity', skin.visual?.intensity ?? '0.3');
+  root.style.setProperty('--visual-speed', skin.visual?.speed ?? '0.3');
+  root.style.setProperty('--visual-density', skin.visual?.density ?? '80');
   document.body.dataset.skin = skin.id;
   document.body.dataset.bgEffect = skin.atmosphere.bg_effect ?? 'none';
   document.body.dataset.motion = skin.atmosphere.motion_style ?? 'fade';
   document.body.dataset.surface = skin.atmosphere.surface_style ?? 'flat';
   document.body.dataset.shape = skin.layout.message_shape ?? 'default';
   document.body.dataset.texture = skin.atmosphere.texture_overlay ?? 'none';
+  document.body.dataset.visualHud = skin.visual?.hud ?? 'none';
+  document.body.dataset.visualParticles = skin.visual?.particles ?? 'none';
+  document.body.dataset.textReveal = skin.visual?.text_reveal ?? 'fade';
+  document.body.dataset.transitions = skin.visual?.transitions ?? 'fade';
+  document.body.dataset.parallax = skin.visual?.parallax ?? 'subtle';
   injectFonts(skin);
   injectCustomCss(skin);
 }

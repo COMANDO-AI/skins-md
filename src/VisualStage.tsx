@@ -8,10 +8,12 @@ function colorToThree(value: string | undefined, fallback: string) {
 
 export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
   const mount = useRef<HTMLDivElement | null>(null);
+  const hud = skin.visual?.hud ?? 'none';
+  const particles = skin.visual?.particles ?? 'stars';
 
   useEffect(() => {
     const node = mount.current;
-    if (!node) return;
+    if (!node || skin.visual?.engine === 'none') return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -32,16 +34,19 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
 
     for (let i = 0; i < density; i++) {
       const ix = i * 3;
-      positions[ix] = (Math.random() - 0.5) * 110;
-      positions[ix + 1] = (Math.random() - 0.5) * 70;
+      const spreadX = particles === 'nodes' ? 96 : 110;
+      const spreadY = particles === 'code' ? 86 : 70;
+      positions[ix] = (Math.random() - 0.5) * spreadX;
+      positions[ix + 1] = (Math.random() - 0.5) * spreadY;
       positions[ix + 2] = (Math.random() - 0.5) * 70;
-      const c = i % 3 === 0 ? accent : fg;
+      const c = particles === 'embers' && i % 4 === 0 ? new THREE.Color('#ff9b45') : i % 3 === 0 ? accent : fg;
       colors[ix] = c.r; colors[ix + 1] = c.g; colors[ix + 2] = c.b;
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const material = new THREE.PointsMaterial({ size: preset === 'code-rain' ? 0.6 : 0.9, vertexColors: true, transparent: true, opacity: 0.25 + intensity * 0.38, blending: THREE.AdditiveBlending });
+    const particleSize = particles === 'code' ? 0.55 : particles === 'sparkles' ? 1.15 : particles === 'motes' ? 0.75 : 0.9;
+    const material = new THREE.PointsMaterial({ size: particleSize, vertexColors: true, transparent: true, opacity: 0.25 + intensity * 0.38, blending: THREE.AdditiveBlending });
     const points = new THREE.Points(geometry, material);
     scene.add(points);
 
@@ -60,9 +65,10 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
       ring.rotation.z = -t * 1.8;
       ring.scale.setScalar(1 + Math.sin(t * 8 + pulse) * 0.025);
       const arr = geometry.getAttribute('position') as THREE.BufferAttribute;
-      if (preset === 'code-rain' || preset === 'embers') {
+      if (preset === 'code-rain' || preset === 'embers' || particles === 'code' || particles === 'embers' || particles === 'motes') {
         for (let i = 0; i < density; i++) {
-          const y = arr.getY(i) + (preset === 'embers' ? 0.018 : -0.028) * speed;
+          const drift = particles === 'embers' || preset === 'embers' ? 0.018 : particles === 'motes' ? 0.008 : -0.028;
+          const y = arr.getY(i) + drift * speed;
           arr.setY(i, y > 38 ? -38 : y < -38 ? 38 : y);
         }
         arr.needsUpdate = true;
@@ -84,7 +90,20 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
       node.removeChild(renderer.domElement);
       geometry.dispose(); material.dispose(); ringGeo.dispose(); ringMat.dispose(); renderer.dispose();
     };
-  }, [skin.id]);
+  }, [skin.id, pulse, particles]);
 
-  return <div ref={mount} className="visual-stage" />;
+  const hudLabels: Record<string, [string, string, string]> = {
+    minimal: ['skin', skin.id, 'ready'],
+    soft: ['focus', 'warmth', 'steady'],
+    tactical: ['signal', 'brief', 'execute'],
+    playful: ['spark', 'learn', 'level up'],
+    compass: ['north', 'quest', 'reward'],
+  };
+  const labels = hud === 'none' ? null : hudLabels[hud] ?? hudLabels.minimal;
+
+  return <div ref={mount} className={`visual-stage visual-hud-${hud}`}>
+    {labels && <div className="visual-hud" aria-hidden="true">
+      <span>{labels[0]}</span><strong>{labels[1]}</strong><span>{labels[2]}</span>
+    </div>}
+  </div>;
 }
