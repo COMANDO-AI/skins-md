@@ -96,3 +96,13 @@ The first external ask should not be “use our app.” It should be:
 Prior direction: product-app theming with HTML/CSS variables.
 
 Current direction: accessible product shell plus game/creative-code atmosphere. The UI remains usable and static-hostable, but the sensory layer is now designed for wonder: particles, motion, depth, scanlines, bloom-like glow, and HUD framing.
+
+## Winamp / Webamp strategic addition
+
+The Winamp Skin Museum shows that the skin collection itself must become the front door. The next version should not bury skins inside app settings. It should open with a searchable, shareable, randomizable gallery where each skin is a cultural artifact: preview, author, readme/story, download, share, and live experience.
+
+The key product sentence:
+
+> Winamp made a utility player feel like yours. SKINS.MD should make the AI assistant feel like yours.
+
+See `WINAMP_CASE_STUDY.md` for the full case study and roadmap.

@@ -53,3 +53,4 @@ There is no SKINS.MD backend in the MVP. Your OpenRouter key and conversations l
 - `src/skinEngine.ts` — DOM/CSS/font/custom-CSS injector.
 - `src/VisualStage.tsx` — Three.js sensory layer.
 - `STRATEGY.md` — research synthesis and product direction.
+- `WINAMP_CASE_STUDY.md` — lessons from Winamp/Webamp and next strategic steps.
