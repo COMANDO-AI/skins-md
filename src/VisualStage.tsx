@@ -34,18 +34,18 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
 
     for (let i = 0; i < density; i++) {
       const ix = i * 3;
-      const spreadX = particles === 'nodes' ? 96 : 110;
+      const spreadX = particles === 'nodes' ? 96 : particles === 'pixels' ? 118 : 110;
       const spreadY = particles === 'code' ? 86 : 70;
       positions[ix] = (Math.random() - 0.5) * spreadX;
       positions[ix + 1] = (Math.random() - 0.5) * spreadY;
       positions[ix + 2] = (Math.random() - 0.5) * 70;
-      const c = particles === 'embers' && i % 4 === 0 ? new THREE.Color('#ff9b45') : i % 3 === 0 ? accent : fg;
+      const c = particles === 'pixels' && i % 5 === 0 ? new THREE.Color('#ffdf00') : particles === 'pixels' && i % 3 === 0 ? new THREE.Color('#008080') : particles === 'embers' && i % 4 === 0 ? new THREE.Color('#ff9b45') : i % 3 === 0 ? accent : fg;
       colors[ix] = c.r; colors[ix + 1] = c.g; colors[ix + 2] = c.b;
     }
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    const particleSize = particles === 'code' ? 0.55 : particles === 'sparkles' ? 1.15 : particles === 'motes' ? 0.75 : 0.9;
+    const particleSize = particles === 'code' ? 0.55 : particles === 'sparkles' ? 1.15 : particles === 'motes' ? 0.75 : particles === 'pixels' ? 0.68 : 0.9;
     const material = new THREE.PointsMaterial({ size: particleSize, vertexColors: true, transparent: true, opacity: 0.25 + intensity * 0.38, blending: THREE.AdditiveBlending });
     const points = new THREE.Points(geometry, material);
     scene.add(points);
@@ -65,9 +65,9 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
       ring.rotation.z = -t * 1.8;
       ring.scale.setScalar(1 + Math.sin(t * 8 + pulse) * 0.025);
       const arr = geometry.getAttribute('position') as THREE.BufferAttribute;
-      if (preset === 'code-rain' || preset === 'embers' || particles === 'code' || particles === 'embers' || particles === 'motes') {
+      if (preset === 'code-rain' || preset === 'embers' || preset === 'desktop-grid' || particles === 'code' || particles === 'embers' || particles === 'motes' || particles === 'pixels') {
         for (let i = 0; i < density; i++) {
-          const drift = particles === 'embers' || preset === 'embers' ? 0.018 : particles === 'motes' ? 0.008 : -0.028;
+          const drift = particles === 'pixels' || preset === 'desktop-grid' ? 0.004 : particles === 'embers' || preset === 'embers' ? 0.018 : particles === 'motes' ? 0.008 : -0.028;
           const y = arr.getY(i) + drift * speed;
           arr.setY(i, y > 38 ? -38 : y < -38 ? 38 : y);
         }
@@ -98,6 +98,7 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
     tactical: ['signal', 'brief', 'execute'],
     playful: ['spark', 'learn', 'level up'],
     compass: ['north', 'quest', 'reward'],
+    taskbar: ['start', 'skins.md', 'online'],
   };
   const labels = hud === 'none' ? null : hudLabels[hud] ?? hudLabels.minimal;
 

@@ -10,12 +10,12 @@ export type ChatMessage = {
 
 export type VisualConfig = {
   engine?: 'subtle' | 'webgl' | 'css' | 'none';
-  preset?: 'stars' | 'code-rain' | 'aurora' | 'embers' | 'fireflies' | 'executive-grid' | 'sparkle-pop' | 'rune-orbit';
+  preset?: 'stars' | 'code-rain' | 'aurora' | 'embers' | 'fireflies' | 'executive-grid' | 'sparkle-pop' | 'rune-orbit' | 'desktop-grid';
   intensity?: string;
   speed?: string;
   density?: string;
-  hud?: 'none' | 'minimal' | 'soft' | 'tactical' | 'playful' | 'compass';
-  particles?: 'none' | 'stars' | 'code' | 'embers' | 'fireflies' | 'nodes' | 'sparkles' | 'motes';
+  hud?: 'none' | 'minimal' | 'soft' | 'tactical' | 'playful' | 'compass' | 'taskbar';
+  particles?: 'none' | 'stars' | 'code' | 'embers' | 'fireflies' | 'nodes' | 'sparkles' | 'motes' | 'pixels';
   text_reveal?: 'none' | 'instant' | 'fade' | 'fade-up' | 'typewriter' | 'pop' | 'parchment';
   transitions?: 'none' | 'fade' | 'dissolve' | 'snap' | 'bounce' | 'page-turn' | 'slide';
   parallax?: 'none' | 'subtle' | 'gentle' | 'medium' | 'deep';

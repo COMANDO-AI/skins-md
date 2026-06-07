@@ -167,85 +167,90 @@ speed: 1.1
 density: 140
 `;
 
-export const vaporwaveRaw = `### Section 1 · metadata
-name: Vaporwave Mirage
+export const windows95Raw = `### Section 1 · metadata
+name: Windows 95 Assistant
 author: COMANDO
 version: 1.0.0
-tags: vaporwave, dreamy, glass, neon, v2
-description: A chrome sunset hallucination for soft-focus thinking.
+tags: windows95, winamp, desktop, retro, consumer
+description: A grey plastic desktop companion with beveled panels, blue title bars, Start-button microcopy, and tiny Winamp-era pixels.
 preview_url: none
 license: MIT
 
 ### Section 2 · palette
-bg: #17002b
-fg: #fff1ff
-accent: #ff71ce
-muted: #b8a4d9
-surface: rgba(255,255,255,.12)
-border: rgba(255,255,255,.28)
-error: #ff3864
-success: #01cdfe
+bg: #008080
+fg: #000000
+accent: #000080
+muted: #404040
+surface: #c0c0c0
+border: #808080
+error: #800000
+success: #008000
 
 ### Section 3 · typography
-font_sans: Space Grotesk
-font_mono: JetBrains Mono
-font_display: Bungee Shade
-size_base: 16px
+font_sans: MS Sans Serif, Tahoma, Arial, system-ui, sans-serif
+font_mono: Lucida Console, Monaco, monospace
+font_display: MS Sans Serif, Tahoma, Arial, system-ui, sans-serif
+size_base: 14px
 weight_base: 400
-line_height: 1.62
-letter_spacing: 0.01em
+line_height: 1.48
+letter_spacing: 0em
 text_transform: none
-weight_display: 400
+weight_display: 700
 
 ### Section 4 · layout
-radius: 24px
-spacing_unit: 10px
-max_width: 840px
-sidebar_width: 320px
-radius_message: 28px
-radius_input: 999px
-radius_ui: 22px
-message_shape: pill
+radius: 0px
+spacing_unit: 8px
+max_width: 820px
+sidebar_width: 310px
+radius_message: 0px
+radius_input: 0px
+radius_ui: 0px
+message_shape: sharp
 border_style: solid
 
 ### Section 5 · voice
-send_label: Drift
-placeholder: drop a thought into the mirage
-empty_state: The horizon is listening.
-thinking_label: shimmering
-clear_label: Dissolve
+send_label: Send »
+placeholder: type here like it's 1995
+empty_state: Double-click a thought to begin.
+thinking_label: loading assistant.exe
+clear_label: Close window
 
 ### Section 6 · atmosphere
-bg_effect: gradient
+bg_effect: grid
 animation_speed: slow
-blur: 18px
-bg_gradient: radial-gradient(circle at 20% 15%, rgba(255,113,206,.38), transparent 30%), radial-gradient(circle at 80% 10%, rgba(1,205,254,.30), transparent 28%), linear-gradient(160deg, #17002b, #39106d 46%, #ff71ce)
-texture_overlay: glass
-texture_intensity: 0.18
-surface_style: frosted
-motion_style: bloom
-thinking_style: pulse
+blur: none
+bg_gradient: radial-gradient(circle at 12% 16%, rgba(255,255,255,.22), transparent 9%), linear-gradient(135deg, #008080, #007070 58%, #006060)
+texture_overlay: pixels
+texture_intensity: 0.20
+surface_style: raised
+motion_style: snap
+thinking_style: blink
 
 ### Section 7 · components
-message_user_bg: linear-gradient(135deg, #ff71ce, #01cdfe)
-message_user_fg: #17002b
-message_assistant_bg: rgba(255,255,255,.14)
-message_assistant_fg: #fff1ff
-input_bg: rgba(255,255,255,.16)
-input_fg: #ffffff
-input_border: rgba(255,255,255,.38)
+message_user_bg: #ffffe1
+message_user_fg: #000000
+message_assistant_bg: #ffffff
+message_assistant_fg: #000000
+input_bg: #ffffff
+input_fg: #000000
+input_border: #000000
 
 ### Section 10 · persona
-sidebar_name: MIRAGE
-avatar: ◇
-status: dream bandwidth open
+sidebar_name: ASSISTANT.EXE
+avatar: ▣
+status: C:\\SKINS\\READY
 
 ### Section visual
-engine: webgl
-preset: aurora
-intensity: 0.92
-speed: 0.42
-density: 80
+engine: css
+preset: desktop-grid
+intensity: 0.82
+speed: 0.24
+density: 96
+hud: taskbar
+particles: pixels
+text_reveal: instant
+transitions: snap
+parallax: subtle
 `;
 
 export const gothicRaw = `### Section 1 · metadata
@@ -676,7 +681,7 @@ parallax: gentle
 export const bundledSkins: Skin[] = [
   parseSkin(minimalRaw, 'minimal'),
   parseSkin(terminalRaw, 'terminal-oracle'),
-  parseSkin(vaporwaveRaw, 'vaporwave-mirage'),
+  parseSkin(windows95Raw, 'windows-95-assistant'),
   parseSkin(gothicRaw, 'gothic-librarian'),
   parseSkin(cozyStudyRaw, 'cozy-study-companion'),
   parseSkin(executiveRaw, 'executive-operator'),

@@ -71,6 +71,17 @@ describe('SKIN.md parser', () => {
     }
   });
 
+  it('accepts Windows95 desktop visual presets without opening arbitrary code', () => {
+    const withVisual = `${minimal}\n### Section visual\nengine: css\npreset: desktop-grid\nintensity: 0.82\nspeed: 0.24\ndensity: 96\nhud: taskbar\nparticles: pixels\ntext_reveal: instant\ntransitions: snap\nparallax: subtle\n`;
+    const result = validateSkin(withVisual, 'windows-95-assistant');
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.skin.visual?.preset).toBe('desktop-grid');
+      expect(result.skin.visual?.hud).toBe('taskbar');
+      expect(result.skin.visual?.particles).toBe('pixels');
+    }
+  });
+
   it('validates a complete skin', () => {
     const result = validateSkin(minimal, 'minimal');
     expect(result.ok).toBe(true);

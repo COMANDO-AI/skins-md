@@ -32,9 +32,9 @@ const COLOR_FIELDS = new Set(['bg','fg','accent','muted','surface','border','err
 const VISUAL_ALLOWED_FIELDS = new Set(['engine', 'preset', 'intensity', 'speed', 'density', 'hud', 'particles', 'text_reveal', 'transitions', 'parallax']);
 const VISUAL_ENUMS: Record<string, Set<string>> = {
   engine: new Set(['subtle', 'webgl', 'css', 'none']),
-  preset: new Set(['stars', 'code-rain', 'aurora', 'embers', 'fireflies', 'executive-grid', 'sparkle-pop', 'rune-orbit']),
-  hud: new Set(['none', 'minimal', 'soft', 'tactical', 'playful', 'compass']),
-  particles: new Set(['none', 'stars', 'code', 'embers', 'fireflies', 'nodes', 'sparkles', 'motes']),
+  preset: new Set(['stars', 'code-rain', 'aurora', 'embers', 'fireflies', 'executive-grid', 'sparkle-pop', 'rune-orbit', 'desktop-grid']),
+  hud: new Set(['none', 'minimal', 'soft', 'tactical', 'playful', 'compass', 'taskbar']),
+  particles: new Set(['none', 'stars', 'code', 'embers', 'fireflies', 'nodes', 'sparkles', 'motes', 'pixels']),
   text_reveal: new Set(['none', 'instant', 'fade', 'fade-up', 'typewriter', 'pop', 'parchment']),
   transitions: new Set(['none', 'fade', 'dissolve', 'snap', 'bounce', 'page-turn', 'slide']),
   parallax: new Set(['none', 'subtle', 'gentle', 'medium', 'deep']),
