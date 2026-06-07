@@ -20,7 +20,7 @@ const STORE = {
 };
 
 const PROVIDERS: { id: ProviderMode; label: string; kicker: string; description: string; available: boolean }[] = [
-  { id: 'demo', label: 'Try demo', kicker: 'No key', description: 'Scripted streaming replies so anyone can feel the skins immediately.', available: true },
+  { id: 'demo', label: 'Try demo', kicker: 'No key', description: 'No-key demo replies so anyone can test the chat and feel the skins immediately.', available: true },
   { id: 'openrouter', label: 'OpenRouter', kicker: 'Live BYOK', description: 'Use one API key for many models. Stored only in this browser.', available: true },
   { id: 'openai', label: 'OpenAI API', kicker: 'API key', description: 'For developer API keys. Direct browser connection needs a tiny proxy before live use.', available: false },
   { id: 'anthropic', label: 'Anthropic API', kicker: 'API key', description: 'For Claude API keys. Direct browser connection needs a tiny proxy before live use.', available: false },
@@ -81,11 +81,17 @@ function OnboardingHero({ skin, skins, onChoose }: { skin: Skin; skins: Skin[]; 
 
 function skinDemoReply(skin: Skin, prompt: string) {
   const name = skin.metadata.name;
-  if (/executive|brief|priorit/i.test(prompt + name)) return `## Executive brief\n\n**Signal:** ${prompt}\n\n- **Decision frame:** choose the move that reduces ambiguity fastest.\n- **Next action:** write the smallest testable version, then review the result.\n- **Risk:** polishing before the user can feel the product.\n\n\`Skin active: ${name}\``;
-  if (/anime|tutor|explain/i.test(prompt + name)) return `## Tutor arc unlocked ✦\n\nLet's make it simple:\n\n1. **Name the monster** — what is confusing?\n2. **Break the move down** — one concept at a time.\n3. **Win a tiny battle** — answer one practice question.\n\nYou asked: _${prompt}_\n\nI would start with a colorful example, then check if it clicked.`;
-  if (/fantasy|quest|task/i.test(prompt + name)) return `## Quest log\n\n**Quest:** ${prompt}\n\n- **Objective:** reach the next visible checkpoint.\n- **Inventory:** context, constraint, first draft.\n- **Mentor note:** do not fight the whole dragon today — mark the map and take the first gate.\n\n**Reward:** momentum + a clearer path.`;
-  if (/study|cozy|plan/i.test(prompt + name)) return `## Cozy study plan\n\nFor: **${prompt}**\n\n- 5 min — open the notes and list what feels hard.\n- 10 min — explain one idea out loud in plain words.\n- 5 min — write a tiny recap and one follow-up question.\n\nI'll keep the room quiet while you work.`;
-  return `# Demo response\n\nThis is a no-key streaming preview. The active skin is **${name}**, so the interface changes mood before you connect any live model.\n\nTry switching skins, then send one of the prompt chips below.\n\n\`No API key required.\``;
+  const asked = prompt.trim();
+  const gothic = /gothic|librarian|archive/i.test(name);
+  if (/horoscope|zodiac|libra|aries|taurus|gemini|cancer|leo|virgo|scorpio|sagittarius|capricorn|aquarius|pisces/i.test(asked)) {
+    return `## ${gothic ? 'Archive reading' : 'Demo reading'}\n\n**Question:** ${asked}\n\n- **Theme for the week:** choose balance over performance. One clear boundary will do more than three dramatic moves.\n- **Work:** finish the thing that has been quietly occupying mental space. Ship the small version.\n- **People:** answer the message you have been postponing, but do not negotiate against yourself.\n- **Ritual:** write the next decision on paper before opening another tab.\n\n_${name} is running in no-key demo mode: useful, skin-flavored, local, and not a live model yet._`;
+  }
+  if (/executive|brief|priorit/i.test(asked + name)) return `## Executive brief\n\n**Signal:** ${asked}\n\n- **Decision frame:** choose the move that reduces ambiguity fastest.\n- **Next action:** write the smallest testable version, then review the result.\n- **Risk:** polishing before the user can feel the product.\n\n\`Skin active: ${name}\``;
+  if (/anime|tutor|explain/i.test(asked + name)) return `## Tutor arc unlocked ✦\n\nLet's make it simple:\n\n1. **Name the monster** — what is confusing?\n2. **Break the move down** — one concept at a time.\n3. **Win a tiny battle** — answer one practice question.\n\nYou asked: _${asked}_\n\nI would start with a colorful example, then check if it clicked.`;
+  if (/fantasy|quest|task/i.test(asked + name)) return `## Quest log\n\n**Quest:** ${asked}\n\n- **Objective:** reach the next visible checkpoint.\n- **Inventory:** context, constraint, first draft.\n- **Mentor note:** do not fight the whole dragon today — mark the map and take the first gate.\n\n**Reward:** momentum + a clearer path.`;
+  if (/study|cozy|plan/i.test(asked + name)) return `## Cozy study plan\n\nFor: **${asked}**\n\n- 5 min — open the notes and list what feels hard.\n- 10 min — explain one idea out loud in plain words.\n- 5 min — write a tiny recap and one follow-up question.\n\nI'll keep the room quiet while you work.`;
+  if (gothic) return `## Marginal note from the archive\n\nYou asked: **${asked}**\n\n- **What the archive sees:** there is a real question here, not just a test of the UI.\n- **First useful answer:** start with the simplest interpretation, then add one constraint.\n- **Next inscription:** if you want a sharper answer, add the situation, desired outcome, and deadline.\n\n_This is still no-key demo mode: it should respond to your prompt, but it is not a live model until OpenRouter is connected._`;
+  return `## No-key demo answer\n\nYou asked: **${asked}**\n\nHere is a useful first pass in the **${name}** skin:\n\n1. Clarify the goal in one sentence.\n2. Pick the smallest next action that would prove progress.\n3. If the answer needs real-time facts or deep reasoning, switch to OpenRouter once the API key is ready.\n\nFor now, this demo should feel like the interface works before any API key is required.`;
 }
 
 async function streamDemoReply(skin: Skin, prompt: string, onDelta: (delta: string) => void) {
@@ -123,7 +129,7 @@ function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setK
       </button>)}
     </div>
     <p className="provider-description">{selected.description}</p>
-    {provider === 'demo' && <div className="demo-note"><strong>Fastest path:</strong> type anything or tap a prompt chip. Demo mode streams locally and never calls a model.</div>}
+    {provider === 'demo' && <div className="demo-note"><strong>Fastest path:</strong> type anything or tap a prompt chip. Demo mode answers locally and never calls a model.</div>}
     {provider === 'openrouter' && <div className="keybox inline-keybox">
       <label>OpenRouter key</label>
       <div className="keyrow"><input type="password" value={keyDraft} onChange={(e) => setKeyDraft(e.target.value)} placeholder="sk-or-v1-..." /><button onClick={commitKey}>{apiKey ? 'Update' : 'Save'}</button></div>
