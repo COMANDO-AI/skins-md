@@ -135,3 +135,73 @@ body[data-skin="pokemon-trainer"] textarea,body[data-skin="pokemon-trainer"] inp
 body[data-skin="pokemon-trainer"] .composer > button{background:linear-gradient(180deg,var(--poke-red),#b91c1c);color:#fff;border-radius:999px;font-size:17px;text-shadow:1px 1px 0 #000;}
 body[data-skin="pokemon-trainer"] .prompt-chips button{background:#fff;color:var(--poke-ink);font-size:12px;}
 body[data-skin="pokemon-trainer"] .visual-hud{border:3px solid var(--poke-ink);background:rgba(255,248,216,.94);color:var(--poke-ink);box-shadow:4px 4px 0 var(--poke-blue);}
+
+/* Immersive redesign V1: clean chat UI, full-background skin impact, hidden secondary controls. */
+.immersive-skin-shell{grid-template-columns:0 minmax(0,1fr);padding:28px 24px 30px;min-height:100vh;overflow:hidden;}
+.immersive-skin-shell .sidebar{position:fixed;left:18px;top:18px;bottom:auto;width:52px;max-height:52px;z-index:40;overflow:hidden;padding:0;border-radius:999px;background:rgba(255,255,255,.72);backdrop-filter:blur(18px);box-shadow:0 14px 40px rgba(0,0,0,.18);transition:width .2s ease,max-height .2s ease,border-radius .2s ease,padding .2s ease;}
+.immersive-skin-shell .sidebar:hover,.immersive-skin-shell .sidebar:focus-within{width:min(330px,calc(100vw - 36px));max-height:calc(100vh - 36px);overflow:auto;padding:14px;border-radius:24px;}
+.immersive-skin-shell .brand{height:52px;margin:0;padding:7px;gap:8px;background:transparent;border:0;box-shadow:none;}
+.immersive-skin-shell .sidebar:not(:hover):not(:focus-within) .brand div,.immersive-skin-shell .sidebar:not(:hover):not(:focus-within) .connection-box,.immersive-skin-shell .sidebar:not(:hover):not(:focus-within) section,.immersive-skin-shell .sidebar:not(:hover):not(:focus-within) .actions{display:none;}
+.immersive-skin-shell .avatar{width:38px;height:38px;min-width:38px;}
+.immersive-skin-shell .chat-panel{width:min(860px,calc(100vw - 52px));margin:0 auto;display:flex;flex-direction:column;gap:12px;min-height:calc(100vh - 58px);position:relative;z-index:2;}
+.immersive-skin-shell .mode-switch,.immersive-skin-shell .top-actions,.immersive-skin-shell .prompt-chips{display:none!important;}
+.immersive-skin-shell .topbar{padding:12px 16px;border:0;background:rgba(255,255,255,.08);backdrop-filter:blur(20px);box-shadow:none;}
+.immersive-skin-shell .topbar h1{font-size:clamp(25px,3.5vw,42px);line-height:.98;margin:0;}
+.immersive-skin-shell .topbar p{max-width:560px;margin-top:6px;opacity:.76;}
+.immersive-skin-shell .mode-kicker{opacity:.68;}
+.immersive-skin-shell .messages{flex:1;min-height:0;padding:18px;border:0;box-shadow:0 26px 100px rgba(0,0,0,.2);backdrop-filter:blur(22px);overflow:auto;scrollbar-width:thin;}
+.immersive-skin-shell .onboarding-hero{display:none;}
+.immersive-skin-shell .empty{min-height:40vh;display:grid;place-items:center;text-align:center;font-size:clamp(30px,6vw,74px);font-weight:900;line-height:.95;letter-spacing:-.05em;background:transparent;border:0;box-shadow:none;opacity:.88;}
+.immersive-skin-shell .message{max-width:min(680px,88%);border:0;box-shadow:0 18px 42px rgba(0,0,0,.16);}
+.immersive-skin-shell .message .role{text-transform:none;font-size:11px;opacity:.64;}
+.immersive-skin-shell .composer{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;padding:10px 10px 10px 16px;border:0;box-shadow:0 18px 70px rgba(0,0,0,.28);backdrop-filter:blur(24px);position:sticky;bottom:0;}
+.immersive-skin-shell .composer .thinkline{grid-column:1 / -1;background:transparent;border:0;padding:0;margin:0;font-size:11px;opacity:.64;box-shadow:none;}
+.immersive-skin-shell textarea{min-height:46px;max-height:150px;border:0;background:transparent;box-shadow:none;padding:12px 4px;font-size:16px;}
+.immersive-skin-shell .composer > button{min-width:54px;height:46px;border:0;border-radius:999px;box-shadow:none;padding:0 18px;font-size:14px;}
+body[data-skin="windows-95-assistant"] .app-shell.immersive-skin-shell{background:url('/skins/windows95-chatdesk-bg.svg') center/cover no-repeat fixed;}
+body[data-skin="windows-95-assistant"] .app-shell.immersive-skin-shell:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.16),transparent 35%),linear-gradient(90deg,rgba(0,0,0,.16),transparent 24%,transparent 76%,rgba(0,0,0,.2));pointer-events:none;z-index:0;}
+body[data-skin="windows-95-assistant"] .win95-desktop-shell{opacity:.58;}
+body[data-skin="windows-95-assistant"] .win95-desktop-icons{display:none;}
+body[data-skin="windows-95-assistant"] .chat-panel{width:min(820px,calc(100vw - 54px));justify-content:center;}
+body[data-skin="windows-95-assistant"] .topbar.win95-app-window{background:var(--win-face);border:2px solid;border-color:#fff #404040 #404040 #fff;padding:0;box-shadow:10px 14px 0 rgba(0,0,0,.24),0 24px 80px rgba(0,0,0,.32);}
+body[data-skin="windows-95-assistant"] .win95-client-area{padding:14px 16px 12px;min-height:90px;}
+body[data-skin="windows-95-assistant"] .win95-client-area h1{font-size:26px;line-height:1;color:#000;text-shadow:none;letter-spacing:0;}
+body[data-skin="windows-95-assistant"] .win95-client-area p{font-size:13px;color:#111;max-width:560px;}
+body[data-skin="windows-95-assistant"] .messages{background:rgba(255,255,255,.88);border:2px solid;border-color:#404040 #fff #fff #404040;border-radius:0;color:#000;}
+body[data-skin="windows-95-assistant"] .empty{font-family:Tahoma,Arial,sans-serif;font-size:clamp(28px,4.8vw,58px);color:#000080;text-shadow:2px 2px 0 #fff;letter-spacing:-.04em;}
+body[data-skin="windows-95-assistant"] .message{border:1px solid #808080;border-radius:0;background:#fff;color:#000;box-shadow:4px 4px 0 rgba(0,0,0,.18);}
+body[data-skin="windows-95-assistant"] .message.user{background:#000080;color:#fff;}
+body[data-skin="windows-95-assistant"] .composer{background:var(--win-face);border:2px solid;border-color:#fff #404040 #404040 #fff;border-radius:0;}
+body[data-skin="windows-95-assistant"] .composer .thinkline{font-family:Tahoma,Arial,sans-serif;color:#000;}
+body[data-skin="windows-95-assistant"] textarea{background:#fff;border:2px solid;border-color:#404040 #fff #fff #404040;border-radius:0;color:#000;font-family:Tahoma,Arial,sans-serif;}
+body[data-skin="windows-95-assistant"] .composer > button{border:2px solid;border-color:#fff #404040 #404040 #fff;border-radius:0;background:#c0c0c0;color:#000;font-family:Tahoma,Arial,sans-serif;}
+body[data-skin="windows-95-assistant"] .sidebar{background:var(--win-face);border:2px solid;border-color:#fff #404040 #404040 #fff;border-radius:0;}
+body[data-skin="pokemon-trainer"] .app-shell.immersive-skin-shell{background:url('/skins/pokemon-meadow-bg.svg') center/cover no-repeat fixed;}
+body[data-skin="pokemon-trainer"] .app-shell.immersive-skin-shell:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 50% 18%,rgba(255,255,255,.28),transparent 28%),linear-gradient(180deg,rgba(255,244,214,.05),rgba(255,196,82,.22));pointer-events:none;z-index:0;}
+body[data-skin="pokemon-trainer"] .chat-panel{width:min(900px,calc(100vw - 54px));justify-content:end;padding-top:8vh;}
+body[data-skin="pokemon-trainer"] .topbar{align-self:center;width:min(720px,100%);text-align:center;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.42);border-radius:28px;color:#fff;box-shadow:none;text-shadow:0 2px 12px rgba(31,42,68,.35);}
+body[data-skin="pokemon-trainer"] .topbar:before{display:none;}
+body[data-skin="pokemon-trainer"] .topbar h1{color:#fff;text-shadow:0 3px 0 rgba(31,42,68,.28),0 12px 42px rgba(47,109,181,.5);font-size:clamp(42px,7vw,92px);}
+body[data-skin="pokemon-trainer"] .topbar p{margin-inline:auto;color:#fff;opacity:.88;font-weight:800;}
+body[data-skin="pokemon-trainer"] .messages{flex:0 1 auto;min-height:46vh;max-height:58vh;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,248,216,.22));border-radius:34px;box-shadow:none;backdrop-filter:none;padding:18px 20px 8px;}
+body[data-skin="pokemon-trainer"] .messages:before{display:none;}
+body[data-skin="pokemon-trainer"] .empty{min-height:36vh;color:#fff;text-shadow:0 4px 0 rgba(31,42,68,.3),0 20px 60px rgba(47,109,181,.42);font-size:clamp(44px,8vw,104px);}
+body[data-skin="pokemon-trainer"] .message{border:4px solid #263238;border-radius:24px;box-shadow:0 8px 0 rgba(31,42,68,.22),0 22px 58px rgba(31,42,68,.18);background:#fff8d8;}
+body[data-skin="pokemon-trainer"] .message.user{background:#2f6db5;color:#fff;margin-left:auto;}
+body[data-skin="pokemon-trainer"] .message.assistant{background:rgba(255,248,216,.96);}
+body[data-skin="pokemon-trainer"] .composer{background:rgba(255,248,216,.95);border:4px solid #263238;border-radius:28px;box-shadow:0 9px 0 rgba(31,42,68,.25),0 28px 70px rgba(31,42,68,.24);}
+body[data-skin="pokemon-trainer"] textarea{background:transparent;border:0;color:#1f2a44;box-shadow:none;}
+body[data-skin="pokemon-trainer"] .composer > button{background:#e53935;color:#fff;border:0;border-radius:999px;box-shadow:0 5px 0 #93211f;}
+body[data-skin="pokemon-trainer"] .sidebar{background:rgba(255,248,216,.9);border:4px solid #263238;border-radius:28px;}
+@media(max-width:760px){.immersive-skin-shell{padding:18px 12px 20px}.immersive-skin-shell .chat-panel{width:100%;min-height:calc(100vh - 38px)}.immersive-skin-shell .sidebar{left:12px;top:12px}.immersive-skin-shell .messages{max-height:none;min-height:52vh}.immersive-skin-shell .topbar p{display:none}}
+
+/* polish after visual QA */
+html,body,#root{min-height:100%;margin:0;}
+body[data-skin="windows-95-assistant"] .win95-start-menu{display:none;}
+body[data-skin="windows-95-assistant"] .win95-task:not(.active){display:none;}
+body[data-skin="windows-95-assistant"] .win95-taskbar{opacity:.78;}
+body[data-skin="pokemon-trainer"] .avatar{background:conic-gradient(from 45deg,#e53935 0 25%,#ffd966 0 50%,#2f6db5 0 75%,#56b870 0);}
+body[data-skin="pokemon-trainer"] .avatar:after{background:#fff8d8;border-color:#263238;box-shadow:inset 0 0 0 3px #75c9f0;}
+
+body[data-skin="pokemon-trainer"]{background:url('/skins/pokemon-meadow-bg.svg') center/cover no-repeat fixed;}
+body[data-skin="windows-95-assistant"]{background:url('/skins/windows95-chatdesk-bg.svg') center/cover no-repeat fixed;}

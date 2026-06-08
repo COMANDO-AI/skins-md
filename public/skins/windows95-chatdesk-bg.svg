@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#081d35" offset="0"/>
+      <stop stop-color="#10706d" offset="0.42"/>
+      <stop stop-color="#012b4f" offset="1"/>
+    </linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.16"/></feComponentTransfer></filter>
+    <pattern id="pixels" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M0 0h1v1H0zM6 6h1v1H6z" fill="#fff" opacity=".22"/></pattern>
+  </defs>
+  <rect width="1800" height="1200" fill="url(#sky)"/>
+  <rect width="1800" height="1200" fill="url(#pixels)" opacity=".45"/>
+  <g opacity=".34" fill="#ffffff">
+    <ellipse cx="320" cy="190" rx="170" ry="42"/>
+    <ellipse cx="430" cy="170" rx="98" ry="34"/>
+    <ellipse cx="1310" cy="290" rx="210" ry="54"/>
+    <ellipse cx="1485" cy="265" rx="120" ry="38"/>
+  </g>
+  <g transform="translate(1210 680)" opacity=".34">
+    <rect x="0" y="0" width="390" height="280" fill="#c0c0c0" stroke="#fff" stroke-width="5"/>
+    <rect x="10" y="10" width="370" height="32" fill="#000080"/>
+    <rect x="30" y="78" width="305" height="36" fill="#fff" opacity=".75"/>
+    <rect x="30" y="134" width="240" height="26" fill="#fff" opacity=".55"/>
+    <rect x="30" y="178" width="300" height="26" fill="#fff" opacity=".5"/>
+  </g>
+  <g opacity=".22" stroke="#fff" stroke-width="2">
+    <path d="M0 980h1800M0 1014h1800M0 1048h1800"/>
+    <path d="M118 930v180M164 930v180M210 930v180"/>
+  </g>
+  <rect width="1800" height="1200" filter="url(#grain)" opacity=".52"/>
+</svg>
