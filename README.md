@@ -21,7 +21,7 @@ Open the local URL printed by Vite.
 - Markdown rendering and syntax-highlighted code blocks.
 - Conversation persistence in `localStorage`.
 - Clear conversation and JSON export.
-- Live skin hover-preview and instant apply without reload.
+- Instant skin apply without reload.
 - Custom `SKIN.md` import with validation errors for missing sections/fields.
 - Imported skins saved to local library.
 - Active-skin download.

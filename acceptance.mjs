@@ -25,6 +25,12 @@ await page.screenshot({ path: 'artifacts/01-initial.png', fullPage: true });
 
 const firstVisitPrompt = await page.getByText('Fastest path:').isVisible();
 const demoReady = await page.getByText('Demo mode · no API key required').isVisible();
+const skinBeforeHover = await page.evaluate(() => document.body.dataset.skin);
+await page.locator('.skin-grid').getByRole('button', { name: /Terminal Oracle/i }).hover();
+await page.waitForTimeout(350);
+const skinDuringHover = await page.evaluate(() => document.body.dataset.skin);
+const hoverDoesNotPreviewApply = skinBeforeHover === skinDuringHover;
+await page.mouse.move(900, 200);
 await page.getByRole('button', { name: /OpenRouter/i }).click();
 await page.getByPlaceholder('sk-or-v1-...').fill('***');
 await page.getByRole('button', { name: 'Save' }).click();
@@ -69,6 +75,7 @@ await page.screenshot({ path: 'artifacts/03-imported.png', fullPage: true });
 const results = {
   firstVisitPrompt,
   demoReady,
+  hoverDoesNotPreviewApply,
   keyPersisted,
   beforeSendLabel,
   afterSendLabel,

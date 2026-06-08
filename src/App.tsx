@@ -55,8 +55,8 @@ function OnboardingHero({ skin, skins, onChoose }: { skin: Skin; skins: Skin[]; 
   return <section className="onboarding-hero" aria-label="Skin preview onboarding">
     <div className="hero-copy">
       <span className="eyebrow">Portable AI interface skins</span>
-      <h2>Same assistant. Completely different room.</h2>
-      <p>SKINS.MD turns a plain chat window into a shareable mood, tutor, operator console, or fantasy companion — before you ever connect a live model.</p>
+      <h2>Choose your own skin for AI.</h2>
+      <p>Start in AI Chat mode: aesthetic, persona, mood, and conversation style for any model you bring. Later, turn the same skin into an AI Agent posture.</p>
     </div>
     <div className="before-after" aria-label="Before and after skin comparison">
       <div className="before-card">
@@ -105,6 +105,21 @@ async function streamDemoReply(skin: Skin, prompt: string, onDelta: (delta: stri
 
 function accountBridgePrompt(skin: Skin, provider: 'chatgpt' | 'claude') {
   return `Use this as a SKINS.MD companion prompt in ${provider === 'chatgpt' ? 'ChatGPT' : 'Claude'}:\n\nYou are adopting the interface skin "${skin.metadata.name}".\nMood: ${skin.metadata.description}\nVoice: send label "${skin.voice.send_label}", thinking style "${skin.voice.thinking_label}".\nYour replies should match this skin's emotional register while staying useful, concise, and practical.\nWhen I paste a task, respond as if you are operating inside that skin.`;
+}
+
+function ModeSwitch() {
+  return <section className="mode-switch" aria-label="AI Chat and Agent modes">
+    <div className="mode-card active">
+      <span>Mode 01</span>
+      <strong>AI Chat skin</strong>
+      <p>Current experience: aesthetic, persona, mood, and conversation style for any BYOK model.</p>
+    </div>
+    <div className="mode-card next">
+      <span>Mode 02</span>
+      <strong>AI Agent skin</strong>
+      <p>Next layer: the same skin guides planning style, permissions, risk posture, and tool use.</p>
+    </div>
+  </section>;
 }
 
 function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setKeyDraft, commitKey }: {
@@ -190,8 +205,6 @@ export default function App() {
   const skins = useMemo(() => [...bundledSkins, ...imported], [imported]);
   const [activeId, setActiveId] = useState(localStorage.getItem(STORE.skin) || bundledSkins[0].id);
   const activeSkin = skins.find((s) => s.id === activeId) || skins[0];
-  const [previewSkin, setPreviewSkin] = useState<Skin | null>(null);
-  const renderedSkin = previewSkin || activeSkin;
   const [apiKey, setApiKey] = useState(localStorage.getItem(STORE.key) || '');
   const [keyDraft, setKeyDraft] = useState(apiKey);
   const [provider, setProviderState] = useState<ProviderMode>((localStorage.getItem(STORE.provider) as ProviderMode | null) || 'demo');
@@ -204,7 +217,7 @@ export default function App() {
   const fileRef = useRef<HTMLInputElement | null>(null);
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => { applySkin(renderedSkin); }, [renderedSkin]);
+  useEffect(() => { applySkin(activeSkin); }, [activeSkin]);
   useEffect(() => {
     saveJson(STORE.messages, messages);
     if (messages.length > 0) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -265,16 +278,17 @@ export default function App() {
   const thinking = busy ? <span className={`thinking ${activeSkin.atmosphere.thinking_style || 'dots'}`}>{activeSkin.voice.thinking_label}</span> : null;
 
   return <div className="app-shell">
-    <VisualStage skin={renderedSkin} pulse={pulse} />
+    <VisualStage skin={activeSkin} pulse={pulse} />
     <aside className="sidebar">
       <div className="brand"><span className="avatar">{activeSkin.persona?.avatar || '◆'}</span><div><strong>{activeSkin.persona?.sidebar_name || 'SKINS.MD'}</strong><small>{activeSkin.persona?.status || 'Every model. Your skin.'}</small></div></div>
       <ConnectionChooser provider={provider} setProvider={setProvider} skin={activeSkin} apiKey={apiKey} keyDraft={keyDraft} setKeyDraft={setKeyDraft} commitKey={commitKey} />
       {provider === 'openrouter' && <section><label>Model</label><input value={model} onChange={(e) => setModel(e.target.value)} /></section>}
-      <section><div className="section-title">Skins</div><div className="skin-grid">{skins.map((skin) => <button key={skin.id} className={`skin-card ${skin.id === activeSkin.id ? 'active' : ''}`} onMouseEnter={() => setPreviewSkin(skin)} onMouseLeave={() => setPreviewSkin(null)} onClick={() => setActiveId(skin.id)}><span className="swatch" style={{ background: skin.palette.accent }} /><strong>{skin.metadata.name}</strong><small>{skin.metadata.tags}</small></button>)}</div></section>
+      <section><div className="section-title">Skins</div><div className="skin-grid">{skins.map((skin) => <button key={skin.id} className={`skin-card ${skin.id === activeSkin.id ? 'active' : ''}`} onClick={() => setActiveId(skin.id)}><span className="swatch" style={{ background: skin.palette.accent }} /><strong>{skin.metadata.name}</strong><small>{skin.metadata.tags}</small></button>)}</div></section>
       <div className="actions"><button onClick={() => fileRef.current?.click()}>Import SKIN.md</button><button onClick={downloadSkin}>Download active</button><input ref={fileRef} type="file" accept=".md,.SKIN.md,text/markdown" hidden onChange={(e) => e.target.files?.[0] && importSkin(e.target.files[0])} /></div>
     </aside>
     <main className="chat-panel">
-      <header className="topbar"><div><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>
+      <header className="topbar"><div><span className="mode-kicker">AI Chat skin active · Agent mode next</span><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>
+      <ModeSwitch />
       {error && <div className="error">{error}</div>}
       <div className="messages" aria-live="polite">
         {messages.length === 0 && <OnboardingHero skin={activeSkin} skins={skins} onChoose={setActiveId} />}
