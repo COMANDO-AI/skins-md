@@ -316,9 +316,8 @@ export default function App() {
 
   const thinking = busy ? <span className={`thinking ${activeSkin.atmosphere.thinking_style || 'dots'}`}>{activeSkin.voice.thinking_label}</span> : null;
   const isWin95 = activeSkin.id === 'windows-95-assistant';
-  const isImmersiveSkin = isWin95 || activeSkin.id === 'pokemon-trainer';
 
-  return <div className={`app-shell ${isWin95 ? 'win95-shell' : ''} ${isImmersiveSkin ? 'immersive-skin-shell' : ''}`}>
+  return <div className={`app-shell ${isWin95 ? 'win95-shell' : ''}`}>
     <VisualStage skin={activeSkin} pulse={pulse} />
     {isWin95 && <Win95DesktopShell />}
     <aside className="sidebar">
