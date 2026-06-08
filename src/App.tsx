@@ -122,6 +122,44 @@ function ModeSwitch() {
   </section>;
 }
 
+function Win95DesktopShell() {
+  const desktopIcons = ['My Prompts', 'Skin Library', 'Provider Key', 'Network'];
+  return <div className="win95-desktop-shell" aria-hidden="true">
+    <div className="win95-desktop-icons">
+      {desktopIcons.map((label, index) => <div className="win95-desktop-icon" key={label}>
+        <span className={`win95-pixel-icon icon-${index}`} />
+        <em>{label}</em>
+      </div>)}
+    </div>
+    <div className="win95-start-menu">
+      <div className="win95-start-brand">SKINS 95</div>
+      <div className="win95-start-items">
+        {['Programs', 'Prompts', 'Skins', 'Settings', 'Find...', 'Help Topics', 'Run...'].map((item) => <span key={item}>{item}{!item.includes('.') && <b>▸</b>}</span>)}
+        <hr />
+        <span>Shut Down Assistant...</span>
+      </div>
+    </div>
+    <div className="win95-taskbar">
+      <button className="win95-start-button"><i />Start</button>
+      <button className="win95-task active"><span className="win95-mini-icon" />Assistant.exe</button>
+      <button className="win95-task"><span className="win95-mini-icon doc" />Prompt Library</button>
+      <div className="win95-tray"><span>NET</span><span>KEY</span><strong>4:05 PM</strong></div>
+    </div>
+  </div>;
+}
+
+function Win95Header({ skin, exportJson, clear }: { skin: Skin; exportJson: () => void; clear: () => void }) {
+  return <header className="topbar win95-app-window">
+    <div className="win95-titlebar"><span className="win95-mini-icon" /><strong>Windows 95 Assistant - [AI Chat]</strong><div className="win95-window-buttons"><button aria-label="Minimize">_</button><button aria-label="Maximize">□</button><button aria-label="Close">×</button></div></div>
+    <nav className="win95-menubar" aria-label="Windows 95 menu"><span>File</span><span>Edit</span><span>View</span><span>Skin</span><span>Help</span></nav>
+    <div className="win95-client-area">
+      <div><span className="mode-kicker">C:\\SKINS\\AI_CHAT.EXE</span><h1>{skin.metadata.name}</h1><p>{skin.metadata.description}</p></div>
+      <div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{skin.voice.clear_label}</button></div>
+    </div>
+    <div className="win95-statusbar"><span>Ready</span><span>AI Chat skin active</span><span>For Help, press F1</span><i /></div>
+  </header>;
+}
+
 function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setKeyDraft, commitKey }: {
   provider: ProviderMode;
   setProvider: (provider: ProviderMode) => void;
@@ -276,9 +314,11 @@ export default function App() {
   };
 
   const thinking = busy ? <span className={`thinking ${activeSkin.atmosphere.thinking_style || 'dots'}`}>{activeSkin.voice.thinking_label}</span> : null;
+  const isWin95 = activeSkin.id === 'windows-95-assistant';
 
-  return <div className="app-shell">
+  return <div className={`app-shell ${isWin95 ? 'win95-shell' : ''}`}>
     <VisualStage skin={activeSkin} pulse={pulse} />
+    {isWin95 && <Win95DesktopShell />}
     <aside className="sidebar">
       <div className="brand"><span className="avatar">{activeSkin.persona?.avatar || '◆'}</span><div><strong>{activeSkin.persona?.sidebar_name || 'SKINS.MD'}</strong><small>{activeSkin.persona?.status || 'Every model. Your skin.'}</small></div></div>
       <ConnectionChooser provider={provider} setProvider={setProvider} skin={activeSkin} apiKey={apiKey} keyDraft={keyDraft} setKeyDraft={setKeyDraft} commitKey={commitKey} />
@@ -287,7 +327,7 @@ export default function App() {
       <div className="actions"><button onClick={() => fileRef.current?.click()}>Import SKIN.md</button><button onClick={downloadSkin}>Download active</button><input ref={fileRef} type="file" accept=".md,.SKIN.md,text/markdown" hidden onChange={(e) => e.target.files?.[0] && importSkin(e.target.files[0])} /></div>
     </aside>
     <main className="chat-panel">
-      <header className="topbar"><div><span className="mode-kicker">AI Chat skin active · Agent mode next</span><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>
+      {isWin95 ? <Win95Header skin={activeSkin} exportJson={exportJson} clear={clear} /> : <header className="topbar"><div><span className="mode-kicker">AI Chat skin active · Agent mode next</span><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>}
       <ModeSwitch />
       {error && <div className="error">{error}</div>}
       <div className="messages" aria-live="polite">
