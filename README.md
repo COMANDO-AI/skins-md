@@ -55,3 +55,4 @@ There is no SKINS.MD backend in the MVP. Your OpenRouter key and conversations l
 - `STRATEGY.md` — research synthesis and product direction.
 - `BUSINESS_MODEL_STRATEGY_V1.md` — Phase 0 full-free BYOK business-model strategy and future sponsor/Plus/marketplace stack.
 - `WINAMP_CASE_STUDY.md` — lessons from Winamp/Webamp and next strategic steps.
+- `WINDOWS95_NOSTALGIA_RESEARCH_V1.md` — deeper Windows 95/98 UI-kit references and next implementation pass for the retro skin.
