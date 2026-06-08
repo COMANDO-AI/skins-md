@@ -109,15 +109,15 @@ function accountBridgePrompt(skin: Skin, provider: 'chatgpt' | 'claude') {
 
 function ModeSwitch() {
   return <section className="mode-switch" aria-label="AI Chat and Agent modes">
-    <div className="mode-card active">
-      <span>Mode 01</span>
+    <div className="mode-card active" aria-current="true">
+      <span>Mode 01 · Active</span>
       <strong>AI Chat skin</strong>
-      <p>Current experience: aesthetic, persona, mood, and conversation style for any BYOK model.</p>
+      <p>Current MVP experience: aesthetic, persona, mood, and conversation style for every skin.</p>
     </div>
-    <div className="mode-card next">
-      <span>Mode 02</span>
+    <div className="mode-card next disabled" aria-disabled="true">
+      <span>Mode 02 · Coming soon</span>
       <strong>AI Agent skin</strong>
-      <p>Next layer: the same skin guides planning style, permissions, risk posture, and tool use.</p>
+      <p>Coming soon: planning style, permissions, risk posture, and tool use for future releases.</p>
     </div>
   </section>;
 }
@@ -148,13 +148,12 @@ function Win95DesktopShell() {
   </div>;
 }
 
-function Win95Header({ skin, exportJson, clear }: { skin: Skin; exportJson: () => void; clear: () => void }) {
+function Win95Header({ skin }: { skin: Skin }) {
   return <header className="topbar win95-app-window">
     <div className="win95-titlebar"><span className="win95-mini-icon" /><strong>Windows 95 Assistant - [AI Chat]</strong><div className="win95-window-buttons"><button aria-label="Minimize">_</button><button aria-label="Maximize">□</button><button aria-label="Close">×</button></div></div>
     <nav className="win95-menubar" aria-label="Windows 95 menu"><span>File</span><span>Edit</span><span>View</span><span>Skin</span><span>Help</span></nav>
     <div className="win95-client-area">
       <div><span className="mode-kicker">C:\\SKINS\\AI_CHAT.EXE</span><h1>{skin.metadata.name}</h1><p>{skin.metadata.description}</p></div>
-      <div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{skin.voice.clear_label}</button></div>
     </div>
     <div className="win95-statusbar"><span>Ready</span><span>AI Chat skin active</span><span>For Help, press F1</span><i /></div>
   </header>;
@@ -172,8 +171,9 @@ function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setK
   const selected = PROVIDERS.find((item) => item.id === provider) ?? PROVIDERS[0];
   const bridgePrompt = provider === 'chatgpt' || provider === 'claude' ? accountBridgePrompt(skin, provider) : '';
   const copyBridge = async () => { if (bridgePrompt) await navigator.clipboard?.writeText(bridgePrompt); };
-  return <section className="connection-box">
-    <div className="section-title">Connect</div>
+  return <details className="connection-box" open>
+    <summary className="section-title connection-summary"><span>Connect</span><em>{selected.label}</em></summary>
+    <div className="connection-content">
     <div className="provider-grid">
       {PROVIDERS.map((item) => <button key={item.id} className={`provider-card ${item.id === provider ? 'active' : ''}`} onClick={() => setProvider(item.id)}>
         <span>{item.kicker}</span>
@@ -195,7 +195,8 @@ function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setK
       <textarea readOnly value={bridgePrompt} />
       <button onClick={copyBridge}>Copy companion prompt</button>
     </div>}
-  </section>;
+    </div>
+  </details>;
 }
 
 async function streamOpenRouter(apiKey: string, model: string, messages: ChatMessage[], onDelta: (delta: string) => void) {
@@ -324,10 +325,10 @@ export default function App() {
       <ConnectionChooser provider={provider} setProvider={setProvider} skin={activeSkin} apiKey={apiKey} keyDraft={keyDraft} setKeyDraft={setKeyDraft} commitKey={commitKey} />
       {provider === 'openrouter' && <section><label>Model</label><input value={model} onChange={(e) => setModel(e.target.value)} /></section>}
       <section><div className="section-title">Skins</div><div className="skin-grid">{skins.map((skin) => <button key={skin.id} className={`skin-card ${skin.id === activeSkin.id ? 'active' : ''}`} onClick={() => setActiveId(skin.id)}><span className="swatch" style={{ background: skin.palette.accent }} /><strong>{skin.metadata.name}</strong><small>{skin.metadata.tags}</small></button>)}</div></section>
-      <div className="actions"><button onClick={() => fileRef.current?.click()}>Import SKIN.md</button><button onClick={downloadSkin}>Download active</button><input ref={fileRef} type="file" accept=".md,.SKIN.md,text/markdown" hidden onChange={(e) => e.target.files?.[0] && importSkin(e.target.files[0])} /></div>
+      <div className="actions sidebar-actions"><button onClick={() => fileRef.current?.click()}>Import SKIN.md</button><button onClick={downloadSkin}>Download active</button><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button><input ref={fileRef} type="file" accept=".md,.SKIN.md,text/markdown" hidden onChange={(e) => e.target.files?.[0] && importSkin(e.target.files[0])} /></div>
     </aside>
     <main className="chat-panel">
-      {isWin95 ? <Win95Header skin={activeSkin} exportJson={exportJson} clear={clear} /> : <header className="topbar"><div><span className="mode-kicker">AI Chat skin active · Agent mode next</span><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div><div className="top-actions"><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button></div></header>}
+      {isWin95 ? <Win95Header skin={activeSkin} /> : <header className="topbar"><div><span className="mode-kicker">Mode 01 active · Mode 02 coming soon</span><h1>{activeSkin.metadata.name}</h1><p>{activeSkin.metadata.description}</p></div></header>}
       <ModeSwitch />
       {error && <div className="error">{error}</div>}
       <div className="messages" aria-live="polite">

@@ -191,3 +191,111 @@ body[data-skin="windows-95-assistant"] .composer{width:100%;max-width:100%;}
 body[data-skin="windows-95-assistant"] .prompt-chips{align-items:stretch;min-width:0;}
 body[data-skin="windows-95-assistant"] .prompt-chips:before{flex:0 0 auto;white-space:nowrap;align-self:center;padding:0 6px;}
 body[data-skin="windows-95-assistant"] .prompt-chips button{min-width:240px;max-width:240px;overflow:hidden;text-overflow:ellipsis;}
+
+/* Structural MVP layout: prioritize chat, sidebar utilities, and fixed mode disclosure. */
+:root{--sidebar-width:260px;}
+.app-shell{grid-template-columns:minmax(240px,var(--sidebar-width)) minmax(0,1fr);}
+.sidebar{display:flex;flex-direction:column;gap:14px;padding:14px;overflow-x:hidden;}
+.brand{margin-bottom:4px;}
+.sidebar > section,.sidebar > details{flex:0 0 auto;}
+.skin-grid{gap:8px;}
+.actions.sidebar-actions{margin-top:0;padding-top:10px;border-top:1px var(--border-style) color-mix(in srgb,var(--border) 74%,var(--accent));grid-template-columns:1fr;}
+.actions.sidebar-actions button{width:100%;}
+.connection-box{display:block;margin-bottom:0;}
+.connection-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;user-select:none;list-style:none;}
+.connection-summary::-webkit-details-marker{display:none;}
+.connection-summary:after{content:'Collapse';font-family:var(--font-mono);font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.connection-box:not([open]) .connection-summary:after{content:'Expand';}
+.connection-summary em{font-style:normal;color:var(--muted);font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;}
+.connection-content{display:flex;flex-direction:column;gap:10px;padding-top:10px;}
+.connection-box:not([open]){padding-bottom:0;}
+.chat-panel{height:100vh;display:flex;flex-direction:column;max-width:none;width:100%;min-width:0;margin:0;padding:14px 18px;gap:10px;}
+.topbar{flex:0 0 auto;padding:10px 14px;align-items:center;}
+.topbar h1{font-size:clamp(24px,3vw,38px);}
+.topbar p{font-size:13px;line-height:1.35;max-width:980px;}
+.mode-switch{flex:0 0 auto;width:100%;margin:0;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;}
+.mode-card{padding:8px 10px;min-height:0;}
+.mode-card strong{font-size:14px;}
+.mode-card p{margin:3px 0 0;font-size:12px;line-height:1.3;}
+.mode-card.disabled{opacity:.58;filter:saturate(.65);}
+.mode-card.disabled strong:after{content:'COMING SOON';display:inline-block;margin-left:8px;padding:2px 6px;border-radius:999px;border:1px solid color-mix(in srgb,var(--accent) 40%,transparent);color:var(--accent);font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;vertical-align:middle;}
+.error{flex:0 0 auto;}
+.messages{flex:1 1 auto;min-height:0;width:100%;padding:12px 8px 24px;}
+.message{max-width:min(100%,980px);}
+.message.assistant{max-width:min(100%,1040px);}
+.composer{flex:0 0 auto;grid-template-columns:minmax(0,1fr) 104px;gap:8px;}
+.composer textarea{width:100%;min-height:82px;}
+.composer button{height:82px;min-width:104px;}
+.onboarding-hero{width:100%;margin:8px 0 10px;padding:16px;}
+.empty{min-height:18vh;font-size:clamp(22px,3.8vw,42px);}
+body[data-skin="windows-95-assistant"] .win95-shell{grid-template-columns:280px minmax(0,1fr);}
+body[data-skin="windows-95-assistant"] .chat-panel{display:flex;height:calc(100vh - 31px);padding:10px 14px 8px 72px;gap:7px;}
+body[data-skin="windows-95-assistant"] .sidebar{display:flex;gap:8px;}
+body[data-skin="windows-95-assistant"] .connection-content{gap:6px;padding-top:2px;}
+body[data-skin="windows-95-assistant"] .connection-summary{height:22px;}
+body[data-skin="windows-95-assistant"] .connection-summary:after,body[data-skin="windows-95-assistant"] .connection-summary em{font:10px "MS Sans Serif",Tahoma,sans-serif;color:#fff;text-transform:none;letter-spacing:0;}
+body[data-skin="windows-95-assistant"] .win95-client-area{display:block;padding:7px 10px;}
+body[data-skin="windows-95-assistant"] .mode-switch{display:grid;width:100%;padding:20px 5px 5px;}
+body[data-skin="windows-95-assistant"] .mode-card{min-height:48px;padding:6px;}
+body[data-skin="windows-95-assistant"] .mode-card.disabled strong:after{border-radius:0;border:1px solid var(--win-dark);background:var(--win-face-alt);color:#555;font-size:8px;}
+body[data-skin="windows-95-assistant"] .messages{flex:1 1 auto;min-height:0;padding-top:25px;}
+body[data-skin="windows-95-assistant"] .composer{flex:0 0 auto;}
+body[data-skin="pokemon-trainer"] .topbar{padding:18px 18px 16px;}
+body[data-skin="pokemon-trainer"] .mode-switch{padding:8px;}
+body[data-skin="pokemon-trainer"] .messages{flex:1 1 auto;min-height:0;}
+body[data-skin="pokemon-trainer"] .composer{flex:0 0 auto;}
+@media (max-width:900px){.chat-panel{height:auto;min-height:100vh}.app-shell{grid-template-columns:1fr}.sidebar{height:auto}.mode-switch{grid-template-columns:1fr}.composer{grid-template-columns:1fr}.composer button{height:auto;min-height:52px}body[data-skin="windows-95-assistant"] .chat-panel{height:auto;padding-left:12px}}
+
+/* Structural MVP layout V1.1: compact chrome so transcript + composer dominate. */
+.chat-panel{padding:10px 16px;gap:8px;}
+.topbar{padding:8px 12px;}
+.topbar h1{font-size:clamp(22px,2.6vw,32px);}
+.topbar p{font-size:12px;line-height:1.25;margin-top:3px;}
+.mode-switch{gap:6px;}
+.mode-card{padding:7px 9px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 8px;align-items:center;}
+.mode-card span{grid-column:1;white-space:nowrap;}
+.mode-card strong{grid-column:2;font-size:13px;line-height:1.1;}
+.mode-card p{grid-column:1 / -1;margin:0;font-size:11px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.messages{padding:10px 8px 18px;}
+.composer{gap:7px;}
+.thinkline{min-height:18px;font-size:12px;}
+.prompt-chips{grid-column:1 / -1;display:flex;flex-wrap:nowrap;gap:7px;overflow-x:auto;overflow-y:hidden;padding-bottom:2px;max-height:42px;}
+.prompt-chips button{min-height:34px;max-height:36px;max-width:280px;padding:6px 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.composer textarea{min-height:64px;max-height:130px;}
+.composer button{height:64px;min-width:96px;}
+.onboarding-hero{margin:4px 0 8px;padding:12px;}
+.empty{min-height:10vh;}
+body[data-skin="windows-95-assistant"] .chat-panel{padding-top:8px;gap:6px;}
+body[data-skin="windows-95-assistant"] .win95-client-area{padding:5px 8px;}
+body[data-skin="windows-95-assistant"] .topbar h1{font-size:18px!important;margin-bottom:2px!important;}
+body[data-skin="windows-95-assistant"] .mode-switch{padding:18px 4px 4px;}
+body[data-skin="windows-95-assistant"] .mode-card{min-height:38px;padding:4px;}
+body[data-skin="windows-95-assistant"] .mode-card p{display:none;}
+body[data-skin="windows-95-assistant"] .prompt-chips{max-height:34px;}
+body[data-skin="windows-95-assistant"] .prompt-chips button{min-height:28px;max-height:30px;}
+body[data-skin="windows-95-assistant"] textarea{min-height:56px!important;}
+body[data-skin="windows-95-assistant"] .composer > button{min-height:56px!important;height:56px;}
+body[data-skin="pokemon-trainer"] .topbar{padding:14px 16px 12px;}
+body[data-skin="pokemon-trainer"] .mode-card p{font-size:10px;}
+body[data-skin="pokemon-trainer"] textarea{min-height:64px;}
+body[data-skin="pokemon-trainer"] .composer > button{min-height:64px;height:64px;}
+
+/* Structural MVP layout V1.2: skin-specific compact chrome fixes. */
+body[data-skin="pokemon-trainer"] .topbar{padding:10px 14px 10px!important;overflow:hidden;}
+body[data-skin="pokemon-trainer"] .topbar:before{top:8px!important;right:12px!important;left:auto!important;padding:4px 9px;font-size:10px;box-shadow:2px 2px 0 var(--poke-blue);}
+body[data-skin="pokemon-trainer"] .topbar h1{font-size:clamp(28px,3.2vw,38px);line-height:.95;margin:12px 0 4px;}
+body[data-skin="pokemon-trainer"] .topbar p{font-size:12px;line-height:1.22;max-width:680px;}
+body[data-skin="pokemon-trainer"] .mode-switch{padding:6px!important;gap:6px!important;}
+body[data-skin="pokemon-trainer"] .mode-card{display:grid!important;grid-template-columns:auto minmax(0,1fr);padding:7px 9px!important;min-height:0!important;border-width:3px;box-shadow:3px 3px 0 rgba(47,109,181,.2);}
+body[data-skin="pokemon-trainer"] .mode-card p{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+body[data-skin="pokemon-trainer"] .messages{padding:22px 18px 18px;}
+body[data-skin="pokemon-trainer"] .messages:before{top:-12px!important;left:18px!important;padding:3px 10px;font-size:11px;}
+body[data-skin="pokemon-trainer"] .composer{padding:8px!important;gap:8px!important;grid-template-columns:minmax(0,1fr) 104px!important;}
+body[data-skin="pokemon-trainer"] .thinkline{padding:4px 10px!important;font-size:11px;min-height:24px;}
+body[data-skin="pokemon-trainer"] .prompt-chips{max-height:38px!important;}
+body[data-skin="pokemon-trainer"] .prompt-chips button{min-height:30px;max-height:32px;padding:5px 9px;font-size:11px;}
+body[data-skin="pokemon-trainer"] textarea{min-height:58px!important;}
+body[data-skin="pokemon-trainer"] .composer > button{min-height:58px!important;height:58px!important;}
+body[data-skin="windows-95-assistant"] .mode-card.active:before{content:"Mode 01";left:6px;}
+body[data-skin="windows-95-assistant"] .mode-card.next:before{content:"Mode 02 coming soon";left:84px;color:#555;}
+body[data-skin="windows-95-assistant"] .mode-card span{display:block;}
