@@ -30,6 +30,15 @@ const firstVisitPrompt = await page.getByText('Fastest path:').isVisible();
 const demoReady = await page.getByText('Demo mode · no API key required').isVisible();
 const welcomeComparisonRemoved = await page.locator('.onboarding-hero .before-after').count() === 0 && !(await page.getByText('Generic chatbot').isVisible().catch(() => false));
 const welcomeMiniGalleryRemoved = await page.locator('.onboarding-hero .consumer-gallery').count() === 0 && await page.locator('.onboarding-hero button').count() === 0;
+const sidebarActionsPinnedBottom = await page.evaluate(() => {
+  const sidebar = document.querySelector('.sidebar');
+  const actions = document.querySelector('.sidebar-actions');
+  if (!sidebar || !actions) return false;
+  const sidebarRect = sidebar.getBoundingClientRect();
+  const actionsRect = actions.getBoundingClientRect();
+  const gapToBottom = Math.abs(sidebarRect.bottom - actionsRect.bottom);
+  return gapToBottom <= 18 && actionsRect.top > sidebarRect.top + (sidebarRect.height * 0.55);
+});
 const skinBeforeHover = await page.evaluate(() => document.body.dataset.skin);
 await page.locator('.skins-box summary').click();
 await page.locator('.skin-grid').getByRole('button', { name: /Matrix/i }).hover();
@@ -88,6 +97,7 @@ const results = {
   demoReady,
   welcomeComparisonRemoved,
   welcomeMiniGalleryRemoved,
+  sidebarActionsPinnedBottom,
   hoverDoesNotPreviewApply,
   keyPersisted,
   beforeSendLabel,

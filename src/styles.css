@@ -199,7 +199,8 @@ body[data-skin="windows-95-assistant"] .prompt-chips button{min-width:240px;max-
 .brand{margin-bottom:4px;}
 .sidebar > section,.sidebar > details{flex:0 0 auto;}
 .skin-grid{gap:8px;}
-.actions.sidebar-actions{margin-top:0;padding-top:10px;border-top:1px var(--border-style) color-mix(in srgb,var(--border) 74%,var(--accent));grid-template-columns:1fr;}
+/* Sidebar actions V1.2: keep import/export utilities in the same side panel, pinned to its bottom. */
+.actions.sidebar-actions{margin-top:auto;padding-top:10px;border-top:1px var(--border-style) color-mix(in srgb,var(--border) 74%,var(--accent));grid-template-columns:1fr;flex:0 0 auto;}
 .actions.sidebar-actions button{width:100%;}
 .connection-box{display:block;margin-bottom:0;}
 .connection-summary{display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;user-select:none;list-style:none;}
