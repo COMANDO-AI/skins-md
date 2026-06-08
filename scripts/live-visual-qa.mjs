@@ -16,10 +16,8 @@ await page.goto('https://skins-md.vercel.app', { waitUntil: 'networkidle' });
 await page.screenshot({ path: `${outDir}/01-live-minimal-demo-onboarding.png`, fullPage: true });
 
 const skins = [
-  ['Cozy Study Companion', '02-live-cozy-study-companion.png'],
   ['Pokémon Trainer', '03-live-pokemon-trainer.png'],
   ['Anime Tutor', '04-live-anime-tutor.png'],
-  ['Fantasy Quest Mentor', '05-live-fantasy-quest-mentor.png'],
 ];
 
 for (const [name, file] of skins) {
@@ -40,7 +38,7 @@ const results = {
   beforeAfterVisible: await page.getByLabel('Before and after skin comparison').isVisible(),
   miniGalleryVisible: await page.getByLabel('Mini skin gallery').isVisible(),
   consumerSkinsVisible: Object.fromEntries(await Promise.all(skins.map(async ([name]) => [name, await page.getByRole('button', { name: new RegExp(name, 'i') }).first().isVisible()]))),
-  streamedMarkdownVisible: await page.getByRole('heading', { name: /Cozy study plan|Demo response|Quest log|Executive brief|Tutor arc/i }).first().isVisible(),
+  streamedMarkdownVisible: await page.getByRole('heading', { name: /No-key demo answer|Signal acquired|Executive brief|Tutor arc|Trainer battle plan/i }).first().isVisible(),
   consoleErrors: errors,
   screenshots: [
     '01-live-minimal-demo-onboarding.png',

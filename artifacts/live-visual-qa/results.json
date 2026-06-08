@@ -6,19 +6,15 @@
   "beforeAfterVisible": false,
   "miniGalleryVisible": false,
   "consumerSkinsVisible": {
-    "Cozy Study Companion": true,
     "Executive Operator": true,
-    "Anime Tutor": true,
-    "Fantasy Quest Mentor": true
+    "Anime Tutor": true
   },
   "streamedMarkdownVisible": true,
   "consoleErrors": [],
   "screenshots": [
     "01-live-minimal-demo-onboarding.png",
-    "02-live-cozy-study-companion.png",
     "03-live-executive-operator.png",
     "04-live-anime-tutor.png",
-    "05-live-fantasy-quest-mentor.png",
     "06-live-demo-streaming-response.png"
   ]
 }

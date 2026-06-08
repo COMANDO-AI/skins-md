@@ -29,10 +29,10 @@ const PROVIDERS: { id: ProviderMode; label: string; kicker: string; description:
 ];
 
 const QUICK_PROMPTS = [
-  'Give me a 20 minute study plan for a difficult topic.',
   'Turn my messy priorities into a trainer quest plan.',
   'Explain this like an encouraging anime tutor.',
-  'Convert my next task into a fantasy quest log.',
+  'Read the signal and pick my next action.',
+  'Summarize this into an executive brief.',
 ];
 
 marked.use({
@@ -90,8 +90,6 @@ function skinDemoReply(skin: Skin, prompt: string) {
   if (/pokemon|pokémon|trainer|party|battle|quest plan|move/i.test(asked + name)) return `## Trainer battle plan\n\n**Wild prompt appeared:** ${asked}\n\n- **Choose a move:** name the next tiny action you can finish in one sitting.\n- **Build the party:** keep one research move, one drafting move, and one review move.\n- **Use a potion:** remove one distraction before the timer starts.\n\n**Victory condition:** one visible win, not the whole league today.\n\n\`Skin active: ${name}\``;
   if (/executive|brief|priorit/i.test(asked + name)) return `## Executive brief\n\n**Signal:** ${asked}\n\n- **Decision frame:** choose the move that reduces ambiguity fastest.\n- **Next action:** write the smallest testable version, then review the result.\n- **Risk:** polishing before the user can feel the product.\n\n\`Skin active: ${name}\``;
   if (/anime|tutor|explain/i.test(asked + name)) return `## Tutor arc unlocked ✦\n\nLet's make it simple:\n\n1. **Name the monster** — what is confusing?\n2. **Break the move down** — one concept at a time.\n3. **Win a tiny battle** — answer one practice question.\n\nYou asked: _${asked}_\n\nI would start with a colorful example, then check if it clicked.`;
-  if (/fantasy|quest|task/i.test(asked + name)) return `## Quest log\n\n**Quest:** ${asked}\n\n- **Objective:** reach the next visible checkpoint.\n- **Inventory:** context, constraint, first draft.\n- **Mentor note:** do not fight the whole dragon today — mark the map and take the first gate.\n\n**Reward:** momentum + a clearer path.`;
-  if (/study|cozy|plan/i.test(asked + name)) return `## Cozy study plan\n\nFor: **${asked}**\n\n- 5 min — open the notes and list what feels hard.\n- 10 min — explain one idea out loud in plain words.\n- 5 min — write a tiny recap and one follow-up question.\n\nI'll keep the room quiet while you work.`;
   if (gothic) return `## Marginal note from the archive\n\nYou asked: **${asked}**\n\n- **What the archive sees:** there is a real question here, not just a test of the UI.\n- **First useful answer:** start with the simplest interpretation, then add one constraint.\n- **Next inscription:** if you want a sharper answer, add the situation, desired outcome, and deadline.\n\n_This is still no-key demo mode: it should respond to your prompt, but it is not a live model until OpenRouter is connected._`;
   return `## No-key demo answer\n\nYou asked: **${asked}**\n\nHere is a useful first pass in the **${name}** skin:\n\n1. Clarify the goal in one sentence.\n2. Pick the smallest next action that would prove progress.\n3. If the answer needs real-time facts or deep reasoning, switch to OpenRouter once the API key is ready.\n\nFor now, this demo should feel like the interface works before any API key is required.`;
 }

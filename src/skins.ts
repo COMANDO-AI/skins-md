@@ -338,91 +338,6 @@ speed: 0.28
 density: 70
 `;
 
-export const cozyStudyRaw = `### Section 1 · metadata
-name: Cozy Study Companion
-author: COMANDO
-version: 1.0.0
-tags: cozy, study, focus, warm, consumer
-description: A warm desk lamp, soft paper, and a patient companion for studying.
-preview_url: none
-license: MIT
-
-### Section 2 · palette
-bg: #24160f
-fg: #fff2dc
-accent: #ffb86b
-muted: #c8a989
-surface: rgba(80,48,30,.72)
-border: rgba(255,184,107,.35)
-error: #ff7a7a
-success: #9bd18b
-
-### Section 3 · typography
-font_sans: Nunito
-font_mono: IBM Plex Mono
-font_display: Fraunces
-size_base: 16px
-weight_base: 500
-line_height: 1.7
-letter_spacing: 0em
-text_transform: none
-weight_display: 800
-
-### Section 4 · layout
-radius: 22px
-spacing_unit: 10px
-max_width: 820px
-sidebar_width: 320px
-radius_message: 26px
-radius_input: 24px
-radius_ui: 20px
-message_shape: soft
-border_style: solid
-
-### Section 5 · voice
-send_label: Ask gently
-placeholder: what are we studying today?
-empty_state: Your desk is ready.
-thinking_label: turning pages
-clear_label: Tidy desk
-
-### Section 6 · atmosphere
-bg_effect: particles
-animation_speed: slow
-blur: 16px
-bg_gradient: radial-gradient(circle at 25% 12%, rgba(255,184,107,.34), transparent 25%), radial-gradient(circle at 75% 70%, rgba(122,78,42,.45), transparent 32%), linear-gradient(150deg, #24160f, #55331f 58%, #160e0a)
-texture_overlay: paper
-texture_intensity: 0.2
-surface_style: frosted
-motion_style: float
-thinking_style: ellipsis
-
-### Section 7 · components
-message_user_bg: #ffb86b
-message_user_fg: #2a1609
-message_assistant_bg: rgba(255,242,220,.13)
-message_assistant_fg: #fff2dc
-input_bg: rgba(36,22,15,.82)
-input_fg: #fff2dc
-input_border: rgba(255,184,107,.45)
-
-### Section 10 · persona
-sidebar_name: STUDY NOOK
-avatar: ☕
-status: focus lamp: warm
-
-### Section visual
-engine: webgl
-preset: fireflies
-intensity: 0.72
-speed: 0.22
-density: 96
-hud: soft
-particles: fireflies
-text_reveal: typewriter
-transitions: dissolve
-parallax: gentle
-`;
 
 export const pokemonRaw = `### Section 1 · metadata
 name: Pokémon Trainer
@@ -596,99 +511,12 @@ transitions: bounce
 parallax: medium
 `;
 
-export const fantasyQuestRaw = `### Section 1 · metadata
-name: Fantasy Quest Mentor
-author: COMANDO
-version: 1.0.0
-tags: fantasy, quest, mentor, rpg, consumer
-description: A quest log interface for goals, lore, tasks, and brave next steps.
-preview_url: none
-license: MIT
-
-### Section 2 · palette
-bg: #10150e
-fg: #f6edd4
-accent: #d6b35f
-muted: #b7a078
-surface: rgba(35,46,29,.82)
-border: rgba(214,179,95,.46)
-error: #d96b6b
-success: #87c56d
-
-### Section 3 · typography
-font_sans: Cormorant Garamond
-font_mono: IBM Plex Mono
-font_display: Cinzel Decorative
-size_base: 18px
-weight_base: 600
-line_height: 1.62
-letter_spacing: 0.01em
-text_transform: none
-weight_display: 700
-
-### Section 4 · layout
-radius: 12px
-spacing_unit: 10px
-max_width: 820px
-sidebar_width: 325px
-radius_message: 10px 28px 10px 28px
-radius_input: 12px
-radius_ui: 10px
-message_shape: parchment
-border_style: double
-
-### Section 5 · voice
-send_label: Begin quest
-placeholder: name the quest or ask the mentor
-empty_state: The map waits for your first mark.
-thinking_label: reading the runes
-clear_label: Reroll path
-
-### Section 6 · atmosphere
-bg_effect: particles
-animation_speed: slow
-blur: 10px
-bg_gradient: radial-gradient(circle at 50% 0%, rgba(214,179,95,.26), transparent 30%), radial-gradient(circle at 85% 70%, rgba(74,111,60,.28), transparent 32%), linear-gradient(180deg, #10150e, #26331f 55%, #070a06)
-texture_overlay: parchment
-texture_intensity: 0.26
-surface_style: raised
-motion_style: reveal
-thinking_style: ellipsis
-
-### Section 7 · components
-message_user_bg: #d6b35f
-message_user_fg: #151006
-message_assistant_bg: rgba(246,237,212,.12)
-message_assistant_fg: #f6edd4
-input_bg: rgba(16,21,14,.86)
-input_fg: #f6edd4
-input_border: rgba(214,179,95,.52)
-
-### Section 10 · persona
-sidebar_name: QUEST MENTOR
-avatar: ✧
-status: map ink: fresh
-
-### Section visual
-engine: webgl
-preset: rune-orbit
-intensity: 0.72
-speed: 0.28
-density: 100
-hud: compass
-particles: motes
-text_reveal: parchment
-transitions: page-turn
-parallax: gentle
-`;
 
 export const bundledSkins: Skin[] = [
   parseSkin(minimalRaw, 'minimal'),
   parseSkin(matrixRaw, 'matrix'),
   parseSkin(windows95Raw, 'windows-95-assistant'),
   parseSkin(gothicRaw, 'gothic-librarian'),
-  parseSkin(cozyStudyRaw, 'cozy-study-companion'),
   parseSkin(pokemonRaw, 'pokemon-trainer'),
   parseSkin(animeTutorRaw, 'anime-tutor'),
-  parseSkin(fantasyQuestRaw, 'fantasy-quest-mentor'),
 ];

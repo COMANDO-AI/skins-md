@@ -25,7 +25,7 @@ Open the local URL printed by Vite.
 - Custom `SKIN.md` import with validation errors for missing sections/fields.
 - Imported skins saved to local library.
 - Active-skin download.
-- Bundled skins include Minimal, Matrix, Gothic Librarian, Cozy Study Companion, Pokémon Trainer, Anime Tutor, Fantasy Quest Mentor, and Windows 95 Assistant.
+- Bundled skins include Minimal, Matrix, Gothic Librarian, Pokémon Trainer, Anime Tutor, and Windows 95 Assistant.
 - Hybrid sensory engine: accessible DOM chat + CSS token skinning + Three.js/WebGL atmosphere.
 
 ## Why this technical path
