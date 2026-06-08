@@ -299,3 +299,9 @@ body[data-skin="pokemon-trainer"] .composer > button{min-height:58px!important;h
 body[data-skin="windows-95-assistant"] .mode-card.active:before{content:"Mode 01";left:6px;}
 body[data-skin="windows-95-assistant"] .mode-card.next:before{content:"Mode 02 coming soon";left:84px;color:#555;}
 body[data-skin="windows-95-assistant"] .mode-card span{display:block;}
+
+/* Sidebar panels V1.1: Connect and Skins both collapse from the same compact control. */
+.skins-box .connection-summary em{max-width:112px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.skins-content{padding-top:10px;}
+.connection-box:not([open]) .connection-content{display:none;}
+body[data-skin="windows-95-assistant"] .skins-box .connection-summary em{max-width:94px;}

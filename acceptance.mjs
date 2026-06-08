@@ -23,9 +23,13 @@ await page.route('https://openrouter.ai/api/v1/chat/completions', async (route) 
 await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
 await page.screenshot({ path: 'artifacts/01-initial.png', fullPage: false, timeout: 60000 });
 
+const connectStartsClosed = await page.locator('.connection-box').first().evaluate((el) => !el.open);
+const skinsStartsClosed = await page.locator('.skins-box').evaluate((el) => !el.open);
+await page.locator('.connection-box summary').first().click();
 const firstVisitPrompt = await page.getByText('Fastest path:').isVisible();
 const demoReady = await page.getByText('Demo mode · no API key required').isVisible();
 const skinBeforeHover = await page.evaluate(() => document.body.dataset.skin);
+await page.locator('.skins-box summary').click();
 await page.locator('.skin-grid').getByRole('button', { name: /Matrix/i }).hover();
 await page.waitForTimeout(350);
 const skinDuringHover = await page.evaluate(() => document.body.dataset.skin);
@@ -35,9 +39,11 @@ await page.getByRole('button', { name: /OpenRouter/i }).click();
 await page.getByPlaceholder('sk-or-v1-...').fill('***');
 await page.getByRole('button', { name: 'Save' }).click();
 await page.reload({ waitUntil: 'networkidle' });
+await page.locator('.connection-box summary').first().click();
 const keyPersisted = await page.getByText('Saved in localStorage. Never sent to a SKINS.MD server.').isVisible();
 
 const beforeSendLabel = await page.locator('.composer > button').innerText();
+await page.locator('.skins-box summary').click();
 await page.locator('.skin-grid').getByRole('button', { name: /Matrix/i }).click();
 await page.waitForTimeout(200);
 const afterSendLabel = await page.locator('.composer > button').innerText();
@@ -74,6 +80,8 @@ const visualCanvas = await page.locator('.visual-stage canvas').count();
 await page.screenshot({ path: 'artifacts/03-imported.png', fullPage: false, timeout: 60000 });
 
 const results = {
+  connectStartsClosed,
+  skinsStartsClosed,
   firstVisitPrompt,
   demoReady,
   hoverDoesNotPreviewApply,

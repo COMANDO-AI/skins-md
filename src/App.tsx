@@ -171,7 +171,7 @@ function ConnectionChooser({ provider, setProvider, skin, apiKey, keyDraft, setK
   const selected = PROVIDERS.find((item) => item.id === provider) ?? PROVIDERS[0];
   const bridgePrompt = provider === 'chatgpt' || provider === 'claude' ? accountBridgePrompt(skin, provider) : '';
   const copyBridge = async () => { if (bridgePrompt) await navigator.clipboard?.writeText(bridgePrompt); };
-  return <details className="connection-box" open>
+  return <details className="connection-box">
     <summary className="section-title connection-summary"><span>Connect</span><em>{selected.label}</em></summary>
     <div className="connection-content">
     <div className="provider-grid">
@@ -324,7 +324,10 @@ export default function App() {
       <div className="brand"><span className="avatar">{activeSkin.persona?.avatar || '◆'}</span><div><strong>{activeSkin.persona?.sidebar_name || 'SKINS.MD'}</strong><small>{activeSkin.persona?.status || 'Every model. Your skin.'}</small></div></div>
       <ConnectionChooser provider={provider} setProvider={setProvider} skin={activeSkin} apiKey={apiKey} keyDraft={keyDraft} setKeyDraft={setKeyDraft} commitKey={commitKey} />
       {provider === 'openrouter' && <section><label>Model</label><input value={model} onChange={(e) => setModel(e.target.value)} /></section>}
-      <section><div className="section-title">Skins</div><div className="skin-grid">{skins.map((skin) => <button key={skin.id} className={`skin-card ${skin.id === activeSkin.id ? 'active' : ''}`} onClick={() => setActiveId(skin.id)}><span className="swatch" style={{ background: skin.palette.accent }} /><strong>{skin.metadata.name}</strong><small>{skin.metadata.tags}</small></button>)}</div></section>
+      <details className="connection-box skins-box">
+        <summary className="section-title connection-summary"><span>Skins</span><em>{activeSkin.metadata.name}</em></summary>
+        <div className="connection-content skins-content"><div className="skin-grid">{skins.map((skin) => <button key={skin.id} className={`skin-card ${skin.id === activeSkin.id ? 'active' : ''}`} onClick={() => setActiveId(skin.id)}><span className="swatch" style={{ background: skin.palette.accent }} /><strong>{skin.metadata.name}</strong><small>{skin.metadata.tags}</small></button>)}</div></div>
+      </details>
       <div className="actions sidebar-actions"><button onClick={() => fileRef.current?.click()}>Import SKIN.md</button><button onClick={downloadSkin}>Download active</button><button onClick={exportJson}>Export JSON</button><button onClick={clear}>{activeSkin.voice.clear_label}</button><input ref={fileRef} type="file" accept=".md,.SKIN.md,text/markdown" hidden onChange={(e) => e.target.files?.[0] && importSkin(e.target.files[0])} /></div>
     </aside>
     <main className="chat-panel">
