@@ -28,6 +28,8 @@ const skinsStartsClosed = await page.locator('.skins-box').evaluate((el) => !el.
 await page.locator('.connection-box summary').first().click();
 const firstVisitPrompt = await page.getByText('Fastest path:').isVisible();
 const demoReady = await page.getByText('Demo mode · no API key required').isVisible();
+const welcomeComparisonRemoved = await page.locator('.onboarding-hero .before-after').count() === 0 && !(await page.getByText('Generic chatbot').isVisible().catch(() => false));
+const welcomeMiniGalleryRemoved = await page.locator('.onboarding-hero .consumer-gallery').count() === 0 && await page.locator('.onboarding-hero button').count() === 0;
 const skinBeforeHover = await page.evaluate(() => document.body.dataset.skin);
 await page.locator('.skins-box summary').click();
 await page.locator('.skin-grid').getByRole('button', { name: /Matrix/i }).hover();
@@ -84,6 +86,8 @@ const results = {
   skinsStartsClosed,
   firstVisitPrompt,
   demoReady,
+  welcomeComparisonRemoved,
+  welcomeMiniGalleryRemoved,
   hoverDoesNotPreviewApply,
   keyPersisted,
   beforeSendLabel,

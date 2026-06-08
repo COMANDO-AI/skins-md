@@ -50,31 +50,12 @@ function uid() { return Math.random().toString(36).slice(2) + Date.now().toStrin
 function loadJson<T>(key: string, fallback: T): T { try { return JSON.parse(localStorage.getItem(key) || '') as T; } catch { return fallback; } }
 function saveJson(key: string, value: unknown) { localStorage.setItem(key, JSON.stringify(value)); }
 
-function OnboardingHero({ skin, skins, onChoose }: { skin: Skin; skins: Skin[]; onChoose: (id: string) => void }) {
-  const featured = skins.slice(0, 8);
+function OnboardingHero() {
   return <section className="onboarding-hero" aria-label="Skin preview onboarding">
     <div className="hero-copy">
       <span className="eyebrow">Portable AI interface skins</span>
       <h2>Choose your own skin for AI.</h2>
       <p>Start in AI Chat mode: aesthetic, persona, mood, and conversation style for any model you bring. Later, turn the same skin into an AI Agent posture.</p>
-    </div>
-    <div className="before-after" aria-label="Before and after skin comparison">
-      <div className="before-card">
-        <span>Before</span>
-        <strong>Generic chatbot</strong>
-        <p>White box, fixed tone, no atmosphere.</p>
-      </div>
-      <div className="after-card">
-        <span>After</span>
-        <strong>{skin.metadata.name}</strong>
-        <p>{skin.metadata.description}</p>
-      </div>
-    </div>
-    <div className="consumer-gallery" aria-label="Mini skin gallery">
-      {featured.map((item) => <button key={item.id} onClick={() => onChoose(item.id)} className={item.id === skin.id ? 'selected' : ''}>
-        <i style={{ background: item.palette.accent }} />
-        <span>{item.metadata.name}</span>
-      </button>)}
     </div>
   </section>;
 }
@@ -335,7 +316,7 @@ export default function App() {
       <ModeSwitch />
       {error && <div className="error">{error}</div>}
       <div className="messages" aria-live="polite">
-        {messages.length === 0 && <OnboardingHero skin={activeSkin} skins={skins} onChoose={setActiveId} />}
+        {messages.length === 0 && <OnboardingHero />}
         {messages.length === 0 && <div className="empty"><span>{activeSkin.voice.empty_state}</span></div>}
         {messages.map((m) => <article key={m.id} className={`message ${m.role}`}><div className="role">{m.role}</div><div className="content" dangerouslySetInnerHTML={{ __html: marked.parse(m.content || (m.role === 'assistant' ? activeSkin.voice.thinking_label : '')) as string }} /></article>)}
         <div ref={bottomRef} />

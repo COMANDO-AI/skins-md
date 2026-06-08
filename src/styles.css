@@ -305,3 +305,9 @@ body[data-skin="windows-95-assistant"] .mode-card span{display:block;}
 .skins-content{padding-top:10px;}
 .connection-box:not([open]) .connection-content{display:none;}
 body[data-skin="windows-95-assistant"] .skins-box .connection-summary em{max-width:94px;}
+
+/* Welcome copy V1: remove comparison banners and embedded skin chooser from all skins. */
+.onboarding-hero{grid-template-columns:1fr!important;max-width:980px;}
+.onboarding-hero .hero-copy{max-width:860px;}
+.onboarding-hero .before-after,.onboarding-hero .consumer-gallery{display:none!important;}
+body[data-skin="pokemon-trainer"] .onboarding-hero,body[data-skin="windows-95-assistant"] .onboarding-hero{grid-template-columns:1fr!important;}
