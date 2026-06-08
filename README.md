@@ -25,7 +25,7 @@ Open the local URL printed by Vite.
 - Custom `SKIN.md` import with validation errors for missing sections/fields.
 - Imported skins saved to local library.
 - Active-skin download.
-- Four launch skins: Minimal, Terminal Oracle, Vaporwave Mirage, Gothic Librarian.
+- Bundled skins include Minimal, Terminal Oracle, Gothic Librarian, Cozy Study Companion, Executive Operator, Anime Tutor, Fantasy Quest Mentor, and Windows 95 Assistant.
 - Hybrid sensory engine: accessible DOM chat + CSS token skinning + Three.js/WebGL atmosphere.
 
 ## Why this technical path
@@ -53,4 +53,5 @@ There is no SKINS.MD backend in the MVP. Your OpenRouter key and conversations l
 - `src/skinEngine.ts` — DOM/CSS/font/custom-CSS injector.
 - `src/VisualStage.tsx` — Three.js sensory layer.
 - `STRATEGY.md` — research synthesis and product direction.
+- `BUSINESS_MODEL_STRATEGY_V1.md` — Phase 0 full-free BYOK business-model strategy and future sponsor/Plus/marketplace stack.
 - `WINAMP_CASE_STUDY.md` — lessons from Winamp/Webamp and next strategic steps.
