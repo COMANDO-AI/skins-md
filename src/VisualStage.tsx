@@ -15,6 +15,81 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
     const node = mount.current;
     if (!node || skin.visual?.engine === 'none') return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (skin.visual?.preset === 'code-rain') {
+      const canvas = document.createElement('canvas');
+      canvas.setAttribute('aria-hidden', 'true');
+      canvas.className = 'matrix-rain-canvas';
+      node.appendChild(canvas);
+      const ctx = canvas.getContext('2d', { alpha: true });
+      if (!ctx) return () => { node.removeChild(canvas); };
+
+      const glyphs = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ';
+      const intensity = Math.max(0, Math.min(1.2, Number(skin.visual?.intensity ?? 0.9)));
+      const speed = reduced ? 0.22 : Math.max(0.15, Number(skin.visual?.speed ?? 1));
+      const density = Math.max(20, Math.min(260, Number(skin.visual?.density ?? 180)));
+      let columns: number[] = [];
+      let fontSize = 18;
+      let raf = 0;
+      let last = 0;
+
+      const resize = () => {
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        fontSize = Math.max(13, Math.min(22, 20 - intensity * 3));
+        const columnCount = Math.ceil(window.innerWidth / fontSize);
+        columns = Array.from({ length: columnCount }, () => Math.random() * window.innerHeight / fontSize);
+      };
+
+      const draw = (now = 0) => {
+        if (now - last < 34 / speed) { raf = requestAnimationFrame(draw); return; }
+        last = now;
+        ctx.fillStyle = `rgba(0, 0, 0, ${0.08 + (1.2 - intensity) * 0.04})`;
+        ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+        ctx.font = `${fontSize}px 'JetBrains Mono', 'IBM Plex Mono', monospace`;
+        ctx.textBaseline = 'top';
+
+        for (let i = 0; i < columns.length; i++) {
+          const x = i * fontSize;
+          const y = columns[i] * fontSize;
+          const glyph = glyphs[Math.floor(Math.random() * glyphs.length)];
+          const isLead = Math.random() > 0.86;
+          ctx.shadowColor = '#00ff41';
+          for (let trail = 0; trail < 16; trail++) {
+            const trailY = y - trail * fontSize;
+            if (trailY < -fontSize || trailY > window.innerHeight + fontSize) continue;
+            const trailGlyph = trail === 0 ? glyph : glyphs[Math.floor(Math.random() * glyphs.length)];
+            const alpha = Math.max(0.08, (1 - trail / 16) * intensity);
+            ctx.shadowBlur = trail === 0 || isLead ? 14 : 4;
+            ctx.fillStyle = trail === 0 && isLead
+              ? '#ecfff0'
+              : trail === 0
+                ? '#00ff41'
+                : `rgba(0, 255, 65, ${alpha})`;
+            ctx.fillText(trailGlyph, x, trailY);
+          }
+          columns[i] += 0.72 + speed * 0.42 + Math.random() * 0.15;
+          if (y > window.innerHeight + Math.random() * 1000) columns[i] = -Math.random() * density / 12;
+        }
+        raf = requestAnimationFrame(draw);
+      };
+
+      resize();
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+      draw();
+      window.addEventListener('resize', resize);
+      return () => {
+        cancelAnimationFrame(raf);
+        window.removeEventListener('resize', resize);
+        node.removeChild(canvas);
+      };
+    }
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 42;
@@ -65,7 +140,7 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
       ring.rotation.z = -t * 1.8;
       ring.scale.setScalar(1 + Math.sin(t * 8 + pulse) * 0.025);
       const arr = geometry.getAttribute('position') as THREE.BufferAttribute;
-      if (preset === 'code-rain' || preset === 'embers' || preset === 'desktop-grid' || particles === 'code' || particles === 'embers' || particles === 'motes' || particles === 'pixels') {
+      if (preset === 'embers' || preset === 'desktop-grid' || particles === 'code' || particles === 'embers' || particles === 'motes' || particles === 'pixels') {
         for (let i = 0; i < density; i++) {
           const drift = particles === 'pixels' || preset === 'desktop-grid' ? 0.004 : particles === 'embers' || preset === 'embers' ? 0.018 : particles === 'motes' ? 0.008 : -0.028;
           const y = arr.getY(i) + drift * speed;

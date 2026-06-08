@@ -82,24 +82,24 @@ speed: 0.2
 density: 34
 `;
 
-export const terminalRaw = `### Section 1 · metadata
-name: Terminal Oracle
+export const matrixRaw = `### Section 1 · metadata
+name: Matrix
 author: COMANDO
 version: 1.0.0
-tags: terminal, cyberpunk, hacker, dark, v2
-description: A living command line with scanlines, green phosphor, and a machine-room pulse.
+tags: matrix, digital-rain, cyberpunk, green-code, cinematic
+description: Classic green digital rain behind a black operator console, always falling like the film.
 preview_url: none
 license: MIT
 
 ### Section 2 · palette
-bg: #020403
-fg: #ccffd9
-accent: #39ff88
-muted: #5d8f6b
-surface: #061109
-border: #1dff72
-error: #ff3158
-success: #39ff88
+bg: #000000
+fg: #d9ffe2
+accent: #00ff41
+muted: #4f8f5f
+surface: rgba(0, 12, 4, .86)
+border: #00ff41
+error: #ff2e57
+success: #00ff41
 
 ### Section 3 · typography
 font_sans: IBM Plex Mono
@@ -108,7 +108,7 @@ font_display: Share Tech Mono
 size_base: 15px
 weight_base: 400
 line_height: 1.7
-letter_spacing: 0.03em
+letter_spacing: 0.04em
 text_transform: none
 weight_display: 400
 
@@ -124,47 +124,51 @@ message_shape: sharp
 border_style: solid
 
 ### Section 5 · voice
-send_label: EXEC
-placeholder: write command / ask oracle
-empty_state: boot complete. awaiting signal.
-thinking_label: compiling signal
-clear_label: WIPE BUFFER
+send_label: ENTER
+placeholder: follow the white rabbit
+empty_state: wake up. the matrix has you.
+thinking_label: tracing signal
+clear_label: RESET MATRIX
 
 ### Section 6 · atmosphere
 bg_effect: scanlines
 animation_speed: fast
 blur: none
-bg_gradient: radial-gradient(circle at 20% 10%, rgba(57,255,136,.20), transparent 25%), linear-gradient(135deg, #020403, #07180b 52%, #020403)
-texture_overlay: halftone
-texture_intensity: 0.22
+bg_gradient: linear-gradient(180deg, #000000, #001604 55%, #000000)
+texture_overlay: scanlines
+texture_intensity: 0.30
 surface_style: inset
 motion_style: glitch
 thinking_style: blink
 
 ### Section 7 · components
-message_user_bg: #39ff88
-message_user_fg: #001b08
-message_assistant_bg: rgba(4, 18, 8, .88)
-message_assistant_fg: #ccffd9
+message_user_bg: #00ff41
+message_user_fg: #001604
+message_assistant_bg: rgba(0, 18, 6, .88)
+message_assistant_fg: #d9ffe2
 input_bg: #000000
-input_fg: #ccffd9
-input_border: #39ff88
+input_fg: #d9ffe2
+input_border: #00ff41
 
 ### Section 9 · custom
-.app-shell::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(57,255,136,.08) 0 1px, transparent 1px 4px); mix-blend-mode: screen; opacity: .35; z-index: 3; }
-.message.assistant { box-shadow: inset 3px 0 0 var(--accent), 0 0 30px rgba(57,255,136,.10); }
+body[data-skin="matrix"] .app-shell::before { content: ""; position: fixed; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(0,255,65,.12) 0 1px, transparent 1px 4px); mix-blend-mode: screen; opacity: .42; z-index: 3; }
+body[data-skin="matrix"] .message.assistant { box-shadow: inset 3px 0 0 var(--accent), 0 0 34px rgba(0,255,65,.16); }
 
 ### Section 10 · persona
-sidebar_name: ORACLE TTY
-avatar: >_
-status: signal stable · no cloud memory
+sidebar_name: MATRIX
+avatar: 01
+status: follow the white rabbit
 
 ### Section visual
 engine: webgl
 preset: code-rain
-intensity: 0.85
-speed: 1.1
-density: 140
+intensity: 1.05
+speed: 1.35
+density: 220
+particles: code
+text_reveal: typewriter
+transitions: dissolve
+parallax: deep
 `;
 
 export const windows95Raw = `### Section 1 · metadata
@@ -680,7 +684,7 @@ parallax: gentle
 
 export const bundledSkins: Skin[] = [
   parseSkin(minimalRaw, 'minimal'),
-  parseSkin(terminalRaw, 'terminal-oracle'),
+  parseSkin(matrixRaw, 'matrix'),
   parseSkin(windows95Raw, 'windows-95-assistant'),
   parseSkin(gothicRaw, 'gothic-librarian'),
   parseSkin(cozyStudyRaw, 'cozy-study-companion'),

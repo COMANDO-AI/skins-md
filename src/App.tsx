@@ -83,6 +83,7 @@ function skinDemoReply(skin: Skin, prompt: string) {
   const name = skin.metadata.name;
   const asked = prompt.trim();
   const gothic = /gothic|librarian|archive/i.test(name);
+  if (/matrix|digital rain|white rabbit|red pill|green code/i.test(asked + name)) return `## Signal acquired\n\n**Input:** ${asked}\n\n- **Read the code:** separate the visible interface from the system behind it.\n- **Choose the exit:** make one real-world action that breaks the loop.\n- **Operator note:** keep the request concrete; the Matrix skin is demo-local until a live model is connected.\n\n\`Skin active: ${name} · digital rain renderer online\``;
   if (/horoscope|zodiac|libra|aries|taurus|gemini|cancer|leo|virgo|scorpio|sagittarius|capricorn|aquarius|pisces/i.test(asked)) {
     return `## ${gothic ? 'Archive reading' : 'Demo reading'}\n\n**Question:** ${asked}\n\n- **Theme for the week:** choose balance over performance. One clear boundary will do more than three dramatic moves.\n- **Work:** finish the thing that has been quietly occupying mental space. Ship the small version.\n- **People:** answer the message you have been postponing, but do not negotiate against yourself.\n- **Ritual:** write the next decision on paper before opening another tab.\n\n_${name} is running in no-key demo mode: useful, skin-flavored, local, and not a live model yet._`;
   }

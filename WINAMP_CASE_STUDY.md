@@ -104,7 +104,7 @@ Each skin needs a URL and a preview image. The viral artifact is not the app; it
 Example URL shape:
 
 ```text
-/skins/terminal-oracle
+/skins/matrix
 /skins/gothic-librarian
 ```
 

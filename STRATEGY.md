@@ -52,7 +52,7 @@ The first screen should make the before/after obvious. The skin picker should fe
 Launch skins should balance utility and shareability:
 
 - Minimal — baseline clarity.
-- Terminal Oracle — developer/gamer/cyberpunk signal.
+- Matrix — classic cinematic digital-rain cyberpunk signal.
 - Vaporwave Mirage — screenshot-first sensory wow.
 - Gothic Librarian — mass dark-academia/research/writing appeal.
 
