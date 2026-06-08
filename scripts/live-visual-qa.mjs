@@ -17,7 +17,7 @@ await page.screenshot({ path: `${outDir}/01-live-minimal-demo-onboarding.png`, f
 
 const skins = [
   ['Cozy Study Companion', '02-live-cozy-study-companion.png'],
-  ['Executive Operator', '03-live-executive-operator.png'],
+  ['Pokémon Trainer', '03-live-pokemon-trainer.png'],
   ['Anime Tutor', '04-live-anime-tutor.png'],
   ['Fantasy Quest Mentor', '05-live-fantasy-quest-mentor.png'],
 ];

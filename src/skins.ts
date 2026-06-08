@@ -420,90 +420,90 @@ transitions: dissolve
 parallax: gentle
 `;
 
-export const executiveRaw = `### Section 1 · metadata
-name: Executive Operator
+export const pokemonRaw = `### Section 1 · metadata
+name: Pokémon Trainer
 author: COMANDO
 version: 1.0.0
-tags: executive, operator, productivity, premium, consumer
-description: A polished command center for decisions, briefings, and sharp execution.
+tags: pokemon, trainer, gameboy, rpg, playful, consumer
+description: A monster-catching RPG interface for quests, study battles, party planning, and tiny wins.
 preview_url: none
 license: MIT
 
 ### Section 2 · palette
-bg: #070b12
-fg: #eef4ff
-accent: #7dd3fc
-muted: #8fa4bd
-surface: rgba(10,18,30,.84)
-border: rgba(125,211,252,.32)
-error: #fb7185
-success: #34d399
+bg: #f8f3d6
+fg: #1f2a44
+accent: #ffcc03
+muted: #47607a
+surface: rgba(255,255,255,.88)
+border: #2f6db5
+error: #d62828
+success: #2fb344
 
 ### Section 3 · typography
-font_sans: Inter
-font_mono: JetBrains Mono
-font_display: Sora
-size_base: 15px
-weight_base: 500
-line_height: 1.58
-letter_spacing: -0.01em
+font_sans: Nunito
+font_mono: IBM Plex Mono
+font_display: Fredoka
+size_base: 16px
+weight_base: 700
+line_height: 1.55
+letter_spacing: 0.01em
 text_transform: none
 weight_display: 800
 
 ### Section 4 · layout
-radius: 16px
+radius: 18px
 spacing_unit: 9px
-max_width: 900px
-sidebar_width: 330px
-radius_message: 18px
+max_width: 860px
+sidebar_width: 315px
+radius_message: 18px 18px 6px 18px
 radius_input: 16px
 radius_ui: 14px
-message_shape: premium
+message_shape: battle-card
 border_style: solid
 
 ### Section 5 · voice
-send_label: Execute
-placeholder: brief me, decide, draft, delegate
-empty_state: Command center standing by.
-thinking_label: synthesizing brief
-clear_label: Reset room
+send_label: Battle!
+placeholder: ask the trainer, name the quest, choose a move
+empty_state: A wild question appeared!
+thinking_label: choosing next move
+clear_label: New route
 
 ### Section 6 · atmosphere
-bg_effect: grid
+bg_effect: pixels
 animation_speed: medium
-blur: 18px
-bg_gradient: radial-gradient(circle at 15% 10%, rgba(125,211,252,.24), transparent 26%), radial-gradient(circle at 85% 18%, rgba(99,102,241,.20), transparent 28%), linear-gradient(145deg, #070b12, #111827 56%, #020617)
-texture_overlay: glass
-texture_intensity: 0.16
-surface_style: glass
-motion_style: slide
-thinking_style: pulse
+blur: 8px
+bg_gradient: radial-gradient(circle at 18% 18%, rgba(255,204,3,.52), transparent 24%), radial-gradient(circle at 82% 12%, rgba(229,57,53,.32), transparent 22%), radial-gradient(circle at 68% 82%, rgba(47,109,181,.36), transparent 28%), linear-gradient(160deg, #f8f3d6, #dff4ff 52%, #fff2a8)
+texture_overlay: pixels
+texture_intensity: 0.24
+surface_style: raised
+motion_style: bounce
+thinking_style: dots
 
 ### Section 7 · components
-message_user_bg: linear-gradient(135deg, #7dd3fc, #c4b5fd)
-message_user_fg: #020617
-message_assistant_bg: rgba(15,23,42,.84)
-message_assistant_fg: #eef4ff
-input_bg: rgba(2,6,23,.78)
-input_fg: #eef4ff
-input_border: rgba(125,211,252,.42)
+message_user_bg: linear-gradient(135deg, #ffcc03, #ffef8a)
+message_user_fg: #1f2a44
+message_assistant_bg: rgba(255,255,255,.92)
+message_assistant_fg: #1f2a44
+input_bg: rgba(255,255,255,.94)
+input_fg: #1f2a44
+input_border: #2f6db5
 
 ### Section 10 · persona
-sidebar_name: OPERATOR
-avatar: ◈
-status: briefing layer active
+sidebar_name: TRAINER DEX
+avatar: ◉
+status: party ready
 
 ### Section visual
 engine: webgl
-preset: executive-grid
-intensity: 0.82
-speed: 0.36
-density: 120
-hud: tactical
-particles: nodes
-text_reveal: fade-up
-transitions: snap
-parallax: medium
+preset: sprite-field
+intensity: 0.88
+speed: 0.42
+density: 118
+hud: playful
+particles: pixels
+text_reveal: pop
+transitions: bounce
+parallax: gentle
 `;
 
 export const animeTutorRaw = `### Section 1 · metadata
@@ -684,7 +684,7 @@ export const bundledSkins: Skin[] = [
   parseSkin(windows95Raw, 'windows-95-assistant'),
   parseSkin(gothicRaw, 'gothic-librarian'),
   parseSkin(cozyStudyRaw, 'cozy-study-companion'),
-  parseSkin(executiveRaw, 'executive-operator'),
+  parseSkin(pokemonRaw, 'pokemon-trainer'),
   parseSkin(animeTutorRaw, 'anime-tutor'),
   parseSkin(fantasyQuestRaw, 'fantasy-quest-mentor'),
 ];

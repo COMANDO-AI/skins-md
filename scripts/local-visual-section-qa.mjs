@@ -12,7 +12,7 @@ await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
 
 const skins = [
   ['Cozy Study Companion', '01-cozy-hud-soft.png'],
-  ['Executive Operator', '02-executive-hud-tactical.png'],
+  ['Pokémon Trainer', '02-pokemon-hud-playful.png'],
   ['Anime Tutor', '03-anime-hud-playful.png'],
   ['Fantasy Quest Mentor', '04-fantasy-hud-compass.png'],
 ];

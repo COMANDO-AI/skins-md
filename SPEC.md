@@ -123,7 +123,7 @@ A safe preset-driven sensory layer. This is deliberately configuration, not exec
 
 ```md
 engine:       [subtle | webgl | css | none]
-preset:       [stars | code-rain | aurora | embers | fireflies | executive-grid | sparkle-pop | rune-orbit]
+preset:       [stars | code-rain | aurora | embers | fireflies | executive-grid | sparkle-pop | rune-orbit | desktop-grid | sprite-field]
 intensity:    [0–1.2]
 speed:        [0–2]
 density:      [20–260]

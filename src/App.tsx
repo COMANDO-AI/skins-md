@@ -30,7 +30,7 @@ const PROVIDERS: { id: ProviderMode; label: string; kicker: string; description:
 
 const QUICK_PROMPTS = [
   'Give me a 20 minute study plan for a difficult topic.',
-  'Turn my messy priorities into an executive briefing.',
+  'Turn my messy priorities into a trainer quest plan.',
   'Explain this like an encouraging anime tutor.',
   'Convert my next task into a fantasy quest log.',
 ];
@@ -86,6 +86,7 @@ function skinDemoReply(skin: Skin, prompt: string) {
   if (/horoscope|zodiac|libra|aries|taurus|gemini|cancer|leo|virgo|scorpio|sagittarius|capricorn|aquarius|pisces/i.test(asked)) {
     return `## ${gothic ? 'Archive reading' : 'Demo reading'}\n\n**Question:** ${asked}\n\n- **Theme for the week:** choose balance over performance. One clear boundary will do more than three dramatic moves.\n- **Work:** finish the thing that has been quietly occupying mental space. Ship the small version.\n- **People:** answer the message you have been postponing, but do not negotiate against yourself.\n- **Ritual:** write the next decision on paper before opening another tab.\n\n_${name} is running in no-key demo mode: useful, skin-flavored, local, and not a live model yet._`;
   }
+  if (/pokemon|pokémon|trainer|party|battle|quest plan|move/i.test(asked + name)) return `## Trainer battle plan\n\n**Wild prompt appeared:** ${asked}\n\n- **Choose a move:** name the next tiny action you can finish in one sitting.\n- **Build the party:** keep one research move, one drafting move, and one review move.\n- **Use a potion:** remove one distraction before the timer starts.\n\n**Victory condition:** one visible win, not the whole league today.\n\n\`Skin active: ${name}\``;
   if (/executive|brief|priorit/i.test(asked + name)) return `## Executive brief\n\n**Signal:** ${asked}\n\n- **Decision frame:** choose the move that reduces ambiguity fastest.\n- **Next action:** write the smallest testable version, then review the result.\n- **Risk:** polishing before the user can feel the product.\n\n\`Skin active: ${name}\``;
   if (/anime|tutor|explain/i.test(asked + name)) return `## Tutor arc unlocked ✦\n\nLet's make it simple:\n\n1. **Name the monster** — what is confusing?\n2. **Break the move down** — one concept at a time.\n3. **Win a tiny battle** — answer one practice question.\n\nYou asked: _${asked}_\n\nI would start with a colorful example, then check if it clicked.`;
   if (/fantasy|quest|task/i.test(asked + name)) return `## Quest log\n\n**Quest:** ${asked}\n\n- **Objective:** reach the next visible checkpoint.\n- **Inventory:** context, constraint, first draft.\n- **Mentor note:** do not fight the whole dragon today — mark the map and take the first gate.\n\n**Reward:** momentum + a clearer path.`;

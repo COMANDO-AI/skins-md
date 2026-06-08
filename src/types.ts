@@ -10,7 +10,7 @@ export type ChatMessage = {
 
 export type VisualConfig = {
   engine?: 'subtle' | 'webgl' | 'css' | 'none';
-  preset?: 'stars' | 'code-rain' | 'aurora' | 'embers' | 'fireflies' | 'executive-grid' | 'sparkle-pop' | 'rune-orbit' | 'desktop-grid';
+  preset?: 'stars' | 'code-rain' | 'aurora' | 'embers' | 'fireflies' | 'executive-grid' | 'sparkle-pop' | 'rune-orbit' | 'desktop-grid' | 'sprite-field';
   intensity?: string;
   speed?: string;
   density?: string;

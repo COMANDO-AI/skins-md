@@ -59,7 +59,7 @@ Launch skins should balance utility and shareability:
 Future launch candidates:
 
 - Cozy Study Companion.
-- Executive Operator.
+- Pokémon Trainer.
 - Anime Tutor.
 - Fantasy Quest Mentor.
 - Creator Muse.

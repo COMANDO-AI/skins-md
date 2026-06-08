@@ -176,7 +176,7 @@ The viral object should be the skin, not only the app.
 Example share objects:
 
 - `/s/cozy-study-companion`;
-- `/s/executive-operator`;
+- `/s/pokemon-trainer`;
 - `/s/anime-tutor`;
 - `/s/fantasy-quest-mentor`;
 - `/s/windows-95-assistant`;
