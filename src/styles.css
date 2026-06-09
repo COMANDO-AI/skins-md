@@ -343,9 +343,11 @@ body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-backdrop{
 /* 2. Left panel – TIE Fighter photo, positioned in cockpit left viewport slot */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-left_panel_top{
   position:fixed;left:1.6vw;top:12vh;width:21vw;height:33vh;object-fit:cover;
-  opacity:.9;z-index:6;border-radius:3px;
-  filter:saturate(0.62) contrast(1.32) brightness(.72);
+  object-position:center center;
+  opacity:.92;z-index:6;border-radius:3px;
+  filter:saturate(0.5) contrast(1.5) brightness(.9) invert(0);
   box-shadow:0 0 0 1.5px rgba(74,240,255,.5),0 0 18px rgba(74,240,255,.2);
+  background:#020508;
 }
 
 /* 3. Right upper panel – Earth from orbit (NASA Apollo 17, no watermark) */
