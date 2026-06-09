@@ -89,7 +89,7 @@ function accountBridgePrompt(skin: Skin, provider: 'chatgpt' | 'claude') {
 }
 
 function SkinAssetLayer({ skin }: { skin: Skin }) {
-  const entries = Object.entries(skin.assets ?? {}).filter(([key, src]) => key !== 'cockpit_frame' && !!src);
+  const entries = Object.entries(skin.assets ?? {}).filter(([, src]) => !!src);
   if (entries.length === 0) return null;
   return <div className="skin-asset-layer" aria-hidden="true">
     {entries.map(([key, src]) => <img key={key} className={`skin-asset skin-asset-${key}`} src={src} alt="" loading="eager" decoding="async" />)}

@@ -88,8 +88,10 @@ describe('SKIN.md parser', () => {
     expect(skin).toBeTruthy();
     expect(skin?.metadata.name).toBe('Star Wars Command Deck');
     expect(skin?.metadata.tags).toContain('star-wars');
+    expect(skin?.assets?.backdrop).toBe('/skins/nasa-earth-horizon.jpg');
     expect(skin?.assets?.cockpit_frame).toBe('/skins/star-wars-cockpit-frame.svg');
     expect(skin?.assets?.hologram_primary).toBe('/skins/star-wars-hologram-fighter.svg');
+    expect(skin?.assets?.side_hud).toBe('/skins/command-deck-side-hud.svg');
     expect(skin?.visual?.hud).toBe('tactical');
     expect(skin?.visual?.preset).toBe('stars');
     expect(skin?.voice.send_label).toBe('Transmit');

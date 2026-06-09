@@ -517,7 +517,7 @@ name: Star Wars Command Deck
 author: COMANDO
 version: 1.0.0
 tags: star-wars, cockpit, command-deck, hologram, sci-fi, tactical
-description: A deep-space cockpit console with blue hologram panels, red alert lights, angled glass, and command-channel microcopy.
+description: A cinematic deep-space cockpit console with a real NASA Earth-horizon backdrop, original command-deck SVG overlays, blue hologram panels, red alert lights, angled glass, and command-channel microcopy.
 preview_url: none
 license: MIT
 
@@ -581,9 +581,11 @@ input_fg: #d7ecff
 input_border: #74c7ff
 
 ### Section 8 · assets
+backdrop: /skins/nasa-earth-horizon.jpg
 cockpit_frame: /skins/star-wars-cockpit-frame.svg
 hologram_primary: /skins/star-wars-hologram-fighter.svg
 hologram_secondary: /skins/star-wars-capital-ship.svg
+side_hud: /skins/command-deck-side-hud.svg
 
 ### Section 10 · persona
 sidebar_name: COMMAND DECK

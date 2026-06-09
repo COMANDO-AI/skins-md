@@ -10,7 +10,6 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
   const mount = useRef<HTMLDivElement | null>(null);
   const hud = skin.visual?.hud ?? 'none';
   const particles = skin.visual?.particles ?? 'stars';
-  const assetEntries = Object.entries(skin.assets ?? {}).filter(([key, src]) => key === 'cockpit_frame' && !!src);
 
   useEffect(() => {
     const node = mount.current;
@@ -179,7 +178,6 @@ export function VisualStage({ skin, pulse }: { skin: Skin; pulse: number }) {
   const labels = hud === 'none' ? null : hudLabels[hud] ?? hudLabels.minimal;
 
   return <div ref={mount} className={`visual-stage visual-hud-${hud}`}>
-    {assetEntries.map(([key, src]) => <img key={key} className={`skin-asset skin-asset-${key}`} src={src} alt="" aria-hidden="true" loading="eager" decoding="async" />)}
     {labels && <div className="visual-hud" aria-hidden="true">
       <span>{labels[0]}</span><strong>{labels[1]}</strong><span>{labels[2]}</span>
     </div>}
