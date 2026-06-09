@@ -83,13 +83,15 @@ describe('SKIN.md parser', () => {
     }
   });
 
-  it('ships a Star Wars cockpit-inspired bundled skin', () => {
+  it('ships an immersive cockpit bundled skin with image-first assets', () => {
     const skin = bundledSkins.find((item) => item.id === 'star-wars-command-deck');
     expect(skin).toBeTruthy();
-    expect(skin?.metadata.name).toBe('Star Wars Command Deck');
-    expect(skin?.metadata.tags).toContain('star-wars');
+    expect(skin?.metadata.name).toBe('Command Deck Immersive');
+    expect(skin?.metadata.tags).toContain('immersive');
+    expect(skin?.layout.mode).toBe('immersive');
     expect(skin?.assets?.backdrop).toBe('/skins/nasa-earth-horizon.jpg');
-    expect(skin?.assets?.cockpit_frame).toBe('/skins/star-wars-cockpit-frame.svg');
+    expect(skin?.assets?.stage_backplate).toBe('/skins/command-deck-immersive-stage.svg');
+    expect(skin?.assets?.foreground_frame).toBe('/skins/command-deck-immersive-foreground.svg');
     expect(skin?.assets?.hologram_primary).toBe('/skins/star-wars-hologram-fighter.svg');
     expect(skin?.assets?.side_hud).toBe('/skins/command-deck-side-hud.svg');
     expect(skin?.visual?.hud).toBe('tactical');

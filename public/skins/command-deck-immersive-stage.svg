@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="none">
+  <defs>
+    <radialGradient id="deep" cx="50%" cy="20%" r="75%"><stop offset="0" stop-color="#182844"/><stop offset=".42" stop-color="#071021"/><stop offset="1" stop-color="#01030a"/></radialGradient>
+    <linearGradient id="metal" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#27313b"/><stop offset=".18" stop-color="#111922"/><stop offset=".5" stop-color="#424b52"/><stop offset=".72" stop-color="#0d1218"/><stop offset="1" stop-color="#2e3943"/></linearGradient>
+    <linearGradient id="glass" x1="0" x2="1"><stop offset="0" stop-color="#5ee7ff" stop-opacity=".07"/><stop offset=".5" stop-color="#a7f7ff" stop-opacity=".16"/><stop offset="1" stop-color="#207cff" stop-opacity=".06"/></linearGradient>
+    <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="4" seed="18"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .24"/></feComponentTransfer><feBlend mode="overlay" in2="SourceGraphic"/></filter>
+    <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <pattern id="rivets" width="86" height="62" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="3" fill="#77828d" opacity=".38"/><circle cx="76" cy="54" r="2.5" fill="#070a0e" opacity=".8"/></pattern>
+    <pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0 0H6" stroke="#7deaff" stroke-opacity=".075"/><path d="M0 3H6" stroke="#000" stroke-opacity=".16"/></pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#deep)"/>
+  <g opacity=".8">
+    <circle cx="1115" cy="278" r="210" fill="#4fb8ff" opacity=".08"/>
+    <path d="M1000 348c210-84 398-76 552 6-128 75-330 95-552-6Z" fill="#57c7ff" opacity=".09"/>
+    <path d="M1026 350c184-48 342-40 478 4" stroke="#b7f4ff" stroke-opacity=".2" stroke-width="2" fill="none"/>
+  </g>
+  <g filter="url(#rough)">
+    <path d="M0 0h1600v118L1320 88 1198 180H402L282 88 0 118Z" fill="url(#metal)"/>
+    <path d="M0 900h1600V715l-255 48-126-94H385l-128 95L0 716Z" fill="url(#metal)"/>
+    <path d="M0 0h170l204 325v250L170 900H0Z" fill="url(#metal)"/>
+    <path d="M1600 0h-170l-204 325v250l204 325h170Z" fill="url(#metal)"/>
+    <path d="M235 150h1130l-118 118H353Z" fill="#0b1119" opacity=".9"/>
+    <path d="M266 715h1068l-118-96H384Z" fill="#0b1119" opacity=".92"/>
+    <rect width="1600" height="900" fill="url(#rivets)" opacity=".22"/>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M393 190h815l80 80-56 350H370l-58-350Z" fill="url(#glass)" stroke="#6feaff" stroke-opacity=".5" stroke-width="3"/>
+    <path d="M420 218h760l58 60-44 306H407l-42-306Z" fill="#03101d" opacity=".42" stroke="#83e8ff" stroke-opacity=".27"/>
+    <path d="M452 252h696" stroke="#8af7ff" stroke-opacity=".18"/><path d="M424 312h764" stroke="#8af7ff" stroke-opacity=".11"/><path d="M406 534h796" stroke="#8af7ff" stroke-opacity=".12"/>
+  </g>
+  <g opacity=".95">
+    <path d="M44 228h250l58 58v386l-58 58H44Z" fill="#06101b" stroke="#6feaff" stroke-opacity=".38" stroke-width="2"/>
+    <path d="M1306 228h250v502h-250l-58-58V286Z" fill="#06101b" stroke="#ff554a" stroke-opacity=".32" stroke-width="2"/>
+    <g stroke="#6feaff" stroke-opacity=".42" fill="none"><path d="M82 300h190M82 340h130M82 395h210M82 562h160M82 605h198"/><circle cx="190" cy="480" r="66"/><path d="M190 414v132M124 480h132"/></g>
+    <g stroke="#ff6c63" stroke-opacity=".42" fill="none"><path d="M1336 304h178M1394 350h120M1336 595h162"/><circle cx="1430" cy="478" r="78"/><path d="M1374 534l112-112M1374 422l112 112"/></g>
+  </g>
+  <g>
+    <path d="M502 724h596l74 52-38 86H464l-38-86Z" fill="#0a111a" stroke="#75e8ff" stroke-opacity=".36" stroke-width="2" filter="url(#rough)"/>
+    <rect x="552" y="758" width="496" height="58" rx="10" fill="#071624" stroke="#72e7ff" stroke-opacity=".38"/>
+    <g fill="#61eaff" opacity=".62"><rect x="574" y="774" width="42" height="10"/><rect x="635" y="774" width="108" height="10"/><rect x="762" y="774" width="26" height="10"/><rect x="1005" y="774" width="21" height="10"/><rect x="846" y="799" width="132" height="8"/></g>
+    <g fill="#ff4e45" opacity=".7"><circle cx="496" cy="789" r="9"/><circle cx="1120" cy="789" r="9"/><rect x="470" y="818" width="54" height="8"/><rect x="1078" y="818" width="54" height="8"/></g>
+  </g>
+  <rect width="1600" height="900" fill="url(#scan)" opacity=".55"/>
+  <path d="M0 0h1600v900H0Z" fill="none" stroke="#000" stroke-width="32" opacity=".55"/>
+</svg>

@@ -513,11 +513,11 @@ parallax: medium
 
 
 export const starWarsCommandDeckRaw = `### Section 1 · metadata
-name: Star Wars Command Deck
+name: Command Deck Immersive
 author: COMANDO
-version: 1.0.0
-tags: star-wars, cockpit, command-deck, hologram, sci-fi, tactical
-description: A cinematic deep-space cockpit console with a real NASA Earth-horizon backdrop, original command-deck SVG overlays, blue hologram panels, red alert lights, angled glass, and command-channel microcopy.
+version: 1.1.0
+tags: immersive, cockpit, command-deck, hologram, sci-fi, tactical, game-ui
+description: An image-first cockpit scene: a full-screen command deck backplate, real NASA Earth-horizon space layer, foreground metal frame, safe-area transcript glass, tactical monitors, and PlayStation-like game HUD composition.
 preview_url: none
 license: MIT
 
@@ -543,6 +543,7 @@ text_transform: none
 weight_display: 800
 
 ### Section 4 · layout
+mode: immersive
 radius: 16px
 spacing_unit: 8px
 max_width: 880px
@@ -552,6 +553,9 @@ radius_input: 14px
 radius_ui: 18px
 message_shape: cockpit-panel
 border_style: solid
+safe_area_messages: 31% 27% 45% 40%
+safe_area_composer: 34% 79% 32% 9%
+safe_area_sidebar: 2% 19% 20% 60%
 
 ### Section 5 · voice
 send_label: Transmit
@@ -582,6 +586,8 @@ input_border: #74c7ff
 
 ### Section 8 · assets
 backdrop: /skins/nasa-earth-horizon.jpg
+stage_backplate: /skins/command-deck-immersive-stage.svg
+foreground_frame: /skins/command-deck-immersive-foreground.svg
 cockpit_frame: /skins/star-wars-cockpit-frame.svg
 hologram_primary: /skins/star-wars-hologram-fighter.svg
 hologram_secondary: /skins/star-wars-capital-ship.svg
