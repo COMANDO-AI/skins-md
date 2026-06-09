@@ -93,7 +93,7 @@ describe('SKIN.md parser', () => {
     expect(skin?.assets?.cockpit_frame).toBe('/skins/sw/cockpit-frame.svg');
     expect(skin?.assets?.left_panel_top).toBe('/skins/sw/tie-fighter.png');
     expect(skin?.assets?.right_panel_top).toBe('/skins/sw/earth-orbit.jpg');
-    expect(skin?.assets?.right_panel_bottom).toBe('/skins/sw/death-star.png');
+    expect(skin?.assets?.right_panel_bottom).toBe('/skins/sw/xwing-space.webp');
     expect(skin?.visual?.hud).toBe('tactical');
     expect(skin?.visual?.preset).toBe('stars');
     expect(skin?.voice.send_label).toBe('Transmit');

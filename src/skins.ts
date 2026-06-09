@@ -584,7 +584,7 @@ backdrop: /skins/sw/space-deep.jpg
 cockpit_frame: /skins/sw/cockpit-frame.svg
 left_panel_top: /skins/sw/tie-fighter.png
 right_panel_top: /skins/sw/earth-orbit.jpg
-right_panel_bottom: /skins/sw/death-star.png
+right_panel_bottom: /skins/sw/xwing-space.webp
 
 ### Section 10 · persona
 sidebar_name: REBELLION
