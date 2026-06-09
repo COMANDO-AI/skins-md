@@ -512,6 +512,92 @@ parallax: medium
 `;
 
 
+export const starWarsCommandDeckRaw = `### Section 1 · metadata
+name: Star Wars Command Deck
+author: COMANDO
+version: 1.0.0
+tags: star-wars, cockpit, command-deck, hologram, sci-fi, tactical
+description: A deep-space cockpit console with blue hologram panels, red alert lights, angled glass, and command-channel microcopy.
+preview_url: none
+license: MIT
+
+### Section 2 · palette
+bg: #02050d
+fg: #d7ecff
+accent: #74c7ff
+muted: #6f88a7
+surface: rgba(5, 12, 28, .84)
+border: #1e6fa6
+error: #ff3b30
+success: #55ff9b
+
+### Section 3 · typography
+font_sans: Inter
+font_mono: JetBrains Mono
+font_display: Eurostile, Orbitron, Inter
+size_base: 15px
+weight_base: 500
+line_height: 1.62
+letter_spacing: 0.03em
+text_transform: none
+weight_display: 800
+
+### Section 4 · layout
+radius: 16px
+spacing_unit: 8px
+max_width: 880px
+sidebar_width: 320px
+radius_message: 14px 22px 14px 22px
+radius_input: 14px
+radius_ui: 18px
+message_shape: cockpit-panel
+border_style: solid
+
+### Section 5 · voice
+send_label: Transmit
+placeholder: send a secure channel message
+empty_state: Awaiting command from the deck.
+thinking_label: calculating hyperspace vector
+clear_label: Reset channel
+
+### Section 6 · atmosphere
+bg_effect: starfield
+animation_speed: slow
+blur: 10px
+bg_gradient: radial-gradient(circle at 50% -12%, rgba(116,199,255,.32), transparent 30%), radial-gradient(circle at 90% 18%, rgba(255,59,48,.16), transparent 18%), linear-gradient(180deg, #050816, #02050d 54%, #00030a)
+texture_overlay: scanlines
+texture_intensity: 0.22
+surface_style: glass
+motion_style: tactical
+thinking_style: pulse
+
+### Section 7 · components
+message_user_bg: linear-gradient(135deg, rgba(116,199,255,.95), rgba(25,82,130,.92))
+message_user_fg: #02050d
+message_assistant_bg: rgba(3, 10, 24, .88)
+message_assistant_fg: #d7ecff
+input_bg: rgba(0, 6, 16, .92)
+input_fg: #d7ecff
+input_border: #74c7ff
+
+### Section 10 · persona
+sidebar_name: COMMAND DECK
+avatar: ✦
+status: secure channel · rebellion frequency
+
+### Section visual
+engine: webgl
+preset: stars
+intensity: 1.0
+speed: 0.24
+density: 180
+hud: tactical
+particles: stars
+text_reveal: typewriter
+transitions: snap
+parallax: deep
+`;
+
 export const bundledSkins: Skin[] = [
   parseSkin(minimalRaw, 'minimal'),
   parseSkin(matrixRaw, 'matrix'),
@@ -519,4 +605,5 @@ export const bundledSkins: Skin[] = [
   parseSkin(gothicRaw, 'gothic-librarian'),
   parseSkin(pokemonRaw, 'pokemon-trainer'),
   parseSkin(animeTutorRaw, 'anime-tutor'),
+  parseSkin(starWarsCommandDeckRaw, 'star-wars-command-deck'),
 ];

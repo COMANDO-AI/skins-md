@@ -21,6 +21,8 @@ await page.route('https://openrouter.ai/api/v1/chat/completions', async (route) 
 });
 
 await page.goto('http://127.0.0.1:5173', { waitUntil: 'networkidle' });
+await page.evaluate(() => localStorage.clear());
+await page.reload({ waitUntil: 'networkidle' });
 await page.screenshot({ path: 'artifacts/01-initial.png', fullPage: false, timeout: 60000 });
 
 const connectStartsClosed = await page.locator('.connection-box').first().evaluate((el) => !el.open);
@@ -46,6 +48,13 @@ await page.waitForTimeout(350);
 const skinDuringHover = await page.evaluate(() => document.body.dataset.skin);
 const hoverDoesNotPreviewApply = skinBeforeHover === skinDuringHover;
 await page.mouse.move(900, 200);
+await page.locator('.skin-grid').getByRole('button', { name: /Star Wars Command Deck/i }).click();
+await page.waitForTimeout(200);
+const starWarsApplied = await page.evaluate(() => document.body.dataset.skin === 'star-wars-command-deck');
+const starWarsSendLabel = await page.locator('.composer > button').innerText();
+const starWarsVisualReady = await page.locator('.visual-hud').getByText('signal').isVisible().catch(() => false);
+await page.locator('.skin-grid').getByRole('button', { name: /Minimal/i }).click();
+await page.waitForTimeout(200);
 await page.getByRole('button', { name: /OpenRouter/i }).click();
 await page.getByPlaceholder('sk-or-v1-...').fill('***');
 await page.getByRole('button', { name: 'Save' }).click();
@@ -99,6 +108,9 @@ const results = {
   welcomeMiniGalleryRemoved,
   sidebarActionsPinnedBottom,
   hoverDoesNotPreviewApply,
+  starWarsApplied,
+  starWarsSendLabel,
+  starWarsVisualReady,
   keyPersisted,
   beforeSendLabel,
   afterSendLabel,

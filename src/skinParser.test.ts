@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { parseSkin, validateSkin } from './skinParser';
+import { bundledSkins } from './skins';
 
 const minimal = `### Section 1 · metadata
 name: Minimal
@@ -80,6 +81,16 @@ describe('SKIN.md parser', () => {
       expect(result.skin.visual?.hud).toBe('taskbar');
       expect(result.skin.visual?.particles).toBe('pixels');
     }
+  });
+
+  it('ships a Star Wars cockpit-inspired bundled skin', () => {
+    const skin = bundledSkins.find((item) => item.id === 'star-wars-command-deck');
+    expect(skin).toBeTruthy();
+    expect(skin?.metadata.name).toBe('Star Wars Command Deck');
+    expect(skin?.metadata.tags).toContain('star-wars');
+    expect(skin?.visual?.hud).toBe('tactical');
+    expect(skin?.visual?.preset).toBe('stars');
+    expect(skin?.voice.send_label).toBe('Transmit');
   });
 
   it('validates a complete skin', () => {
