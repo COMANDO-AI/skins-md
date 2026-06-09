@@ -333,41 +333,42 @@ body[data-skin="star-wars-command-deck"] .immersive-shell .visual-stage{z-index:
 /* ===== ASSET LAYER RULES ===== */
 body[data-skin="star-wars-command-deck"] .immersive-shell>.skin-asset-layer{z-index:2;pointer-events:none;}
 
-/* 1. Deep space backdrop – full viewport cover, darkened */
+/* 1. Deep space backdrop – full viewport cover, darkened, behind panels */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-backdrop{
   position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;
-  opacity:.85;z-index:2;mix-blend-mode:normal;
+  opacity:.85;z-index:1;mix-blend-mode:normal;
   filter:saturate(.9) contrast(1.18) brightness(.48);
 }
 
 /* 2. Left panel – TIE Fighter photo, positioned in cockpit left viewport slot */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-left_panel_top{
   position:fixed;left:1.6vw;top:12vh;width:21vw;height:33vh;object-fit:cover;
-  opacity:.88;z-index:4;border-radius:4px;
-  filter:saturate(0.72) contrast(1.28) brightness(.68);
-  box-shadow:0 0 0 1px rgba(74,240,255,.28),inset 0 0 20px rgba(74,240,255,.12);
+  opacity:.9;z-index:6;border-radius:3px;
+  filter:saturate(0.62) contrast(1.32) brightness(.72);
+  box-shadow:0 0 0 1.5px rgba(74,240,255,.5),0 0 18px rgba(74,240,255,.2);
 }
 
-/* 3. Right upper panel – Earth from orbit */
+/* 3. Right upper panel – Earth from orbit (NASA Apollo 17, no watermark) */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_top{
   position:fixed;right:1.6vw;top:12vh;width:21vw;height:33vh;object-fit:cover;
-  opacity:.88;z-index:4;border-radius:4px;
-  filter:saturate(.82) contrast(1.22) brightness(.62);
-  box-shadow:0 0 0 1px rgba(74,240,255,.28);
+  object-position:center center;
+  opacity:.9;z-index:6;border-radius:3px;
+  filter:saturate(.92) contrast(1.18) brightness(.66);
+  box-shadow:0 0 0 1.5px rgba(74,240,255,.5);
 }
 
 /* 4. Right lower panel – Death Star */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_bottom{
   position:fixed;right:1.6vw;top:48vh;width:21vw;height:35vh;object-fit:cover;
-  opacity:.86;z-index:4;border-radius:4px;
-  filter:saturate(.5) contrast(1.32) brightness(.55);
-  box-shadow:0 0 0 1px rgba(74,240,255,.22);
+  opacity:.88;z-index:6;border-radius:3px;
+  filter:saturate(.4) contrast(1.4) brightness(.6);
+  box-shadow:0 0 0 1.5px rgba(74,240,255,.4);
 }
 
-/* 5. Cockpit frame SVG – on top of everything except UI */
+/* 5. Cockpit frame SVG – on top of images, under UI */
 body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-cockpit_frame{
   position:fixed;inset:0;width:100vw;height:100vh;object-fit:fill;
-  opacity:1;z-index:10;mix-blend-mode:normal;
+  opacity:1;z-index:8;mix-blend-mode:normal;
   pointer-events:none;
   filter:drop-shadow(0 0 12px rgba(74,240,255,.38));
 }
