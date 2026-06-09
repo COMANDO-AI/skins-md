@@ -580,6 +580,11 @@ input_bg: rgba(0, 6, 16, .92)
 input_fg: #d7ecff
 input_border: #74c7ff
 
+### Section 8 · assets
+cockpit_frame: /skins/star-wars-cockpit-frame.svg
+hologram_primary: /skins/star-wars-hologram-fighter.svg
+hologram_secondary: /skins/star-wars-capital-ship.svg
+
 ### Section 10 · persona
 sidebar_name: COMMAND DECK
 avatar: ✦

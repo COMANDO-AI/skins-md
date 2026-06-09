@@ -313,13 +313,23 @@ body[data-skin="windows-95-assistant"] .skins-box .connection-summary em{max-wid
 .onboarding-hero .before-after,.onboarding-hero .consumer-gallery{display:none!important;}
 body[data-skin="pokemon-trainer"] .onboarding-hero,body[data-skin="windows-95-assistant"] .onboarding-hero{grid-template-columns:1fr!important;}
 
-/* Star Wars Command Deck: original cockpit-inspired sci-fi UI, no external IP assets. */
+/* Safe SKIN.md image asset layer: supports SVG/PNG/JPEG/WebP/GIF paths from Section assets. */
+.app-shell>.skin-asset-layer{position:fixed;inset:0;z-index:5;pointer-events:none;}
+.skin-asset{position:fixed;pointer-events:none;user-select:none;z-index:2;max-width:none;object-fit:contain;}
+
+/* Star Wars Command Deck: original cockpit-inspired sci-fi UI, now mixing generated SVG assets with CSS/WebGL chrome. */
 body[data-skin="star-wars-command-deck"]{background:#02050d;color:#d7ecff;}
 body[data-skin="star-wars-command-deck"] .app-shell{background:radial-gradient(circle at 50% -14%,rgba(116,199,255,.26),transparent 32%),radial-gradient(circle at 92% 12%,rgba(255,59,48,.12),transparent 20%),linear-gradient(180deg,#050816,#02050d 54%,#00030a);overflow:hidden;}
 body[data-skin="star-wars-command-deck"] .app-shell:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 0 7%,rgba(116,199,255,.08) 7.2% 7.7%,transparent 8% 28%,rgba(116,199,255,.10) 28.2% 28.7%,transparent 29% 71%,rgba(255,59,48,.08) 71.2% 71.7%,transparent 72%),repeating-linear-gradient(0deg,rgba(116,199,255,.08) 0 1px,transparent 1px 5px);mix-blend-mode:screen;opacity:.72;}
 body[data-skin="star-wars-command-deck"] .app-shell:after{opacity:.18;background-image:radial-gradient(circle at 18% 24%,#74c7ff 0 1px,transparent 1px),radial-gradient(circle at 76% 12%,#d7ecff 0 1px,transparent 1px),radial-gradient(circle at 88% 66%,#ff3b30 0 1px,transparent 1px);background-size:92px 86px,141px 110px,121px 134px;filter:none;mix-blend-mode:screen;}
 body[data-skin="star-wars-command-deck"] .visual-stage{opacity:.82;filter:none;}
+body[data-skin="star-wars-command-deck"] .skin-asset{mix-blend-mode:screen;filter:drop-shadow(0 0 18px rgba(116,199,255,.34));}
+body[data-skin="star-wars-command-deck"] .skin-asset-layer .skin-asset{mix-blend-mode:normal;filter:drop-shadow(0 0 22px rgba(116,199,255,.62)) saturate(1.35) brightness(1.22);}
+body[data-skin="star-wars-command-deck"] .skin-asset-cockpit_frame{inset:0;width:100vw;height:100vh;opacity:.62;object-fit:fill;z-index:3;}
+body[data-skin="star-wars-command-deck"] .skin-asset-hologram_primary{right:96px;bottom:202px;width:min(24vw,280px);opacity:.76;transform:perspective(900px) rotateX(28deg) rotateZ(-2deg);transform-origin:center bottom;z-index:5;}
+body[data-skin="star-wars-command-deck"] .skin-asset-hologram_secondary{right:78px;top:28px;width:min(24vw,292px);opacity:.74;z-index:5;}
 body[data-skin="star-wars-command-deck"] .app-shell>*:not(.visual-stage){z-index:4;}
+body[data-skin="star-wars-command-deck"] .app-shell>.skin-asset-layer{position:fixed;z-index:7;}
 body[data-skin="star-wars-command-deck"] .sidebar,body[data-skin="star-wars-command-deck"] .topbar,body[data-skin="star-wars-command-deck"] .messages,body[data-skin="star-wars-command-deck"] .composer,body[data-skin="star-wars-command-deck"] .connection-box,body[data-skin="star-wars-command-deck"] .mode-card,body[data-skin="star-wars-command-deck"] .onboarding-hero{background:linear-gradient(145deg,rgba(5,12,28,.90),rgba(2,5,13,.78));border:1px solid rgba(116,199,255,.52);box-shadow:0 0 0 1px rgba(116,199,255,.10),0 0 34px rgba(64,158,255,.16),inset 0 0 36px rgba(116,199,255,.07);backdrop-filter:blur(10px);clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 14px,100% calc(100% - 14px),calc(100% - 14px) 100%,14px 100%,0 calc(100% - 14px),0 14px);}
 body[data-skin="star-wars-command-deck"] .brand{border:1px solid rgba(116,199,255,.62);background:linear-gradient(90deg,rgba(116,199,255,.18),rgba(255,59,48,.10),transparent);box-shadow:inset 0 -1px rgba(116,199,255,.22);text-transform:uppercase;}
 body[data-skin="star-wars-command-deck"] .avatar{background:radial-gradient(circle,rgba(116,199,255,.34),rgba(2,5,13,.98));border:1px solid #74c7ff;color:#d7ecff;text-shadow:0 0 12px #74c7ff;box-shadow:0 0 22px rgba(116,199,255,.42);}

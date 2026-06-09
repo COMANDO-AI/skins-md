@@ -1,4 +1,4 @@
-import type { Skin, SkinSections, ValidationResult, VisualConfig } from './types';
+import type { Skin, SkinAssets, SkinSections, ValidationResult, VisualConfig } from './types';
 
 const SECTION_ALIASES: Record<string, keyof SkinSections> = {
   metadata: 'metadata',
@@ -30,6 +30,7 @@ const REQUIRED_FIELDS: Record<string, string[]> = {
 const COLOR_FIELDS = new Set(['bg','fg','accent','muted','surface','border','error','success','message_user_bg','message_user_fg','message_assistant_bg','message_assistant_fg','input_bg','input_fg','input_border']);
 
 const VISUAL_ALLOWED_FIELDS = new Set(['engine', 'preset', 'intensity', 'speed', 'density', 'hud', 'particles', 'text_reveal', 'transitions', 'parallax']);
+const ASSET_ALLOWED_EXTENSIONS = new Set(['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif']);
 const VISUAL_ENUMS: Record<string, Set<string>> = {
   engine: new Set(['subtle', 'webgl', 'css', 'none']),
   preset: new Set(['stars', 'code-rain', 'aurora', 'embers', 'fireflies', 'executive-grid', 'sparkle-pop', 'rune-orbit', 'desktop-grid', 'sprite-field']),
@@ -135,6 +136,26 @@ function validateVisualSection(visual: VisualConfig | undefined) {
   return errors;
 }
 
+function validateAssetUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed || /[{}<>;]/.test(trimmed) || /(?:script|function|eval|import|url\()/i.test(trimmed)) return false;
+  if (/^data:image\/(svg\+xml|png|jpeg|jpg|webp|gif);base64,[a-z0-9+/=\s]+$/i.test(trimmed)) return true;
+  if (!/^(\/skins\/|\.\/|\.\.\/|[a-z0-9_./-]+$)/i.test(trimmed)) return false;
+  const ext = trimmed.split('?')[0].split('#')[0].split('.').pop()?.toLowerCase();
+  return !!ext && ASSET_ALLOWED_EXTENSIONS.has(ext);
+}
+
+function validateAssetSection(assets: SkinAssets | undefined) {
+  const errors: string[] = [];
+  if (!assets) return errors;
+  for (const [key, value] of Object.entries(assets)) {
+    if (!value) continue;
+    if (!/^[a-zA-Z0-9_-]+$/.test(key)) errors.push(`Invalid assets.${key}: asset keys may only use letters, numbers, _ and -`);
+    if (!validateAssetUrl(value)) errors.push(`Unsafe asset URL for assets.${key}: ${value}`);
+  }
+  return errors;
+}
+
 export function validateSkin(raw: string, id = 'custom'): ValidationResult {
   const skin = parseSkin(raw, id);
   const errors: string[] = [];
@@ -157,6 +178,7 @@ export function validateSkin(raw: string, id = 'custom'): ValidationResult {
   }
 
   errors.push(...validateVisualSection(skin.visual));
+  errors.push(...validateAssetSection(skin.assets));
 
   return errors.length ? { ok: false, errors } : { ok: true, skin };
 }

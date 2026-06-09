@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" role="img" aria-label="Original wedge-shaped deep-space capital ship silhouette">
+  <defs><linearGradient id="ship" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d8e7ff"/><stop offset=".55" stop-color="#6d829f"/><stop offset="1" stop-color="#28364e"/></linearGradient><filter id="blue"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <rect width="760" height="300" fill="none"/>
+  <path d="M70 188L680 70 512 205z" fill="url(#ship)" opacity=".64"/>
+  <path d="M70 188L680 70 512 205zM164 171l340 15M258 153l255-8M345 134l186-25" fill="none" stroke="#d7ecff" stroke-width="3" opacity=".38"/>
+  <path d="M478 85l31-40h52l25 45" fill="none" stroke="#d7ecff" stroke-width="5" opacity=".48"/>
+  <g fill="#74c7ff" filter="url(#blue)" opacity=".9"><circle cx="230" cy="174" r="3"/><circle cx="307" cy="159" r="3"/><circle cx="385" cy="143" r="3"/><circle cx="462" cy="128" r="3"/><circle cx="537" cy="112" r="3"/></g>
+  <path d="M112 211h255" stroke="#74c7ff" stroke-width="2" opacity=".35"/>
+</svg>

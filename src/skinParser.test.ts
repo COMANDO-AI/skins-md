@@ -88,9 +88,18 @@ describe('SKIN.md parser', () => {
     expect(skin).toBeTruthy();
     expect(skin?.metadata.name).toBe('Star Wars Command Deck');
     expect(skin?.metadata.tags).toContain('star-wars');
+    expect(skin?.assets?.cockpit_frame).toBe('/skins/star-wars-cockpit-frame.svg');
+    expect(skin?.assets?.hologram_primary).toBe('/skins/star-wars-hologram-fighter.svg');
     expect(skin?.visual?.hud).toBe('tactical');
     expect(skin?.visual?.preset).toBe('stars');
     expect(skin?.voice.send_label).toBe('Transmit');
+  });
+
+  it('accepts safe image asset paths in Section assets', () => {
+    const withAssets = `${minimal}\n### Section 8 · assets\nbackdrop: /skins/example.webp\ncompanion: ./local-character.png\n`;
+    const result = validateSkin(withAssets, 'asset-safe');
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.skin.assets?.backdrop).toBe('/skins/example.webp');
   });
 
   it('validates a complete skin', () => {
@@ -116,5 +125,12 @@ describe('SKIN.md parser', () => {
       expect(result.errors.join(' ')).toContain('Invalid visual.intensity');
       expect(result.errors.join(' ')).toContain('Unsafe value for visual.transitions');
     }
+  });
+
+  it('rejects unsafe image asset values', () => {
+    const unsafe = `${minimal}\n### Section 8 · assets\nbackdrop: https://tracker.example/ship.svg\ncompanion: javascript:alert(1)\nframe: /skins/bad.html\n`;
+    const result = validateSkin(unsafe, 'asset-unsafe');
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors.join(' ')).toContain('Unsafe asset URL');
   });
 });

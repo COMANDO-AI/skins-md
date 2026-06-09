@@ -53,6 +53,9 @@ await page.waitForTimeout(200);
 const starWarsApplied = await page.evaluate(() => document.body.dataset.skin === 'star-wars-command-deck');
 const starWarsSendLabel = await page.locator('.composer > button').innerText();
 const starWarsVisualReady = await page.locator('.visual-hud').getByText('signal').isVisible().catch(() => false);
+const starWarsAssetImages = await page.locator('.skin-asset').count();
+const starWarsOverlayImages = await page.locator('.skin-asset-layer .skin-asset').count();
+const starWarsCockpitFrameLoaded = await page.locator('.visual-stage .skin-asset-cockpit_frame').evaluate((img) => img instanceof HTMLImageElement && img.complete && img.naturalWidth > 0).catch(() => false);
 await page.locator('.skin-grid').getByRole('button', { name: /Minimal/i }).click();
 await page.waitForTimeout(200);
 await page.getByRole('button', { name: /OpenRouter/i }).click();
@@ -111,6 +114,9 @@ const results = {
   starWarsApplied,
   starWarsSendLabel,
   starWarsVisualReady,
+  starWarsAssetImages,
+  starWarsOverlayImages,
+  starWarsCockpitFrameLoaded,
   keyPersisted,
   beforeSendLabel,
   afterSendLabel,

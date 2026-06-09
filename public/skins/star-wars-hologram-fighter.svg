@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 420" role="img" aria-label="Original blue hologram starfighter schematic">
+  <defs><filter id="g"><feGaussianBlur stdDeviation="2.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <rect width="600" height="420" fill="none"/>
+  <ellipse cx="300" cy="360" rx="210" ry="42" fill="none" stroke="#67d8ff" stroke-width="3" opacity=".35"/>
+  <ellipse cx="300" cy="360" rx="125" ry="22" fill="none" stroke="#67d8ff" stroke-width="2" opacity=".4"/>
+  <g stroke="#7de4ff" stroke-width="5" stroke-linejoin="round" fill="none" filter="url(#g)">
+    <path d="M300 75l34 165 172 72-174 8-32 32-32-32-174-8 172-72z" opacity=".85"/>
+    <path d="M300 75v277M266 240h68M176 278l248 0" opacity=".55"/>
+    <path d="M96 312l126-56M504 312l-126-56" opacity=".55"/>
+  </g>
+  <g fill="#7de4ff" opacity=".65"><circle cx="300" cy="75" r="5"/><circle cx="96" cy="312" r="4"/><circle cx="504" cy="312" r="4"/></g>
+</svg>

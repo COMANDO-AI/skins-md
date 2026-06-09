@@ -88,6 +88,14 @@ function accountBridgePrompt(skin: Skin, provider: 'chatgpt' | 'claude') {
   return `Use this as a SKINS.MD companion prompt in ${provider === 'chatgpt' ? 'ChatGPT' : 'Claude'}:\n\nYou are adopting the interface skin "${skin.metadata.name}".\nMood: ${skin.metadata.description}\nVoice: send label "${skin.voice.send_label}", thinking style "${skin.voice.thinking_label}".\nYour replies should match this skin's emotional register while staying useful, concise, and practical.\nWhen I paste a task, respond as if you are operating inside that skin.`;
 }
 
+function SkinAssetLayer({ skin }: { skin: Skin }) {
+  const entries = Object.entries(skin.assets ?? {}).filter(([key, src]) => key !== 'cockpit_frame' && !!src);
+  if (entries.length === 0) return null;
+  return <div className="skin-asset-layer" aria-hidden="true">
+    {entries.map(([key, src]) => <img key={key} className={`skin-asset skin-asset-${key}`} src={src} alt="" loading="eager" decoding="async" />)}
+  </div>;
+}
+
 function ModeSwitch() {
   return <section className="mode-switch" aria-label="AI Chat and Agent modes">
     <div className="mode-card active" aria-current="true">
@@ -300,6 +308,7 @@ export default function App() {
 
   return <div className={`app-shell ${isWin95 ? 'win95-shell' : ''}`}>
     <VisualStage skin={activeSkin} pulse={pulse} />
+    <SkinAssetLayer skin={activeSkin} />
     {isWin95 && <Win95DesktopShell />}
     <aside className="sidebar">
       <div className="brand"><span className="avatar">{activeSkin.persona?.avatar || '◆'}</span><div><strong>{activeSkin.persona?.sidebar_name || 'SKINS.MD'}</strong><small>{activeSkin.persona?.status || 'Every model. Your skin.'}</small></div></div>

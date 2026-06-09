@@ -21,6 +21,15 @@ export type VisualConfig = {
   parallax?: 'none' | 'subtle' | 'gentle' | 'medium' | 'deep';
 };
 
+export type SkinAssets = {
+  cockpit_frame?: string;
+  hologram_primary?: string;
+  hologram_secondary?: string;
+  backdrop?: string;
+  companion?: string;
+  [key: string]: string | undefined;
+};
+
 export type SkinSections = {
   metadata: Record<string, string>;
   palette: Record<string, string>;
@@ -29,7 +38,7 @@ export type SkinSections = {
   voice: Record<string, string>;
   atmosphere: Record<string, string>;
   components?: Record<string, string>;
-  assets?: Record<string, string>;
+  assets?: SkinAssets;
   custom?: Record<string, string> & { css?: string };
   persona?: Record<string, string>;
   visual?: VisualConfig;
