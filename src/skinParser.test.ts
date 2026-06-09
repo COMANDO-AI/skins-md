@@ -86,14 +86,14 @@ describe('SKIN.md parser', () => {
   it('ships an immersive cockpit bundled skin with image-first assets', () => {
     const skin = bundledSkins.find((item) => item.id === 'star-wars-command-deck');
     expect(skin).toBeTruthy();
-    expect(skin?.metadata.name).toBe('Command Deck Immersive');
-    expect(skin?.metadata.tags).toContain('immersive');
+    expect(skin?.metadata.name).toBe('Star Wars Command Deck');
+    expect(skin?.metadata.tags).toContain('star-wars');
     expect(skin?.layout.mode).toBe('immersive');
-    expect(skin?.assets?.backdrop).toBe('/skins/nasa-earth-horizon.jpg');
-    expect(skin?.assets?.stage_backplate).toBe('/skins/command-deck-immersive-stage.svg');
-    expect(skin?.assets?.foreground_frame).toBe('/skins/command-deck-immersive-foreground.svg');
-    expect(skin?.assets?.hologram_primary).toBe('/skins/star-wars-hologram-fighter.svg');
-    expect(skin?.assets?.side_hud).toBe('/skins/command-deck-side-hud.svg');
+    expect(skin?.assets?.backdrop).toBe('/skins/sw/space-deep.jpg');
+    expect(skin?.assets?.cockpit_frame).toBe('/skins/sw/cockpit-frame.svg');
+    expect(skin?.assets?.left_panel_top).toBe('/skins/sw/tie-fighter.png');
+    expect(skin?.assets?.right_panel_top).toBe('/skins/sw/earth-orbit.jpg');
+    expect(skin?.assets?.right_panel_bottom).toBe('/skins/sw/death-star.jpg');
     expect(skin?.visual?.hud).toBe('tactical');
     expect(skin?.visual?.preset).toBe('stars');
     expect(skin?.voice.send_label).toBe('Transmit');

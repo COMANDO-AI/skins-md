@@ -513,102 +513,95 @@ parallax: medium
 
 
 export const starWarsCommandDeckRaw = `### Section 1 · metadata
-name: Command Deck Immersive
+name: Star Wars Command Deck
 author: COMANDO
-version: 1.1.0
-tags: immersive, cockpit, command-deck, hologram, sci-fi, tactical, game-ui
-description: An image-first cockpit scene: a full-screen command deck backplate, real NASA Earth-horizon space layer, foreground metal frame, safe-area transcript glass, tactical monitors, and PlayStation-like game HUD composition.
+version: 2.0.0
+tags: star-wars, cockpit, jedi, rebel, immersive, game-ui, space
+description: Full Star Wars cockpit: NASA deep-space backdrop, real TIE fighter photo, Death Star, X-Wing, Rebel Alliance logo, Orbitron font, console bar with colored buttons — an image-first diegetic interface.
 preview_url: none
 license: MIT
 
 ### Section 2 · palette
-bg: #02050d
-fg: #d7ecff
-accent: #74c7ff
-muted: #6f88a7
-surface: rgba(5, 12, 28, .84)
-border: #1e6fa6
-error: #ff3b30
-success: #55ff9b
+bg: #030610
+fg: #c8e4ff
+accent: #4af0ff
+muted: #4a6080
+surface: rgba(3, 8, 20, .82)
+border: #1e4070
+error: #ff3030
+success: #00ff88
 
 ### Section 3 · typography
-font_sans: Inter
-font_mono: JetBrains Mono
-font_display: Eurostile, Orbitron, Inter
-size_base: 15px
+font_sans: Orbitron, Inter, sans-serif
+font_mono: Share Tech Mono, JetBrains Mono, monospace
+font_display: Orbitron, Inter
+size_base: 14px
 weight_base: 500
-line_height: 1.62
-letter_spacing: 0.03em
-text_transform: none
-weight_display: 800
+line_height: 1.55
+letter_spacing: 0.04em
+text_transform: uppercase
+weight_display: 900
 
 ### Section 4 · layout
 mode: immersive
-radius: 16px
+radius: 6px
 spacing_unit: 8px
-max_width: 880px
-sidebar_width: 320px
-radius_message: 14px 22px 14px 22px
-radius_input: 14px
-radius_ui: 18px
-message_shape: cockpit-panel
+max_width: 760px
+sidebar_width: 290px
+radius_message: 4px
+radius_input: 4px
+radius_ui: 4px
 border_style: solid
-safe_area_messages: 31% 27% 45% 40%
-safe_area_composer: 34% 79% 32% 9%
-safe_area_sidebar: 2% 19% 20% 60%
 
 ### Section 5 · voice
 send_label: Transmit
-placeholder: send a secure channel message
-empty_state: Awaiting command from the deck.
-thinking_label: calculating hyperspace vector
+placeholder: Send a secure channel message
+empty_state: Awaiting command from Yavin 4 Base.
+thinking_label: Calculating hyperspace vector...
 clear_label: Reset channel
 
 ### Section 6 · atmosphere
 bg_effect: starfield
 animation_speed: slow
-blur: 10px
-bg_gradient: radial-gradient(circle at 50% -12%, rgba(116,199,255,.32), transparent 30%), radial-gradient(circle at 90% 18%, rgba(255,59,48,.16), transparent 18%), linear-gradient(180deg, #050816, #02050d 54%, #00030a)
-texture_overlay: scanlines
-texture_intensity: 0.22
+blur: none
+bg_gradient: none
+texture_overlay: none
 surface_style: glass
 motion_style: tactical
 thinking_style: pulse
 
 ### Section 7 · components
-message_user_bg: linear-gradient(135deg, rgba(116,199,255,.95), rgba(25,82,130,.92))
-message_user_fg: #02050d
-message_assistant_bg: rgba(3, 10, 24, .88)
-message_assistant_fg: #d7ecff
-input_bg: rgba(0, 6, 16, .92)
-input_fg: #d7ecff
-input_border: #74c7ff
+message_user_bg: rgba(10, 26, 48, .88)
+message_user_fg: #c8e4ff
+message_assistant_bg: rgba(4, 12, 28, .92)
+message_assistant_fg: #c8e4ff
+input_bg: rgba(0, 5, 15, .9)
+input_fg: #c8e4ff
+input_border: #4af0ff
 
 ### Section 8 · assets
-backdrop: /skins/nasa-earth-horizon.jpg
-stage_backplate: /skins/command-deck-immersive-stage.svg
-foreground_frame: /skins/command-deck-immersive-foreground.svg
-cockpit_frame: /skins/star-wars-cockpit-frame.svg
-hologram_primary: /skins/star-wars-hologram-fighter.svg
-hologram_secondary: /skins/star-wars-capital-ship.svg
-side_hud: /skins/command-deck-side-hud.svg
+backdrop: /skins/sw/space-deep.jpg
+cockpit_frame: /skins/sw/cockpit-frame.svg
+left_panel_top: /skins/sw/tie-fighter.png
+right_panel_top: /skins/sw/earth-orbit.jpg
+right_panel_bottom: /skins/sw/death-star.jpg
 
 ### Section 10 · persona
-sidebar_name: COMMAND DECK
+sidebar_name: REBELLION
 avatar: ✦
-status: secure channel · rebellion frequency
+status: Yavin 4 Base · Secure Channel
 
 ### Section visual
 engine: webgl
 preset: stars
-intensity: 1.0
-speed: 0.24
-density: 180
+intensity: 0.8
+speed: 0.2
+density: 160
 hud: tactical
 particles: stars
 text_reveal: typewriter
 transitions: snap
-parallax: deep
+parallax: subtle
 `;
 
 export const bundledSkins: Skin[] = [

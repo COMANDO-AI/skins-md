@@ -317,8 +317,271 @@ body[data-skin="pokemon-trainer"] .onboarding-hero,body[data-skin="windows-95-as
 .app-shell>.skin-asset-layer{position:fixed;inset:0;z-index:5;pointer-events:none;}
 .skin-asset{position:fixed;pointer-events:none;user-select:none;z-index:2;max-width:none;object-fit:contain;}
 
-/* Star Wars Command Deck: cinematic cockpit shell using a real NASA JPG backdrop plus original SVG overlays. */
-body[data-skin="star-wars-command-deck"]{background:#01040b;color:#d7ecff;}
+/* Star Wars Command Deck v2: full image-first cockpit. backdrop=space-deep.jpg, cockpit_frame SVG on top, real side-panel images (TIE, earth, death star), Orbitron font, console buttons, Rebel Alliance logo. */
+@font-face{font-family:'Orbitron';src:url('/skins/sw/orbitron-bold.ttf') format('truetype');font-weight:700;font-display:swap;}
+@font-face{font-family:'Orbitron';src:url('/skins/sw/orbitron-black.ttf') format('truetype');font-weight:900;font-display:swap;}
+@font-face{font-family:'Share Tech Mono';src:url('/skins/sw/share-tech-mono.ttf') format('truetype');font-weight:400;font-display:swap;}
+
+body[data-skin="star-wars-command-deck"]{background:#030610;color:#c8e4ff;font-family:'Orbitron',Inter,sans-serif;}
+
+/* ===== IMMERSIVE STAGE SHELL ===== */
+body[data-skin="star-wars-command-deck"] .app-shell.immersive-shell{display:block;position:relative;width:100vw;height:100vh;overflow:hidden;background:#030610;isolation:isolate;}
+
+/* ===== VISUAL STAGE (stars canvas) ===== */
+body[data-skin="star-wars-command-deck"] .immersive-shell .visual-stage{z-index:1;opacity:.7;}
+
+/* ===== ASSET LAYER RULES ===== */
+body[data-skin="star-wars-command-deck"] .immersive-shell>.skin-asset-layer{z-index:2;pointer-events:none;}
+
+/* 1. Deep space backdrop – full viewport cover, darkened */
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-backdrop{
+  position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;
+  opacity:.85;z-index:2;mix-blend-mode:normal;
+  filter:saturate(.9) contrast(1.18) brightness(.48);
+}
+
+/* 2. Left panel – TIE Fighter photo, positioned in cockpit left viewport slot */
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-left_panel_top{
+  position:fixed;left:1.6vw;top:12vh;width:21vw;height:33vh;object-fit:cover;
+  opacity:.88;z-index:4;border-radius:4px;
+  filter:saturate(0.72) contrast(1.28) brightness(.68);
+  box-shadow:0 0 0 1px rgba(74,240,255,.28),inset 0 0 20px rgba(74,240,255,.12);
+}
+
+/* 3. Right upper panel – Earth from orbit */
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_top{
+  position:fixed;right:1.6vw;top:12vh;width:21vw;height:33vh;object-fit:cover;
+  opacity:.88;z-index:4;border-radius:4px;
+  filter:saturate(.82) contrast(1.22) brightness(.62);
+  box-shadow:0 0 0 1px rgba(74,240,255,.28);
+}
+
+/* 4. Right lower panel – Death Star */
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_bottom{
+  position:fixed;right:1.6vw;top:48vh;width:21vw;height:35vh;object-fit:cover;
+  opacity:.86;z-index:4;border-radius:4px;
+  filter:saturate(.5) contrast(1.32) brightness(.55);
+  box-shadow:0 0 0 1px rgba(74,240,255,.22);
+}
+
+/* 5. Cockpit frame SVG – on top of everything except UI */
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-cockpit_frame{
+  position:fixed;inset:0;width:100vw;height:100vh;object-fit:fill;
+  opacity:1;z-index:10;mix-blend-mode:normal;
+  pointer-events:none;
+  filter:drop-shadow(0 0 12px rgba(74,240,255,.38));
+}
+
+/* ===== REACT UI SAFE AREAS (all fixed, on top of frame) ===== */
+body[data-skin="star-wars-command-deck"] .immersive-shell .chat-panel{
+  position:fixed;inset:0;z-index:12;height:100vh;padding:0;display:block;pointer-events:none;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .chat-panel>*{pointer-events:auto;}
+
+/* Sidebar – occupies left cockpit console area */
+body[data-skin="star-wars-command-deck"] .immersive-shell .sidebar{
+  position:fixed;left:1.8vw;top:48vh;width:21vw;min-width:230px;max-width:300px;height:35vh;
+  margin:0;padding:12px 10px;z-index:14;overflow:auto;
+  background:linear-gradient(165deg,rgba(2,6,14,.82),rgba(0,2,8,.68));
+  border:1px solid rgba(74,240,255,.38);border-radius:4px;
+  box-shadow:0 0 28px rgba(0,0,0,.7),inset 0 0 24px rgba(74,240,255,.06);
+}
+
+/* Topbar – center title block in cockpit top */
+body[data-skin="star-wars-command-deck"] .immersive-shell .topbar{
+  position:fixed;left:23vw;top:0;right:23vw;height:11.5vh;
+  padding:12px 20px 8px;z-index:14;
+  background:linear-gradient(180deg,rgba(2,5,14,.92),rgba(2,5,14,.76));
+  border-bottom:1px solid rgba(74,240,255,.36);
+  border-left:1px solid rgba(74,240,255,.18);
+  border-right:1px solid rgba(74,240,255,.18);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .topbar h1{
+  font-family:'Orbitron',sans-serif;font-size:clamp(18px,2vw,28px);font-weight:900;
+  letter-spacing:.14em;text-align:center;line-height:1;margin:4px 0 2px;
+  color:#4af0ff;text-shadow:0 0 18px rgba(74,240,255,.9),0 0 40px rgba(74,240,255,.4);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-transform:uppercase;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .topbar p{
+  font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:.12em;
+  color:#4a8aaa;text-transform:uppercase;text-align:center;
+  display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+/* Mode switch – below topbar */
+body[data-skin="star-wars-command-deck"] .immersive-shell .mode-switch{
+  position:fixed;left:23vw;top:11.5vh;right:23vw;z-index:14;
+  display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:0;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .mode-card{
+  min-height:36px;padding:5px 10px;
+  background:rgba(3,9,20,.72);
+  border:1px solid rgba(74,240,255,.22);border-radius:2px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .mode-card p{display:none;}
+body[data-skin="star-wars-command-deck"] .immersive-shell .mode-card span,
+body[data-skin="star-wars-command-deck"] .immersive-shell .mode-card strong{
+  font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:.1em;
+}
+
+/* Error bar */
+body[data-skin="star-wars-command-deck"] .immersive-shell .error{
+  position:fixed;left:23vw;top:18.5vh;right:23vw;z-index:28;
+}
+
+/* Messages / transcript – center cockpit transparent glass panel */
+body[data-skin="star-wars-command-deck"] .immersive-shell .messages{
+  position:fixed;left:23vw;top:18.5vh;right:23vw;height:51vh;
+  min-height:0;padding:28px 16px 16px;z-index:13;overflow:auto;
+  background:linear-gradient(165deg,rgba(2,6,16,.46),rgba(2,10,22,.28));
+  border:1px solid rgba(74,240,255,.34);border-radius:2px;
+  box-shadow:0 0 40px rgba(74,240,255,.12),inset 0 0 40px rgba(74,240,255,.04),inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(4px) saturate(1.12);
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .messages:before{
+  content:"SECURE CHANNEL TRANSCRIPT";left:16px;top:10px;
+  color:#4af0ff;font:700 8px/1 'Orbitron',monospace;
+  letter-spacing:.22em;text-transform:uppercase;
+  text-shadow:0 0 8px rgba(74,240,255,.8);
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .onboarding-hero{
+  background:rgba(2,8,18,.36);border:1px solid rgba(74,240,255,.2);
+  border-radius:2px;padding:14px 16px;min-height:100px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .hero-copy h2{
+  font-family:'Orbitron',sans-serif;font-size:clamp(16px,1.8vw,26px);
+  color:#4af0ff;letter-spacing:.08em;text-transform:uppercase;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .message{
+  background:rgba(3,9,22,.72);
+  border:1px solid rgba(74,240,255,.28);border-radius:2px;
+  font-family:'Share Tech Mono',monospace;font-size:13px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .message.assistant{
+  box-shadow:inset 3px 0 0 rgba(74,240,255,.7),0 0 18px rgba(74,240,255,.1);
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .message.user{
+  box-shadow:inset -3px 0 0 rgba(255,255,255,.5);
+}
+
+/* Composer – bottom center console input */
+body[data-skin="star-wars-command-deck"] .immersive-shell .composer{
+  position:fixed;left:23vw;bottom:10.5vh;right:23vw;height:8vh;min-height:66px;
+  padding:10px 12px 8px;z-index:14;
+  display:grid;grid-template-columns:minmax(0,1fr) 80px;grid-template-rows:auto minmax(0,1fr);
+  gap:6px;
+  background:linear-gradient(180deg,rgba(3,9,20,.88),rgba(1,4,12,.94));
+  border:1px solid rgba(74,240,255,.44);border-radius:2px;
+  box-shadow:0 0 32px rgba(0,0,0,.8),0 0 20px rgba(74,240,255,.14),inset 0 0 24px rgba(74,240,255,.06);
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .composer .thinkline{
+  grid-column:1/-1;height:13px;font-family:'Share Tech Mono',monospace;
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#4af0ff;opacity:.8;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .prompt-chips{display:none;}
+body[data-skin="star-wars-command-deck"] .immersive-shell .composer textarea{
+  min-height:0;height:100%;resize:none;
+  background:rgba(0,4,12,.8);border:1px solid rgba(74,240,255,.3);border-radius:2px;
+  color:#c8e4ff;font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:.05em;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .composer button{
+  height:100%;align-self:stretch;
+  background:linear-gradient(180deg,rgba(74,240,255,.18),rgba(5,18,36,.9));
+  border:1px solid #4af0ff;border-radius:2px;
+  color:#4af0ff;font-family:'Orbitron',sans-serif;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;
+  text-shadow:0 0 10px rgba(74,240,255,.8);
+}
+
+/* Bottom console bar fake element overlay */
+body[data-skin="star-wars-command-deck"] .immersive-shell .visual-hud{
+  position:fixed;left:23vw;bottom:0;right:23vw;height:10.5vh;z-index:13;
+  background:linear-gradient(180deg,rgba(5,12,24,.88),rgba(2,6,14,.96));
+  border-top:1px solid rgba(74,240,255,.28);
+  display:flex;align-items:center;justify-content:center;gap:12px;
+  padding:0 16px;
+  border-radius:0;box-shadow:none;transform:none;right:auto;left:auto;top:auto;bottom:0;
+}
+
+/* Sidebar styling */
+body[data-skin="star-wars-command-deck"] .immersive-shell .brand{
+  font-family:'Orbitron',sans-serif;font-size:11px;letter-spacing:.1em;
+  background:transparent;border:none;padding:6px 0 8px;
+  text-transform:uppercase;min-width:0;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .brand strong{color:#4af0ff;letter-spacing:.14em;}
+body[data-skin="star-wars-command-deck"] .immersive-shell .avatar{
+  background:radial-gradient(circle,rgba(74,240,255,.28),rgba(2,5,13,.98));
+  border:1px solid #4af0ff;color:#c8e4ff;width:32px;height:32px;font-size:14px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .connection-box,
+body[data-skin="star-wars-command-deck"] .immersive-shell .skins-box{
+  background:rgba(2,6,16,.6);border:1px solid rgba(74,240,255,.22);border-radius:2px;
+  clip-path:none;margin-bottom:4px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .section-title{
+  font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:.12em;
+  color:#4af0ff;text-transform:uppercase;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-card,
+body[data-skin="star-wars-command-deck"] .immersive-shell .provider-card,
+body[data-skin="star-wars-command-deck"] .immersive-shell button{
+  font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:.08em;
+  background:rgba(0,6,18,.8);border-color:rgba(74,240,255,.35);color:#c8e4ff;
+  border-radius:2px;text-transform:uppercase;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .skin-card.active,
+body[data-skin="star-wars-command-deck"] .immersive-shell .provider-card.active{
+  border-color:#4af0ff;background:rgba(74,240,255,.1);
+  box-shadow:inset 2px 0 0 #4af0ff;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .actions{
+  display:flex;flex-wrap:wrap;gap:4px;margin-top:auto;padding-top:6px;
+}
+body[data-skin="star-wars-command-deck"] .immersive-shell .actions button{
+  font-size:8px;padding:4px 6px;flex:1 1 44%;
+}
+
+/* ===== FALLBACK: non-immersive mode (shouldn't activate but just in case) ===== */
+body[data-skin="star-wars-command-deck"]:not(.immersive-shell) .app-shell{
+  background:#030610;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-height:720px){
+  body[data-skin="star-wars-command-deck"] .immersive-shell .topbar{height:9vh;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .mode-switch{top:9vh;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .messages{top:16vh;height:53vh;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .composer{bottom:9vh;height:7vh;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .visual-hud{height:9vh;}
+}
+@media (max-width:1100px){
+  body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-left_panel_top,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_bottom{display:none;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-right_panel_top{top:15vh;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .topbar,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .mode-switch,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .messages,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .composer{left:3vw;right:3vw;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .sidebar{display:none;}
+}
+@media (max-width:800px){
+  body[data-skin="star-wars-command-deck"] .app-shell.immersive-shell{overflow:auto;display:grid;grid-template-columns:1fr;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .topbar,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .mode-switch,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .messages,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .composer,
+  body[data-skin="star-wars-command-deck"] .immersive-shell .sidebar{
+    position:relative;left:auto;top:auto;right:auto;bottom:auto;
+    width:auto;height:auto;margin:8px;pointer-events:auto;
+  }
+  body[data-skin="star-wars-command-deck"] .immersive-shell .chat-panel{height:auto;min-height:100vh;position:relative;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .skin-asset-cockpit_frame{opacity:.28;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .messages{height:auto;min-height:300px;}
+  body[data-skin="star-wars-command-deck"] .immersive-shell .composer{min-height:100px;display:grid;}
+}
+
 body[data-skin="star-wars-command-deck"] .app-shell{grid-template-columns:320px minmax(0,1fr);background:radial-gradient(circle at 50% -14%,rgba(116,199,255,.24),transparent 30%),radial-gradient(circle at 91% 13%,rgba(255,59,48,.18),transparent 18%),linear-gradient(180deg,#040814,#01040b 58%,#000);overflow:hidden;}
 body[data-skin="star-wars-command-deck"] .app-shell:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;background:linear-gradient(115deg,transparent 0 8%,rgba(116,199,255,.12) 8.1% 8.5%,transparent 8.8% 28%,rgba(116,199,255,.10) 28.1% 28.55%,transparent 28.8% 71%,rgba(255,59,48,.10) 71.1% 71.55%,transparent 72%),repeating-linear-gradient(0deg,rgba(116,199,255,.075) 0 1px,transparent 1px 5px);mix-blend-mode:screen;opacity:.78;}
 body[data-skin="star-wars-command-deck"] .app-shell:after{opacity:.20;background-image:radial-gradient(circle at 18% 24%,#74c7ff 0 1px,transparent 1px),radial-gradient(circle at 76% 12%,#d7ecff 0 1px,transparent 1px),radial-gradient(circle at 88% 66%,#ff3b30 0 1px,transparent 1px);background-size:92px 86px,141px 110px,121px 134px;filter:none;mix-blend-mode:screen;}

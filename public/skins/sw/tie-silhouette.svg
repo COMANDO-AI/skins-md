@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TIE Fighter Silhouette SVG - Fan art vector recreation -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300">
+  <!-- Left solar panel (hexagonal wing) -->
+  <polygon points="20,60 80,20 80,280 20,240" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
+  <line x1="20" y1="60" x2="80" y2="20" stroke="#333" stroke-width="1"/>
+  <line x1="20" y1="150" x2="80" y2="150" stroke="#333" stroke-width="1"/>
+  <line x1="20" y1="240" x2="80" y2="280" stroke="#333" stroke-width="1"/>
+  <!-- Left panel grid lines horizontal -->
+  <line x1="22" y1="100" x2="80" y2="80" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="22" y1="120" x2="80" y2="110" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="22" y1="180" x2="80" y2="190" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="22" y1="200" x2="80" y2="220" stroke="#2a2a2a" stroke-width="0.8"/>
+
+  <!-- Right solar panel (hexagonal wing) -->
+  <polygon points="380,60 320,20 320,280 380,240" fill="#1a1a1a" stroke="#444" stroke-width="1.5"/>
+  <line x1="380" y1="60" x2="320" y2="20" stroke="#333" stroke-width="1"/>
+  <line x1="380" y1="150" x2="320" y2="150" stroke="#333" stroke-width="1"/>
+  <line x1="380" y1="240" x2="320" y2="280" stroke="#333" stroke-width="1"/>
+  <!-- Right panel grid lines -->
+  <line x1="378" y1="100" x2="320" y2="80" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="378" y1="120" x2="320" y2="110" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="378" y1="180" x2="320" y2="190" stroke="#2a2a2a" stroke-width="0.8"/>
+  <line x1="378" y1="200" x2="320" y2="220" stroke="#2a2a2a" stroke-width="0.8"/>
+
+  <!-- Left strut connecting panel to cockpit -->
+  <rect x="80" y="140" width="70" height="20" fill="#222" stroke="#444" stroke-width="1"/>
+  <!-- Right strut -->
+  <rect x="250" y="140" width="70" height="20" fill="#222" stroke="#444" stroke-width="1"/>
+
+  <!-- Central spherical cockpit -->
+  <circle cx="200" cy="150" r="50" fill="#111" stroke="#555" stroke-width="2"/>
+  <circle cx="200" cy="150" r="42" fill="#0d0d0d" stroke="#333" stroke-width="1"/>
+  <!-- Cockpit viewport (hexagonal shape approximated) -->
+  <polygon points="200,118 228,134 228,166 200,182 172,166 172,134" fill="#0a1a0a" stroke="#1a3a1a" stroke-width="1.5"/>
+  <!-- Cockpit green glow -->
+  <polygon points="200,122 224,136 224,164 200,178 176,164 176,136" fill="#020f02" stroke="#0a2a0a" stroke-width="1"/>
+  <!-- Engine glow dots -->
+  <circle cx="200" cy="150" r="8" fill="#001500" opacity="0.8"/>
+  <circle cx="200" cy="150" r="4" fill="#003300" opacity="0.5"/>
+  <!-- Hull panel lines -->
+  <path d="M 165 130 Q 155 150 165 170" fill="none" stroke="#333" stroke-width="0.8"/>
+  <path d="M 235 130 Q 245 150 235 170" fill="none" stroke="#333" stroke-width="0.8"/>
+</svg>

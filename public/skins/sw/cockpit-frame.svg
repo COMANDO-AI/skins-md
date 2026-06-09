@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1280 800" preserveAspectRatio="none" width="1280" height="800">
+  <defs>
+    <linearGradient id="metalH" x1="0" x2="1"><stop offset="0" stop-color="#0a0d14"/><stop offset=".25" stop-color="#1c2230"/><stop offset=".5" stop-color="#2a3040"/><stop offset=".75" stop-color="#1c2230"/><stop offset="1" stop-color="#0a0d14"/></linearGradient>
+    <linearGradient id="metalV" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0a0d14"/><stop offset=".2" stop-color="#1c2230"/><stop offset=".6" stop-color="#2a3040"/><stop offset="1" stop-color="#060810"/></linearGradient>
+    <linearGradient id="rimL" x1="0" x2="1"><stop offset="0" stop-color="#1a2540"/><stop offset="1" stop-color="#0d111c" stop-opacity="0"/></linearGradient>
+    <linearGradient id="rimR" x1="1" x2="0"><stop offset="0" stop-color="#1a2540"/><stop offset="1" stop-color="#0d111c" stop-opacity="0"/></linearGradient>
+    <linearGradient id="rimT" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#1a2540"/><stop offset="1" stop-color="#0d111c" stop-opacity="0"/></linearGradient>
+    <linearGradient id="rimB" x1="0" x2="0" y1="1" y2="0"><stop offset="0" stop-color="#101420"/><stop offset="1" stop-color="#0d111c" stop-opacity="0"/></linearGradient>
+    <linearGradient id="console" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0d1522"/><stop offset=".5" stop-color="#141d2e"/><stop offset="1" stop-color="#090e18"/></linearGradient>
+    <radialGradient id="btnGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#4af0ff" stop-opacity=".9"/><stop offset="1" stop-color="#0066aa" stop-opacity=".3"/></radialGradient>
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff4040" stop-opacity=".9"/><stop offset="1" stop-color="#aa0000" stop-opacity=".3"/></radialGradient>
+    <filter id="glow4"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="glow8"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="leftPanel"><path d="M0 80 L260 110 L280 560 L0 600Z"/></clipPath>
+    <clipPath id="rightPanel"><path d="M1280 80 L1020 110 L1000 560 L1280 600Z"/></clipPath>
+    <!-- Rebel Alliance star-bird logo redrawn as pure SVG paths -->
+    <symbol id="rebel" viewBox="0 0 100 100">
+      <path d="M50 5 L56 28 L80 10 L65 30 L95 28 L74 44 L90 68 L64 56 L50 78 L36 56 L10 68 L26 44 L5 28 L35 30 L20 10 L44 28Z" fill="white" opacity=".9"/>
+      <circle cx="50" cy="50" r="12" fill="none" stroke="white" stroke-width="3"/>
+      <circle cx="50" cy="50" r="5" fill="white"/>
+    </symbol>
+    <!-- TIE Fighter minimal icon -->
+    <symbol id="tie" viewBox="0 0 80 50">
+      <ellipse cx="40" cy="25" r="8" ry="10" fill="none" stroke="#7df2ff" stroke-width="2"/>
+      <rect x="24" y="8" width="11" height="34" rx="2" fill="none" stroke="#7df2ff" stroke-width="1.5"/>
+      <rect x="45" y="8" width="11" height="34" rx="2" fill="none" stroke="#7df2ff" stroke-width="1.5"/>
+      <line x1="35" y1="25" x2="24" y2="25" stroke="#7df2ff" stroke-width="2"/>
+      <line x1="45" y1="25" x2="56" y2="25" stroke="#7df2ff" stroke-width="2"/>
+    </symbol>
+    <!-- X-Wing minimal icon -->
+    <symbol id="xwing" viewBox="0 0 80 50">
+      <rect x="36" y="10" width="8" height="30" rx="2" fill="#7df2ff" opacity=".9"/>
+      <path d="M44 18 L72 8 L56 25Z" fill="#7df2ff" opacity=".8"/>
+      <path d="M36 18 L8 8 L24 25Z" fill="#7df2ff" opacity=".8"/>
+      <path d="M44 32 L72 42 L56 25Z" fill="#7df2ff" opacity=".8"/>
+      <path d="M36 32 L8 42 L24 25Z" fill="#7df2ff" opacity=".8"/>
+    </symbol>
+    <!-- Imperial emblem -->
+    <symbol id="empire" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="none" stroke="white" stroke-width="3"/>
+      <circle cx="50" cy="50" r="20" fill="white" opacity=".9"/>
+      <circle cx="50" cy="50" r="10" fill="#0a0d14"/>
+      <g stroke="white" stroke-width="2.5" fill="none">
+        <line x1="50" y1="4" x2="50" y2="30"/>
+        <line x1="50" y1="70" x2="50" y2="96"/>
+        <line x1="4" y1="50" x2="30" y2="50"/>
+        <line x1="70" y1="50" x2="96" y2="50"/>
+        <line x1="16" y1="16" x2="36" y2="36"/>
+        <line x1="64" y1="64" x2="84" y2="84"/>
+        <line x1="84" y1="16" x2="64" y2="36"/>
+        <line x1="36" y1="64" x2="16" y2="84"/>
+      </g>
+    </symbol>
+  </defs>
+
+  <!-- ===== OUTER FRAME / COCKPIT RIM ===== -->
+  <!-- Top frame bar -->
+  <rect x="0" y="0" width="1280" height="88" fill="url(#metalH)"/>
+  <!-- Bottom frame / console -->
+  <rect x="0" y="700" width="1280" height="100" fill="url(#console)"/>
+  <!-- Left frame pillar -->
+  <path d="M0 0 L220 0 L280 88 L310 700 L0 700Z" fill="url(#rimL)"/>
+  <path d="M0 0 L190 0 L248 88 L278 700 L0 700Z" fill="url(#metalV)" opacity=".96"/>
+  <!-- Right frame pillar -->
+  <path d="M1280 0 L1060 0 L1000 88 L970 700 L1280 700Z" fill="url(#rimR)"/>
+  <path d="M1280 0 L1090 0 L1032 88 L1002 700 L1280 700Z" fill="url(#metalV)" opacity=".96"/>
+
+  <!-- Metal panel detail lines - left -->
+  <g stroke="#3a4860" stroke-width="1" fill="none" opacity=".7">
+    <line x1="60" y1="0" x2="90" y2="700"/><line x1="110" y1="0" x2="138" y2="700"/>
+    <line x1="160" y1="0" x2="186" y2="700"/><line x1="200" y1="0" x2="225" y2="700"/>
+  </g>
+  <!-- Metal panel detail lines - right -->
+  <g stroke="#3a4860" stroke-width="1" fill="none" opacity=".7">
+    <line x1="1220" y1="0" x2="1190" y2="700"/><line x1="1170" y1="0" x2="1142" y2="700"/>
+    <line x1="1120" y1="0" x2="1094" y2="700"/><line x1="1080" y1="0" x2="1055" y2="700"/>
+  </g>
+
+  <!-- Rivet details left -->
+  <g fill="#4a5870" opacity=".8">
+    <circle cx="30" cy="40" r="4"/><circle cx="70" cy="40" r="4"/><circle cx="110" cy="40" r="4"/>
+    <circle cx="150" cy="40" r="4"/><circle cx="190" cy="40" r="4"/>
+    <circle cx="30" cy="400" r="4"/><circle cx="30" cy="600" r="4"/>
+  </g>
+  <!-- Rivet details right -->
+  <g fill="#4a5870" opacity=".8">
+    <circle cx="1250" cy="40" r="4"/><circle cx="1210" cy="40" r="4"/><circle cx="1170" cy="40" r="4"/>
+    <circle cx="1130" cy="40" r="4"/><circle cx="1090" cy="40" r="4"/>
+    <circle cx="1250" cy="400" r="4"/><circle cx="1250" cy="600" r="4"/>
+  </g>
+
+  <!-- ===== TOP CENTER TITLE BLOCK ===== -->
+  <rect x="460" y="0" width="360" height="88" fill="#050810" opacity=".92"/>
+  <rect x="458" y="0" width="364" height="88" fill="none" stroke="#4af0ff" stroke-width="1.5" opacity=".7"/>
+  <!-- title text placeholder space - React renders on top -->
+  <line x1="460" y1="86" x2="820" y2="86" stroke="#4af0ff" stroke-width="2" opacity=".8" filter="url(#glow4)"/>
+  <!-- Red/blue status strips under title -->
+  <rect x="478" y="78" width="30" height="6" fill="#ff3030" filter="url(#glow4)"/>
+  <rect x="514" y="78" width="30" height="6" fill="#ff3030" filter="url(#glow4)"/>
+  <rect x="594" y="78" width="60" height="6" fill="#4af0ff" filter="url(#glow4)"/>
+  <rect x="660" y="78" width="60" height="6" fill="#4af0ff" filter="url(#glow4)"/>
+  <rect x="726" y="78" width="30" height="6" fill="#ff3030" filter="url(#glow4)"/>
+  <rect x="762" y="78" width="30" height="6" fill="#ff3030" filter="url(#glow4)"/>
+
+  <!-- Rebel Alliance logo centered top -->
+  <use href="#rebel" x="606" y="8" width="68" height="68" opacity=".82" filter="url(#glow4)"/>
+
+  <!-- Corner accent lights top-left -->
+  <circle cx="24" cy="24" r="8" fill="url(#redGlow)" filter="url(#glow4)"/>
+  <circle cx="56" cy="24" r="8" fill="url(#redGlow)" filter="url(#glow4)"/>
+  <circle cx="88" cy="24" r="8" fill="url(#btnGlow)" filter="url(#glow4)"/>
+
+  <!-- Corner accent lights top-right -->
+  <circle cx="1256" cy="24" r="8" fill="url(#btnGlow)" filter="url(#glow4)"/>
+  <circle cx="1224" cy="24" r="8" fill="url(#redGlow)" filter="url(#glow4)"/>
+  <circle cx="1192" cy="24" r="8" fill="url(#redGlow)" filter="url(#glow4)"/>
+
+  <!-- ===== LEFT SIDE SCREEN PANEL ===== -->
+  <rect x="8" y="96" width="260" height="280" rx="4" fill="#030508" stroke="#1e3050" stroke-width="2"/>
+  <rect x="8" y="96" width="260" height="16" fill="#0a1824" opacity=".9"/>
+  <!-- panel header bar -->
+  <rect x="8" y="96" width="260" height="16" fill="#0c1f34"/>
+  <rect x="10" y="98" width="80" height="12" rx="2" fill="#1a3352" opacity=".9"/>
+  <text x="14" y="108" font-family="'Orbitron', monospace" font-size="8" fill="#4af0ff" opacity=".9" letter-spacing="1">TACTICAL</text>
+
+  <!-- ===== RIGHT SIDE SCREEN PANEL ===== -->
+  <rect x="1012" y="96" width="260" height="280" rx="4" fill="#030508" stroke="#1e3050" stroke-width="2"/>
+  <rect x="1012" y="96" width="260" height="16" fill="#0c1f34"/>
+  <rect x="1014" y="98" width="90" height="12" rx="2" fill="#1a3352" opacity=".9"/>
+  <text x="1016" y="108" font-family="'Orbitron', monospace" font-size="8" fill="#4af0ff" opacity=".9" letter-spacing="1">SCANNERS</text>
+
+  <!-- Right lower screen -->
+  <rect x="1012" y="390" width="260" height="290" rx="4" fill="#030508" stroke="#1e3050" stroke-width="2"/>
+  <rect x="1012" y="390" width="260" height="16" fill="#0c1f34"/>
+  <text x="1016" y="402" font-family="'Orbitron', monospace" font-size="8" fill="#ff6060" opacity=".9" letter-spacing="1">TARGET</text>
+
+  <!-- ===== BOTTOM CONSOLE BAR ===== -->
+  <!-- Console horizontal divider line -->
+  <line x1="0" y1="700" x2="1280" y2="700" stroke="#4af0ff" stroke-width="1.5" opacity=".6" filter="url(#glow4)"/>
+
+  <!-- Console button clusters - left side -->
+  <g filter="url(#glow4)">
+    <!-- Red buttons row -->
+    <circle cx="40" cy="726" r="10" fill="url(#redGlow)"/>
+    <circle cx="70" cy="726" r="10" fill="url(#redGlow)"/>
+    <circle cx="100" cy="726" r="10" fill="url(#redGlow)"/>
+    <!-- Blue buttons row -->
+    <circle cx="140" cy="726" r="10" fill="url(#btnGlow)"/>
+    <circle cx="170" cy="726" r="10" fill="url(#btnGlow)"/>
+    <!-- Toggle switches -->
+    <rect x="210" y="716" width="12" height="20" rx="6" fill="#1e3a5a" stroke="#4af0ff" stroke-width="1"/>
+    <rect x="213" y="718" width="6" height="6" rx="3" fill="#4af0ff" opacity=".8"/>
+    <rect x="230" y="716" width="12" height="20" rx="6" fill="#1e3a5a" stroke="#4af0ff" stroke-width="1"/>
+    <rect x="233" y="728" width="6" height="6" rx="3" fill="#4af0ff" opacity=".3"/>
+  </g>
+
+  <!-- Console center area: profile + name + status -->
+  <!-- Stormtrooper helmet area -->
+  <rect x="430" y="704" width="56" height="56" rx="28" fill="#0d1520" stroke="#2a3f5f" stroke-width="2"/>
+  <use href="#empire" x="441" y="715" width="34" height="34" opacity=".7"/>
+  <!-- Name plate center -->
+  <rect x="496" y="710" width="180" height="40" rx="4" fill="#050912" stroke="#1e3050" stroke-width="1"/>
+  <!-- "LUKE / JEDI KNIGHT" equivalent - just the container, React text overlaid -->
+  <line x1="496" y1="731" x2="676" y2="731" stroke="#2a3f5f" stroke-width="1"/>
+  <!-- Rebel alliance emblem right of name -->
+  <use href="#rebel" x="686" y="710" width="42" height="42" opacity=".85" filter="url(#glow4)"/>
+
+  <!-- Online status indicator -->
+  <circle cx="740" cy="730" r="6" fill="#00ff88" filter="url(#glow4)"/>
+  <rect x="748" y="724" width="40" height="12" rx="2" fill="#050912"/>
+
+  <!-- X-Wing icon and "YAVIN 4 BASE" right side -->
+  <rect x="900" y="706" width="200" height="54" rx="4" fill="#050912" stroke="#1e3050" stroke-width="1"/>
+  <use href="#xwing" x="908" y="718" width="32" height="20" opacity=".9"/>
+  <!-- Signal bars far right -->
+  <g fill="#00ff88" filter="url(#glow4)" opacity=".9">
+    <rect x="1200" y="748" width="8" height="10" rx="1"/>
+    <rect x="1214" y="740" width="8" height="18" rx="1"/>
+    <rect x="1228" y="730" width="8" height="28" rx="1"/>
+    <rect x="1242" y="718" width="8" height="40" rx="1"/>
+    <rect x="1256" y="710" width="8" height="48" rx="1"/>
+  </g>
+
+  <!-- Console button clusters - right side -->
+  <g filter="url(#glow4)">
+    <circle cx="1140" cy="726" r="10" fill="url(#btnGlow)"/>
+    <circle cx="1170" cy="726" r="10" fill="url(#btnGlow)"/>
+    <circle cx="1210" cy="726" r="10" fill="url(#redGlow)"/>
+    <circle cx="1240" cy="726" r="10" fill="url(#redGlow)"/>
+  </g>
+
+  <!-- Inner glow edge / vignette on frame edges -->
+  <rect x="280" y="88" width="720" height="612" fill="none" stroke="#4af0ff" stroke-width="1" opacity=".14"/>
+
+  <!-- Horizontal scan line across frame top -->
+  <rect x="0" y="86" width="1280" height="2" fill="#4af0ff" opacity=".55" filter="url(#glow4)"/>
+  <!-- Vertical accent line left -->
+  <rect x="278" y="88" width="2" height="612" fill="#4af0ff" opacity=".3" filter="url(#glow4)"/>
+  <!-- Vertical accent line right -->
+  <rect x="1000" y="88" width="2" height="612" fill="#4af0ff" opacity=".3" filter="url(#glow4)"/>
+</svg>
