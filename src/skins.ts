@@ -513,11 +513,11 @@ parallax: medium
 
 
 export const starWarsCommandDeckRaw = `### Section 1 · metadata
-name: Star Wars Command Deck
+name: Shuttle Simulator Cockpit
 author: COMANDO
-version: 2.0.0
-tags: star-wars, cockpit, jedi, rebel, immersive, game-ui, space
-description: Full Star Wars cockpit: NASA deep-space backdrop, real TIE fighter photo, Death Star, X-Wing, Rebel Alliance logo, Orbitron font, console bar with colored buttons — an image-first diegetic interface.
+version: 3.0.0
+tags: cockpit, nasa, simulator, immersive, photo, game-ui
+description: A hard reset: real NASA shuttle simulator cockpit photography as the interface body, with chat mounted into instrument-screen safe areas instead of another CSS/HUD theme.
 preview_url: none
 license: MIT
 
@@ -532,9 +532,9 @@ error: #ff3030
 success: #00ff88
 
 ### Section 3 · typography
-font_sans: Orbitron, Inter, sans-serif
-font_mono: Share Tech Mono, JetBrains Mono, monospace
-font_display: Orbitron, Inter
+font_sans: Inter
+font_mono: JetBrains Mono
+font_display: Inter
 size_base: 14px
 weight_base: 500
 line_height: 1.55
@@ -554,11 +554,11 @@ radius_ui: 4px
 border_style: solid
 
 ### Section 5 · voice
-send_label: Transmit
-placeholder: Send a secure channel message
-empty_state: Awaiting command from Yavin 4 Base.
-thinking_label: Calculating hyperspace vector...
-clear_label: Reset channel
+send_label: Send
+placeholder: Type into the simulator console
+empty_state: Awaiting command in the simulator cockpit.
+thinking_label: Simulator processing...
+clear_label: Reset console
 
 ### Section 6 · atmosphere
 bg_effect: starfield
@@ -580,16 +580,12 @@ input_fg: #c8e4ff
 input_border: #4af0ff
 
 ### Section 8 · assets
-backdrop: /skins/sw/space-deep.jpg
-cockpit_frame: /skins/sw/cockpit-frame.svg
-left_panel_top: /skins/sw/tie-fighter.png
-right_panel_top: /skins/sw/earth-orbit.jpg
-right_panel_bottom: /skins/sw/xwing-space.webp
+backdrop: /skins/nasa-shuttle-simulator-cockpit.jpg
 
 ### Section 10 · persona
-sidebar_name: REBELLION
-avatar: ✦
-status: Yavin 4 Base · Secure Channel
+sidebar_name: SIM COCKPIT
+avatar: ◉
+status: NASA simulator photo · local demo
 
 ### Section visual
 engine: webgl
