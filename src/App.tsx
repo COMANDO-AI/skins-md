@@ -231,7 +231,12 @@ export default function App() {
   const importedInitial = useMemo(() => loadJson<Skin[]>(STORE.library, []), []);
   const [imported, setImported] = useState<Skin[]>(importedInitial);
   const skins = useMemo(() => [...bundledSkins, ...imported], [imported]);
-  const [activeId, setActiveId] = useState(localStorage.getItem(STORE.skin) || bundledSkins[0].id);
+  const initialSkinId = useMemo(() => {
+    const requested = new URLSearchParams(window.location.search).get('skin');
+    if (requested && skins.some((skin) => skin.id === requested)) return requested;
+    return localStorage.getItem(STORE.skin) || bundledSkins[0].id;
+  }, [skins]);
+  const [activeId, setActiveId] = useState(initialSkinId);
   const activeSkin = skins.find((s) => s.id === activeId) || skins[0];
   const [apiKey, setApiKey] = useState(localStorage.getItem(STORE.key) || '');
   const [keyDraft, setKeyDraft] = useState(apiKey);

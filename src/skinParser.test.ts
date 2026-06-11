@@ -83,17 +83,19 @@ describe('SKIN.md parser', () => {
     }
   });
 
-  it('ships an immersive cockpit bundled skin with a real photo backplate', () => {
+  it('ships an immersive Star Wars branded command deck with bitmap saga assets', () => {
     const skin = bundledSkins.find((item) => item.id === 'star-wars-command-deck');
     expect(skin).toBeTruthy();
-    expect(skin?.metadata.name).toBe('Shuttle Simulator Cockpit');
-    expect(skin?.metadata.tags).toContain('nasa');
-    expect(skin?.metadata.tags).toContain('photo');
+    expect(skin?.metadata.name).toBe('STAR WARS Command Deck');
+    expect(skin?.metadata.tags).toContain('star-wars');
+    expect(skin?.metadata.tags).toContain('branded-demo');
     expect(skin?.layout.mode).toBe('immersive');
-    expect(skin?.assets?.backdrop).toBe('/skins/nasa-shuttle-simulator-cockpit.jpg');
+    expect(skin?.assets?.backdrop).toBe('/skins/sw/top-cockpit-reference.jpg');
+    expect(skin?.assets?.logo).toBe('/demos/starwars-reference/assets/starwars.svg');
+    expect(skin?.assets?.hologram_secondary).toBe('/skins/sw/xwing-photo.jpg');
     expect(skin?.visual?.hud).toBe('tactical');
     expect(skin?.visual?.preset).toBe('stars');
-    expect(skin?.voice.send_label).toBe('Send');
+    expect(skin?.voice.send_label).toBe('Transmit');
   });
 
   it('accepts safe image asset paths in Section assets', () => {
