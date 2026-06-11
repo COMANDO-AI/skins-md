@@ -513,100 +513,91 @@ parallax: medium
 
 
 export const starWarsCommandDeckRaw = `### Section 1 · metadata
-name: STAR WARS Command Deck
+name: Shuttle Simulator Cockpit
 author: COMANDO
-version: 4.0.0
-tags: star-wars, saga, branded-demo, cockpit, hologram, command-ui, franchise-skin
-description: A fully branded Star Wars saga command deck demo: cockpit window, fleet imagery, faction marks, hologram comms, and AI chat mounted into the bridge console.
-preview_url: /demos/starwars-reference/
-license: Demo/reference use
+version: 3.0.0
+tags: cockpit, nasa, simulator, immersive, photo, game-ui
+description: A hard reset: real NASA shuttle simulator cockpit photography as the interface body, with chat mounted into instrument-screen safe areas instead of another CSS/HUD theme.
+preview_url: none
+license: MIT
 
 ### Section 2 · palette
-bg: #02030a
-fg: #d9ecff
-accent: #69d8ff
-muted: #7f8ca8
-surface: rgba(3, 8, 20, .78)
-border: rgba(105, 216, 255, .38)
-error: #ff3455
-success: #67ffb4
+bg: #030610
+fg: #c8e4ff
+accent: #4af0ff
+muted: #4a6080
+surface: rgba(3, 8, 20, .82)
+border: #1e4070
+error: #ff3030
+success: #00ff88
 
 ### Section 3 · typography
-font_sans: Share Tech Mono
-font_mono: Share Tech Mono
-font_display: Orbitron
+font_sans: Inter
+font_mono: JetBrains Mono
+font_display: Inter
 size_base: 14px
 weight_base: 500
-line_height: 1.45
-letter_spacing: 0.055em
+line_height: 1.55
+letter_spacing: 0.04em
 text_transform: uppercase
 weight_display: 900
 
 ### Section 4 · layout
 mode: immersive
-radius: 3px
+radius: 6px
 spacing_unit: 8px
 max_width: 760px
-sidebar_width: 300px
+sidebar_width: 290px
 radius_message: 4px
-radius_input: 3px
-radius_ui: 3px
+radius_input: 4px
+radius_ui: 4px
 border_style: solid
 
 ### Section 5 · voice
-send_label: Transmit
-placeholder: Send command to the bridge
-empty_state: STAR WARS command deck online. Awaiting transmission.
-thinking_label: calculating hyperspace route...
-clear_label: Reset bridge log
+send_label: Send
+placeholder: Type into the simulator console
+empty_state: Awaiting command in the simulator cockpit.
+thinking_label: Simulator processing...
+clear_label: Reset console
 
 ### Section 6 · atmosphere
 bg_effect: starfield
 animation_speed: slow
 blur: none
 bg_gradient: none
-texture_overlay: scanlines
-texture_intensity: 0.38
+texture_overlay: none
 surface_style: glass
 motion_style: tactical
 thinking_style: pulse
 
 ### Section 7 · components
-message_user_bg: rgba(255, 232, 31, .88)
-message_user_fg: #090b12
-message_assistant_bg: rgba(5, 18, 34, .86)
-message_assistant_fg: #d9ecff
-input_bg: rgba(3, 8, 18, .92)
-input_fg: #e7f5ff
-input_border: #69d8ff
+message_user_bg: rgba(10, 26, 48, .88)
+message_user_fg: #c8e4ff
+message_assistant_bg: rgba(4, 12, 28, .92)
+message_assistant_fg: #c8e4ff
+input_bg: rgba(0, 5, 15, .9)
+input_fg: #c8e4ff
+input_border: #4af0ff
 
 ### Section 8 · assets
-backdrop: /skins/sw/top-cockpit-reference.jpg
-logo: /demos/starwars-reference/assets/starwars.svg
-empire_mark: /demos/starwars-reference/assets/empire.svg
-rebel_mark: /demos/starwars-reference/assets/rebel.svg
-hologram_primary: /skins/sw/hologram-reference.jpg
-hologram_secondary: /skins/sw/xwing-photo.jpg
-xwing_space: /skins/sw/xwing-space.webp
-tie_fighter: /skins/sw/tie-fighter.png
-death_star: /skins/sw/death-star.png
+backdrop: /skins/nasa-shuttle-simulator-cockpit.jpg
 
 ### Section 10 · persona
-sidebar_name: STAR WARS BRIDGE
-avatar: ✦
-status: Saga-branded demo · command channel open
+sidebar_name: SIM COCKPIT
+avatar: ◉
+status: NASA simulator photo · local demo
 
 ### Section visual
 engine: webgl
 preset: stars
-intensity: 1.05
-speed: 0.22
-density: 220
+intensity: 0.8
+speed: 0.2
+density: 160
 hud: tactical
 particles: stars
 text_reveal: typewriter
 transitions: snap
-parallax: deep
+parallax: subtle
 `;
 
 export const bundledSkins: Skin[] = [
